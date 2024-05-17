@@ -1,0 +1,159 @@
+[gd_scene load_steps=18 format=3 uid="uid://24wocvjq6ji"]
+
+[ext_resource type="PackedScene" uid="uid://dtuqucr1r36ko" path="res://src/PackedScenes/Bullet.tscn" id="1_8smwg"]
+[ext_resource type="Texture2D" uid="uid://bm16ks6mffn6j" path="res://Assets/Sprites/slime_green.png" id="1_uksug"]
+
+[sub_resource type="GDScript" id="GDScript_gtun5"]
+script/source = "extends CharacterBody2D
+
+signal impact
+
+@export var bullet: PackedScene
+@export var bullet_count: int = 1
+@export_range(0, 360) var arc: float = 0
+@export_range(0, 20) var fire_rate: float = 2.0
+
+@onready var animation = $AnimatedSprite2D
+
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	animation.play(\"idle\")
+
+
+func _on_timer_timeout():
+	LogDuck.d('🏹 Shooting!')
+	animation.play(\"shoot\")
+	var new_bullet = bullet.instantiate()
+	new_bullet.position = global_position
+	new_bullet.global_rotation = global_rotation
+	get_tree().root.call_deferred(\"add_child\", new_bullet)
+	new_bullet.connect('impact', _on_player_hit)
+	await get_tree().create_timer(1/fire_rate).timeout
+
+func _on_player_hit():
+	impact.emit()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq6iv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhxv1"]
+atlas = ExtResource("1_uksug")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyllg"]
+atlas = ExtResource("1_uksug")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w0a4"]
+atlas = ExtResource("1_uksug")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hume"]
+atlas = ExtResource("1_uksug")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bkm7"]
+atlas = ExtResource("1_uksug")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4cq8"]
+atlas = ExtResource("1_uksug")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p824j"]
+atlas = ExtResource("1_uksug")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un2d3"]
+atlas = ExtResource("1_uksug")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7f3c"]
+atlas = ExtResource("1_uksug")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lupaw"]
+atlas = ExtResource("1_uksug")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7hga"]
+atlas = ExtResource("1_uksug")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7noqi"]
+atlas = ExtResource("1_uksug")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1j6d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhxv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyllg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w0a4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hume")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bkm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4cq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p824j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_un2d3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7f3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lupaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7hga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7noqi")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[node name="Gun" type="CharacterBody2D"]
+collision_mask = 2
+script = SubResource("GDScript_gtun5")
+bullet = ExtResource("1_8smwg")
+bullet_count = 6
+arc = 196.119
+fire_rate = 2.985
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vq6iv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h1j6d")
+animation = &"idle"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.805
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
