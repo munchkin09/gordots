@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=55 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Character.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
@@ -379,6 +379,13 @@ func _on_timer_timeout():
 	startZooming = true
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb4gk"]
+bg_color = Color(0.717647, 0.580392, 0.301961, 0.780392)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [node name="Character" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
@@ -425,10 +432,19 @@ position_smoothing_enabled = true
 script = SubResource("GDScript_6kfaf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(25, 10)
+transform = Transform2D(1, 0, 0, 1, 25, 10)
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = -6.0
+offset_right = 96.0
+offset_bottom = 49.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cb4gk")
 
 [node name="DineroLabel" type="Label" parent="CanvasLayer"]
 offset_right = 93.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.514097, 0.373878, 0.785083, 1)
 text = "Monedas : 0"
 script = ExtResource("6_y4gm3")
 
@@ -437,6 +453,7 @@ offset_left = 1.0
 offset_top = 21.0
 offset_right = 79.0
 offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.15976, 0.427135, 0.208621, 1)
 text = "Vida :  100"
 script = ExtResource("7_mneuq")
 
