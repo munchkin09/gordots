@@ -45,10 +45,10 @@ func _physics_process(delta):
 	else:
 		animated_sprite.play(\"idle\")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	var collide = move_and_slide()
+	move_and_slide()
 
 
-
+# Listener del evento de impacto de una bala al Player
 func _on_gun_impact():
 	hit.emit()
 "
@@ -57,19 +57,21 @@ func _on_gun_impact():
 resource_name = "CameraEvents"
 script/source = "extends Camera2D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+var startZooming = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+func _process(_delta):
+	if(startZooming && self.zoom <= Vector2(3,3)):
+		var actualZoom = self.zoom
+		self.zoom = Vector2(actualZoom.x + (0.4 * _delta), actualZoom.y + (0.4 * _delta))
+	else:
+		startZooming = false
 func _on_timer_timeout():
-	self.zoom = Vector2(5,5)
+	startZooming = true
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mewk"]
+size = Vector2(13, 19)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dihdx"]
 atlas = ExtResource("1_hdtba")
@@ -379,23 +381,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qx5ir"]
-radius = 8.61
-
 [sub_resource type="GDScript" id="GDScript_ne7j2"]
 resource_name = "MusicPlayer"
 script/source = "extends AudioStreamPlayer2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 func _on_player_start():
 	self.play()
@@ -403,7 +391,6 @@ func _on_player_start():
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
-scale = Vector2(0.05, 0.05)
 collision_layer = 2
 collision_mask = 5
 script = SubResource("GDScript_ngihq")
@@ -411,16 +398,15 @@ script = SubResource("GDScript_ngihq")
 [node name="Camera2D" type="Camera2D" parent="."]
 script = SubResource("GDScript_lmkjx")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_1mewk")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.76837e-07, 4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_vulta")
 animation = &"roll"
 frame_progress = 0.363624
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-rotation = -1.03149
-skew = 0.42237
-shape = SubResource("CircleShape2D_qx5ir")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.387
@@ -434,6 +420,6 @@ script = SubResource("GDScript_ne7j2")
 [node name="HealthController" type="Node" parent="."]
 script = ExtResource("3_3k4ky")
 
-[connection signal="hit" from="." to="HealthController" method="_on_player_hit"]
+[connection signal="hit" from="." to="HealthController" method="_on_player_hit" binds= [1]]
 [connection signal="start" from="." to="AudioStreamPlayer2D" method="_on_player_start"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
