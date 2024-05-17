@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu7wb1exa7x20"]
+[gd_scene load_steps=8 format=3 uid="uid://bu7wb1exa7x20"]
 
 [ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Character.tscn" id="1_dnfye"]
 [ext_resource type="PackedScene" uid="uid://24wocvjq6ji" path="res://src/Scenes/Gun.tscn" id="2_kaisn"]
 [ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Sprites/world_tileset.png" id="2_rh1o1"]
 [ext_resource type="PackedScene" uid="uid://dp6wt03xw5pme" path="res://src/Scenes/Coin.tscn" id="4_dlvfm"]
-[ext_resource type="Script" path="res://src/scripts/DineroLabel.gd" id="5_mgfmy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yvsfk"]
 bounce = 0.2
@@ -440,14 +439,6 @@ fire_rate = 1.194
 
 [node name="Character" parent="." instance=ExtResource("1_dnfye")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Character"]
-
-[node name="DineroLabel" type="Label" parent="Character/CanvasLayer"]
-offset_right = 93.0
-offset_bottom = 23.0
-text = "Monedas : 0"
-script = ExtResource("5_mgfmy")
-
 [node name="Coin" parent="." instance=ExtResource("4_dlvfm")]
 position = Vector2(-105, -10)
 
@@ -463,7 +454,6 @@ position = Vector2(-176, -4)
 [node name="Coin5" parent="." instance=ExtResource("4_dlvfm")]
 position = Vector2(-165, -91)
 
-[connection signal="coin_collected" from="Character" to="Character/CanvasLayer/DineroLabel" method="_on_character_coin_collected"]
 [connection signal="coin_collected" from="Coin" to="Character" method="_on_coin_coin_collected"]
 [connection signal="coin_collected" from="Coin2" to="Character" method="_on_coin_coin_collected"]
 [connection signal="coin_collected" from="Coin3" to="Character" method="_on_coin_coin_collected"]

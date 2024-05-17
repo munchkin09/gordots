@@ -1,10 +1,12 @@
-[gd_scene load_steps=52 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=54 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Character.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
 [ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://time_for_adventure.mp3" id="2_shjv8"]
 [ext_resource type="PackedScene" uid="uid://cuqpfgivymptq" path="res://src/Scenes/HealthController.tscn" id="3_4p4dx"]
 [ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://coin_collected.mp3" id="4_jcgfc"]
+[ext_resource type="Script" path="res://src/scripts/DineroLabel.gd" id="6_y4gm3"]
+[ext_resource type="Script" path="res://src/Scenes/VidaLabel.gd" id="7_mneuq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mewk"]
 size = Vector2(13, 16)
@@ -422,7 +424,25 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = SubResource("GDScript_6kfaf")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DineroLabel" type="Label" parent="CanvasLayer"]
+offset_right = 93.0
+offset_bottom = 23.0
+text = "Monedas : 0"
+script = ExtResource("6_y4gm3")
+
+[node name="VidaLabel" type="Label" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 21.0
+offset_right = 79.0
+offset_bottom = 44.0
+text = "Vida :  100"
+script = ExtResource("7_mneuq")
+
+[connection signal="coin_collected" from="." to="CanvasLayer/DineroLabel" method="_on_character_coin_collected"]
 [connection signal="start" from="." to="IntroMusic" method="_on_player_start"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="CanvasLayer/VidaLabel" method="_on_area_2d_body_entered"]
