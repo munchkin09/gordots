@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://24wocvjq6ji" path="res://src/Scenes/Gun.tscn" id="2_kaisn"]
 [ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Sprites/world_tileset.png" id="2_rh1o1"]
 [ext_resource type="PackedScene" uid="uid://dp6wt03xw5pme" path="res://src/Scenes/Coin.tscn" id="4_dlvfm"]
-[ext_resource type="Script" path="res://src/scripts/DineroLabel.gd" id="5_mgfmy"]
+[ext_resource type="Script" path="res://DineroLabel.gd" id="5_xwwiq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yvsfk"]
 bounce = 0.2
@@ -471,8 +471,8 @@ offset_left = -122.0
 offset_top = -143.0
 offset_right = -48.0
 offset_bottom = -120.0
-text = "Monedas : 0"
-script = ExtResource("5_mgfmy")
+text = "Vida : 100"
+script = ExtResource("5_xwwiq")
 
 [connection signal="coin_collected" from="Character" to="UserInterface/DineroLabel" method="_on_character_coin_collected"]
 [connection signal="coin_collected" from="Coin" to="Character" method="_on_coin_coin_collected"]
