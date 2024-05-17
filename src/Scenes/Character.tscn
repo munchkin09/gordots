@@ -1,59 +1,10 @@
-[gd_scene load_steps=50 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=52 format=3 uid="uid://bimqvxarfp4xy"]
 
+[ext_resource type="Script" path="res://src/Scripts/Character.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Assets/Sprites/knight.png" id="1_giw3n"]
 [ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/time_for_adventure.mp3" id="2_shjv8"]
-[ext_resource type="Script" path="res://src/Scripts/HealthController.gd" id="3_n4qo4"]
-
-[sub_resource type="GDScript" id="GDScript_ngihq"]
-resource_name = "PlayerInputController"
-script/source = "extends CharacterBody2D
-
-signal start
-signal hit
-
-const SPEED = 120
-const JUMP_VELOCITY = -500
-var faceLeft = true
-const logHeader = '👨‍🦳👩‍🦳'
-@onready var animated_sprite = $AnimatedSprite2D
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
-
-func _ready():
-	start.emit()
-
-func _physics_process(delta):
-	animated_sprite.pause()
-	# Add the gravity.
-	if not is_on_floor():
-		animated_sprite.play()
-		velocity.y += gravity * delta
-		
-
-	# Handle jump.
-	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		return
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis(\"ui_left\", \"ui_right\")
-	if direction:
-		animated_sprite.flip_h = false if (direction == 1) else true
-		animated_sprite.play(\"run\")
-		velocity.x = direction * SPEED
-	else:
-		animated_sprite.play(\"idle\")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	move_and_slide()
-
-
-# Listener del evento de impacto de una bala al Player
-func _on_gun_impact():
-	hit.emit()
-
-"
+[ext_resource type="PackedScene" uid="uid://cuqpfgivymptq" path="res://src/Scenes/HealthController.tscn" id="3_4p4dx"]
+[ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://Assets/coin_collected.mp3" id="4_jcgfc"]
 
 [sub_resource type="GDScript" id="GDScript_lmkjx"]
 resource_name = "CameraEvents"
@@ -388,7 +339,7 @@ resource_name = "AnimationManager"
 script/source = "extends AnimatedSprite2D
 
 var animation_on_course = 'idle'
-
+const logHeader = '[SPRT]'
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -409,8 +360,13 @@ func _on_animation_finished():
 		self.play(animation_on_course)
 		animation_on_course = \"idle\"
 
-
+func _on_player_attack():
+	animation_on_course = \"attack\"
+	LogDuck.d(logHeader, 'player attacking')
+	self.play('attack')
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5eg3"]
 
 [sub_resource type="GDScript" id="GDScript_ne7j2"]
 resource_name = "MusicPlayer"
@@ -420,11 +376,12 @@ func _on_player_start():
 	self.play()
 "
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Character" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
 collision_mask = 5
-script = SubResource("GDScript_ngihq")
+script = ExtResource("1_3tkld")
+health_controller = ExtResource("3_4p4dx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -438,8 +395,7 @@ shape = SubResource("RectangleShape2D_1mewk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_vulta")
-animation = &"run"
-frame_progress = 0.872632
+animation = &"death"
 script = SubResource("GDScript_eg0l7")
 
 [node name="Timer" type="Timer" parent="."]
@@ -447,15 +403,25 @@ wait_time = 2.387
 one_shot = true
 autostart = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 2)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_i5eg3")
+
+[node name="CoinCollected" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jcgfc")
+
+[node name="IntroMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_shjv8")
+volume_db = -39.381
 script = SubResource("GDScript_ne7j2")
 
-[node name="HealthController" type="Node" parent="."]
-script = ExtResource("3_n4qo4")
+[node name="HealthController" parent="." instance=ExtResource("3_4p4dx")]
 
-[connection signal="hit" from="." to="AnimatedSprite2D" method="_on_player_hit"]
-[connection signal="hit" from="." to="HealthController" method="_on_player_hit" binds= [1]]
-[connection signal="start" from="." to="AudioStreamPlayer2D" method="_on_player_start"]
+[connection signal="start" from="." to="IntroMusic" method="_on_player_start"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

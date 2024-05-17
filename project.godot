@@ -21,7 +21,7 @@ LogDuck="*res://addons/LogDuck/LogDuck.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/LogDuck/plugin.cfg", "res://addons/ZzSprite/plugin.cfg")
+enabled=PackedStringArray()
 
 [rendering]
 

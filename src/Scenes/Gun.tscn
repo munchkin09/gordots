@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://24wocvjq6ji"]
+[gd_scene load_steps=18 format=3 uid="uid://24wocvjq6ji"]
 
-[ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Player.tscn" id="1_4tyog"]
-[ext_resource type="PackedScene" uid="uid://dtuqucr1r36ko" path="res://src/Scenes/Bullet.tscn" id="1_8smwg"]
-[ext_resource type="Script" path="res://src/Scenes/Gun.tres.gd" id="1_801jw"]
+[ext_resource type="Script" path="res://src/Scripts/Gun.gd" id="1_7ht65"]
 [ext_resource type="Texture2D" uid="uid://bm16ks6mffn6j" path="res://Assets/Sprites/slime_green.png" id="1_uksug"]
+[ext_resource type="PackedScene" uid="uid://dtuqucr1r36ko" path="res://src/Scenes/Bullet.tscn" id="3_lso7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vq6iv"]
+size = Vector2(14, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhxv1"]
 atlas = ExtResource("1_uksug")
@@ -106,21 +106,20 @@ animations = [{
 
 [node name="Gun" type="CharacterBody2D"]
 collision_mask = 2
-script = ExtResource("1_801jw")
-player = ExtResource("1_4tyog")
-bullet = ExtResource("1_8smwg")
-bullet_count = 6
-fire_rate = 20.0
+script = ExtResource("1_7ht65")
+bullet = ExtResource("3_lso7d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_vq6iv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_h1j6d")
 animation = &"idle"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 12.284
+wait_time = 4.703
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

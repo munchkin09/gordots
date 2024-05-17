@@ -1,44 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://dtuqucr1r36ko"]
 
+[ext_resource type="Script" path="res://src/Scripts/Bullet.gd" id="1_1ibfl"]
 [ext_resource type="Texture2D" uid="uid://bpgkoiox37im7" path="res://Assets/Sprites/coin.png" id="1_yjray"]
-
-[sub_resource type="GDScript" id="GDScript_awmox"]
-resource_name = "BulletController"
-script/source = "class_name Bullet extends CharacterBody2D
-
-signal impact 
-
-var speed = 6
-var direction = Vector2.RIGHT
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	direction = Vector2.RIGHT.rotated(global_rotation)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	velocity = direction * speed
-	var collision = move_and_collide(velocity)
-	
-	if collision:
-		impact.emit()
-		queue_free()
-"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eucdc"]
 radius = 9.0
 
 [node name="Bullet" type="CharacterBody2D"]
+collision_layer = 5
 collision_mask = 2
-script = SubResource("GDScript_awmox")
+safe_margin = 0.001
+script = ExtResource("1_1ibfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -0.375246
-skew = -0.79587
 shape = SubResource("CircleShape2D_eucdc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.5, -1)
-scale = Vector2(0.078125, 1)
+position = Vector2(-21, 5.96046e-08)
+scale = Vector2(0.239583, 1)
 texture = ExtResource("1_yjray")

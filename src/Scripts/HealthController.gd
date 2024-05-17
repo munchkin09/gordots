@@ -14,7 +14,7 @@ func _on_player_restore_health(quantity):
 	actual_health += quantity
 
 func _on_player_hit(dmg):
-	LogDuck.w(logHeader, ' Hit Recieved!!', ' health remaining: ', actual_health)
 	actual_health -= dmg * health_remove_factor
+	LogDuck.w(logHeader, ' Hit Recieved!!', ' health remaining: ', actual_health)
 
 	
