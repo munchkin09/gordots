@@ -1,8 +1,8 @@
-[gd_scene load_steps=49 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=50 format=3 uid="uid://bimqvxarfp4xy"]
 
-[ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Assets/Sprites/knight.png" id="1_hdtba"]
-[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/time_for_adventure.mp3" id="2_fxw2h"]
-[ext_resource type="Script" path="res://src/Scripts/HealthController.gd" id="3_3k4ky"]
+[ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Assets/Sprites/knight.png" id="1_giw3n"]
+[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/time_for_adventure.mp3" id="2_shjv8"]
+[ext_resource type="Script" path="res://src/Scripts/HealthController.gd" id="3_n4qo4"]
 
 [sub_resource type="GDScript" id="GDScript_ngihq"]
 resource_name = "PlayerInputController"
@@ -14,6 +14,7 @@ signal hit
 const SPEED = 120
 const JUMP_VELOCITY = -500
 var faceLeft = true
+const logHeader = '👨‍🦳👩‍🦳'
 @onready var animated_sprite = $AnimatedSprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -51,6 +52,7 @@ func _physics_process(delta):
 # Listener del evento de impacto de una bala al Player
 func _on_gun_impact():
 	hit.emit()
+
 "
 
 [sub_resource type="GDScript" id="GDScript_lmkjx"]
@@ -71,166 +73,166 @@ func _on_timer_timeout():
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mewk"]
-size = Vector2(13, 19)
+size = Vector2(13, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dihdx"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(0, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ywqbq"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(32, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8oy88"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(64, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rrkg0"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6utkj"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(0, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsu2y"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(32, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sly08"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(64, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8k4hb"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exfyq"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atrpq"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_431al"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wr21q"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgcly"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_am7gf"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(32, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dl7y1"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8ndx"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(96, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4qa5"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(128, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpvvu"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(160, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uovp"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(192, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dirde"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(224, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eeckv"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_73fcm"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_amgoj"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dl8hg"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7gbg6"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fi51b"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvy7i"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_52t2v"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vf7ab"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hd66r"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(160, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mdq6"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(192, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ttng0"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(224, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vccwk"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8esa"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p4ckx"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlntg"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tv0i6"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uj4sv"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(160, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hdpg"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(192, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ox8pr"]
-atlas = ExtResource("1_hdtba")
+atlas = ExtResource("1_giw3n")
 region = Rect2(224, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vulta"]
@@ -267,7 +269,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hit",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -378,8 +380,37 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 15.0
 }]
+
+[sub_resource type="GDScript" id="GDScript_eg0l7"]
+resource_name = "AnimationManager"
+script/source = "extends AnimatedSprite2D
+
+var animation_on_course = 'idle'
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_player_hit():
+	self.play(\"hit\")
+	animation_on_course = \"hit\"
+
+
+func _on_animation_finished():
+	if (animation_on_course == \"hit\"):
+		self.play(animation_on_course)
+		animation_on_course = \"idle\"
+
+
+"
 
 [sub_resource type="GDScript" id="GDScript_ne7j2"]
 resource_name = "MusicPlayer"
@@ -396,17 +427,20 @@ collision_mask = 5
 script = SubResource("GDScript_ngihq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
 script = SubResource("GDScript_lmkjx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 2.5)
+position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_1mewk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_vulta")
-animation = &"roll"
-frame_progress = 0.363624
+animation = &"run"
+frame_progress = 0.872632
+script = SubResource("GDScript_eg0l7")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.387
@@ -414,12 +448,14 @@ one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_fxw2h")
+stream = ExtResource("2_shjv8")
 script = SubResource("GDScript_ne7j2")
 
 [node name="HealthController" type="Node" parent="."]
-script = ExtResource("3_3k4ky")
+script = ExtResource("3_n4qo4")
 
+[connection signal="hit" from="." to="AnimatedSprite2D" method="_on_player_hit"]
 [connection signal="hit" from="." to="HealthController" method="_on_player_hit" binds= [1]]
 [connection signal="start" from="." to="AudioStreamPlayer2D" method="_on_player_start"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
