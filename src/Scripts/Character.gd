@@ -1,6 +1,7 @@
 class_name Character extends CharacterBody2D
 
 signal start
+signal coin_collected
 
 const SPEED = 120
 const JUMP_VELOCITY = -500
@@ -53,3 +54,4 @@ func _on_coin_coin_collected():
 	LogDuck.w('+1 coin')
 	coin_collected_sound.play()
 	coins_collected+=1
+	coin_collected.emit()

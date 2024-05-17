@@ -1,27 +1,10 @@
 [gd_scene load_steps=52 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Character.gd" id="1_3tkld"]
-[ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Assets/Sprites/knight.png" id="1_giw3n"]
-[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/time_for_adventure.mp3" id="2_shjv8"]
+[ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
+[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://time_for_adventure.mp3" id="2_shjv8"]
 [ext_resource type="PackedScene" uid="uid://cuqpfgivymptq" path="res://src/Scenes/HealthController.tscn" id="3_4p4dx"]
-[ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://Assets/coin_collected.mp3" id="4_jcgfc"]
-
-[sub_resource type="GDScript" id="GDScript_lmkjx"]
-resource_name = "CameraEvents"
-script/source = "extends Camera2D
-
-var startZooming = false
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if(startZooming && self.zoom <= Vector2(3,3)):
-		var actualZoom = self.zoom
-		self.zoom = Vector2(actualZoom.x + (0.4 * _delta), actualZoom.y + (0.4 * _delta))
-	else:
-		startZooming = false
-func _on_timer_timeout():
-	startZooming = true
-"
+[ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://coin_collected.mp3" id="4_jcgfc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mewk"]
 size = Vector2(13, 16)
@@ -376,17 +359,30 @@ func _on_player_start():
 	self.play()
 "
 
+[sub_resource type="GDScript" id="GDScript_6kfaf"]
+resource_name = "CameraEvents"
+script/source = "extends Camera2D
+
+var startZooming = false
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if(startZooming && self.zoom <= Vector2(3,3)):
+		var actualZoom = self.zoom
+		self.zoom = Vector2(actualZoom.x + (0.4 * _delta), actualZoom.y + (0.4 * _delta))
+	else:
+		startZooming = false
+		
+func _on_timer_timeout():
+	startZooming = true
+"
+
 [node name="Character" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_3tkld")
 health_controller = ExtResource("3_4p4dx")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-script = SubResource("GDScript_lmkjx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4)
@@ -399,7 +395,7 @@ animation = &"death"
 script = SubResource("GDScript_eg0l7")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.387
+wait_time = 0.606
 one_shot = true
 autostart = true
 
@@ -420,6 +416,11 @@ volume_db = -39.381
 script = SubResource("GDScript_ne7j2")
 
 [node name="HealthController" parent="." instance=ExtResource("3_4p4dx")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+script = SubResource("GDScript_6kfaf")
 
 [connection signal="start" from="." to="IntroMusic" method="_on_player_start"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]

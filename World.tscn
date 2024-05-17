@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bu7wb1exa7x20"]
+[gd_scene load_steps=10 format=3 uid="uid://bu7wb1exa7x20"]
 
 [ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Character.tscn" id="1_dnfye"]
 [ext_resource type="PackedScene" uid="uid://24wocvjq6ji" path="res://src/Scenes/Gun.tscn" id="2_kaisn"]
-[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Assets/Sprites/world_tileset.png" id="2_rh1o1"]
+[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Sprites/world_tileset.png" id="2_rh1o1"]
 [ext_resource type="PackedScene" uid="uid://dp6wt03xw5pme" path="res://src/Scenes/Coin.tscn" id="4_dlvfm"]
+[ext_resource type="Script" path="res://VidaLabel.gd" id="5_xwwiq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yvsfk"]
 bounce = 0.2
@@ -412,6 +413,8 @@ physics_layer_0/collision_mask = 2
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_yvsfk")
 sources/0 = SubResource("TileSetAtlasSource_5s3ye")
 
+[sub_resource type="Theme" id="Theme_2y0rw"]
+
 [node name="World" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -454,6 +457,67 @@ position = Vector2(-176, -4)
 [node name="Coin5" parent="." instance=ExtResource("4_dlvfm")]
 position = Vector2(-165, -91)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.001
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+theme = SubResource("Theme_2y0rw")
+
+[node name="VidaLabel" type="Label" parent="UserInterface"]
+offset_left = -122.0
+offset_top = -143.0
+offset_right = -48.0
+offset_bottom = -120.0
+text = "Vida : 100"
+script = ExtResource("5_xwwiq")
+
+[node name="VidaLabel2" type="Label" parent="UserInterface"]
+offset_left = -25.0
+offset_top = -114.0
+offset_right = 49.0
+offset_bottom = -91.0
+text = "Vida : 100"
+script = ExtResource("5_xwwiq")
+
+[node name="VidaLabel3" type="Label" parent="UserInterface"]
+offset_left = -250.0
+offset_top = -60.0
+offset_right = -176.0
+offset_bottom = -37.0
+text = "Vida : 100"
+script = ExtResource("5_xwwiq")
+
+[node name="VidaLabel4" type="Label" parent="UserInterface"]
+offset_left = -154.0
+offset_top = -56.0
+offset_right = -80.0
+offset_bottom = -33.0
+text = "Vida : 100"
+script = ExtResource("5_xwwiq")
+
+[node name="VidaLabel5" type="Label" parent="UserInterface"]
+offset_left = -223.0
+offset_top = -113.0
+offset_right = -149.0
+offset_bottom = -90.0
+text = "Vida : 100"
+script = ExtResource("5_xwwiq")
+
+[node name="VidaSumaLabel6" type="Label" parent="UserInterface"]
+offset_left = -223.0
+offset_top = -113.0
+offset_right = -149.0
+offset_bottom = -90.0
+text = "Vida : 100"
+script = ExtResource("5_xwwiq")
+
+[connection signal="coin_collected" from="Character" to="UserInterface/VidaLabel" method="_on_character_coin_collected"]
+[connection signal="coin_collected" from="Character" to="UserInterface/VidaLabel2" method="_on_character_coin_collected"]
+[connection signal="coin_collected" from="Character" to="UserInterface/VidaLabel3" method="_on_character_coin_collected"]
+[connection signal="coin_collected" from="Character" to="UserInterface/VidaLabel4" method="_on_character_coin_collected"]
+[connection signal="coin_collected" from="Character" to="UserInterface/VidaLabel5" method="_on_character_coin_collected"]
 [connection signal="coin_collected" from="Coin" to="Character" method="_on_coin_coin_collected"]
 [connection signal="coin_collected" from="Coin2" to="Character" method="_on_coin_coin_collected"]
 [connection signal="coin_collected" from="Coin3" to="Character" method="_on_coin_coin_collected"]

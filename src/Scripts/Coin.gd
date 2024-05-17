@@ -12,3 +12,7 @@ func _on_body_entered(body):
 	
 	
 	
+
+
+func _on_character_coin_collected():
+	pass # Replace with function body.
