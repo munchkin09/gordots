@@ -10,8 +10,7 @@ var current_state: PlayerState
 @export var PRINT_HISTORY: bool = false
 @onready var player_node = self.owner as Character
 
-const SPEED = 120
-const JUMP_VELOCITY = -500
+
 
 func _ready():
 	for child in get_children():
@@ -20,14 +19,11 @@ func _ready():
 			child.Transitioned.connect(on_child_transition)
 
 	if initial_state:
-		LogDuck.d(initial_state)
 		initial_state.enter()
 		current_state = initial_state
 
 func _process(delta):
-	if (current_state.has_method('process')):
-		current_state.process(delta)
-	pass
+	current_state.process(delta)
 
 func _physics_process(delta):
 	pass
@@ -42,6 +38,7 @@ func on_child_transition(state: PlayerState, newState: String):
 
 	if current_state:
 		current_state.exit()
+		history.append(current_state.to_string())
 
 	new_state.enter()
 	current_state = new_state
