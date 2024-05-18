@@ -5,5 +5,5 @@ func enter():
 
 func process(delta):
 	if (Input.is_action_pressed("ui_cut")):
-		state_machine.change_to('CharacterStateIdle')
+		pass
 	

@@ -10,5 +10,6 @@ func process(delta):
 	pass
 
 func physics_process(delta):
+	LogDuck.d('')
 	pass
 
