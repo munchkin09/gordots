@@ -1,12 +1,33 @@
-[gd_scene load_steps=55 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=58 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Character.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
 [ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://time_for_adventure.mp3" id="2_shjv8"]
 [ext_resource type="PackedScene" uid="uid://cuqpfgivymptq" path="res://src/Scenes/HealthController.tscn" id="3_4p4dx"]
-[ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://coin_collected.mp3" id="4_jcgfc"]
-[ext_resource type="Script" path="res://src/scripts/DineroLabel.gd" id="6_y4gm3"]
-[ext_resource type="Script" path="res://src/Scenes/VidaLabel.gd" id="7_mneuq"]
+[ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://Assets/coin_collected.mp3" id="4_jcgfc"]
+[ext_resource type="Script" path="res://src/Scripts/GamerState.gd" id="6_73eiy"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_idle.gd" id="7_ommpl"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_move.gd" id="8_3q1eh"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_roll.gd" id="9_t28nu"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_hit.gd" id="10_uc67k"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_death.gd" id="11_46ngb"]
+
+[sub_resource type="GDScript" id="GDScript_lmkjx"]
+resource_name = "CameraEvents"
+script/source = "extends Camera2D
+
+var startZooming = false
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if(startZooming && self.zoom <= Vector2(3,3)):
+		var actualZoom = self.zoom
+		self.zoom = Vector2(actualZoom.x + (0.4 * _delta), actualZoom.y + (0.4 * _delta))
+	else:
+		startZooming = false
+func _on_timer_timeout():
+	startZooming = true
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mewk"]
 size = Vector2(13, 16)
@@ -400,7 +421,7 @@ shape = SubResource("RectangleShape2D_1mewk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_vulta")
-animation = &"death"
+animation = &"roll"
 script = SubResource("GDScript_eg0l7")
 
 [node name="Timer" type="Timer" parent="."]
@@ -456,6 +477,25 @@ offset_bottom = 44.0
 theme_override_colors/font_color = Color(0.15976, 0.427135, 0.208621, 1)
 text = "Vida :  100"
 script = ExtResource("7_mneuq")
+
+[node name="GamerStateMachine" type="Node" parent="."]
+script = ExtResource("6_73eiy")
+initial_state = NodePath("CharacterStateIdle")
+
+[node name="CharacterStateIdle" type="Node" parent="GamerStateMachine"]
+script = ExtResource("7_ommpl")
+
+[node name="CharacterStateMove" type="Node" parent="GamerStateMachine"]
+script = ExtResource("8_3q1eh")
+
+[node name="CharacterStateRoll" type="Node" parent="GamerStateMachine"]
+script = ExtResource("9_t28nu")
+
+[node name="CharacterStateHit" type="Node" parent="GamerStateMachine"]
+script = ExtResource("10_uc67k")
+
+[node name="CharacterStateDeath" type="Node" parent="GamerStateMachine"]
+script = ExtResource("11_46ngb")
 
 [connection signal="coin_collected" from="." to="CanvasLayer/DineroLabel" method="_on_character_coin_collected"]
 [connection signal="start" from="." to="IntroMusic" method="_on_player_start"]

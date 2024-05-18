@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds45mv5gdn6hl"]
+
+[ext_resource type="Script" path="res://src/Scripts/GamerState.gd" id="1_4nfbq"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_idle.gd" id="2_r2jdx"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_move.gd" id="3_avtb5"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_roll.gd" id="4_d7lyc"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_hit.gd" id="5_f3ueh"]
+[ext_resource type="Script" path="res://src/state_machine/states/player_state_death.gd" id="6_lh6hb"]
+
+[node name="GamerStateMachine" type="Node"]
+script = ExtResource("1_4nfbq")
+initial_state = NodePath("CharacterStateIdle")
+
+[node name="CharacterStateIdle" type="Node" parent="."]
+script = ExtResource("2_r2jdx")
+
+[node name="CharacterStateMove" type="Node" parent="."]
+script = ExtResource("3_avtb5")
+
+[node name="CharacterStateRoll" type="Node" parent="."]
+script = ExtResource("4_d7lyc")
+
+[node name="CharacterStateHit" type="Node" parent="."]
+script = ExtResource("5_f3ueh")
+
+[node name="CharacterStateDeath" type="Node" parent="."]
+script = ExtResource("6_lh6hb")
