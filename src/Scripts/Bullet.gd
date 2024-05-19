@@ -1,4 +1,4 @@
-class_name new_coin extends CharacterBody2D
+class_name Bullet extends CharacterBody2D
 
 var speed = Vector2(0.2,0.2)
 var direction = Vector2.RIGHT
@@ -9,4 +9,5 @@ func _process(_delta):
 	var collision = move_and_collide(velocity)
 	
 	if collision:
-		queue_free()
+		self.free()
+
