@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=59 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Character.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Assets/Sprites/knight.png" id="1_giw3n"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_roll.gd" id="9_t28nu"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_hit.gd" id="10_uc67k"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_death.gd" id="11_46ngb"]
+[ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_ jump.gd" id="12_5de2d"]
 
 [sub_resource type="GDScript" id="GDScript_lmkjx"]
 resource_name = "CameraEvents"
@@ -246,13 +247,13 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.9,
 "texture": SubResource("AtlasTexture_vgcly")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_am7gf")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_dl7y1")
 }, {
 "duration": 1.0,
@@ -337,40 +338,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 15.0
+"speed": 26.0
 }]
 
 [sub_resource type="GDScript" id="GDScript_eg0l7"]
 resource_name = "AnimationManager"
-script/source = "extends AnimatedSprite2D
-
-var animation_on_course = 'idle'
-const logHeader = '[SPRT]'
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_player_hit():
-	self.play(\"hit\")
-	animation_on_course = \"hit\"
-
-
-func _on_animation_finished():
-	if (animation_on_course == \"hit\"):
-		self.play(animation_on_course)
-		animation_on_course = \"idle\"
-
-func _on_player_attack():
-	animation_on_course = \"attack\"
-	LogDuck.d(logHeader, 'player attacking')
-	self.play('attack')
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5eg3"]
 
@@ -401,7 +373,7 @@ shape = SubResource("RectangleShape2D_1mewk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_vulta")
-animation = &"roll"
+animation = &"run"
 script = SubResource("GDScript_eg0l7")
 
 [node name="Timer" type="Timer" parent="."]
@@ -445,7 +417,9 @@ script = ExtResource("10_uc67k")
 [node name="CharacterStateDeath" type="Node" parent="GamerStateMachine"]
 script = ExtResource("11_46ngb")
 
+[node name="CharacterStateJump" type="Node" parent="GamerStateMachine"]
+script = ExtResource("12_5de2d")
+
 [connection signal="start" from="." to="IntroMusic" method="_on_player_start"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

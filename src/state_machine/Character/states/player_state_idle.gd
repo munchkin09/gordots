@@ -1,20 +1,22 @@
 class_name CharacterStateIdle extends PlayerState
 
-@onready var player_node = self.owner as Character
-
 func enter():
 	LogDuck.d('Greeting from idle!')
-	LogDuck.d(player_node.name)
-	LogDuck.d(player_node.animated_sprite)
-	
+	player_node.velocity.x = 0
 
 func exit():
 	pass
 
 func process(delta):
-	if (Input.is_anything_pressed()):
-		self.Transitioned.emit(self,'characterstatemove')
+	pass
 
 func physics_process(delta):
-	LogDuck.d('')
+	self._gravity(delta)
 
+	if Input.is_action_just_pressed("ui_up"):
+		self.Transitioned.emit(self, 'characterstatejump')
+		return
+
+	if (Input.is_anything_pressed()):
+		self.Transitioned.emit(self,'characterstatemove')
+	player_node.move_and_slide()

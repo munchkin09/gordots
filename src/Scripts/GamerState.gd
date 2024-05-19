@@ -10,8 +10,6 @@ var current_state: PlayerState
 @export var PRINT_HISTORY: bool = false
 @onready var player_node = self.owner as Character
 
-
-
 func _ready():
 	for child in get_children():
 		if child is PlayerState:
@@ -26,11 +24,12 @@ func _process(delta):
 	current_state.process(delta)
 
 func _physics_process(delta):
-	pass
+	current_state.physics_process(delta)
 
 func on_child_transition(state: PlayerState, newState: String):
 	if state.name == newState:
 		return
+	LogDuck.d('Changin to: ', newState.to_lower())
 	var new_state = states.get(newState.to_lower())
 
 	if !new_state:

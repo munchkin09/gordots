@@ -22,7 +22,8 @@ func _physics_process(delta):
 	pass
 
 func _on_area_2d_body_entered(body):
-	hc._on_player_hit(10)
+	if body.name == 'Bullet':
+		hc._on_player_hit(10)
 
 func _on_coin_coin_collected():
 	LogDuck.w('+1 coin')
