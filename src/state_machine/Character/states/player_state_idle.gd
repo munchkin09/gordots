@@ -1,7 +1,6 @@
 class_name CharacterStateIdle extends PlayerState
 
 func enter():
-	LogDuck.d('Greeting from idle!')
 	player_node.velocity.x = 0
 
 func exit():
@@ -11,7 +10,7 @@ func process(delta):
 	pass
 
 func physics_process(delta):
-	self._gravity(delta)
+	super(delta)
 
 	if Input.is_action_just_pressed("ui_up"):
 		self.Transitioned.emit(self, 'characterstatejump')

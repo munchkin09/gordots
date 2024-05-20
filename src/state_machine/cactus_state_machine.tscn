@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bixu36y5f55m2"]
+
+[ext_resource type="Script" path="res://src/Scripts/CactusState.gd" id="1_g1xu4"]
+
+[node name="CactusStateMachine" type="Node"]
+script = ExtResource("1_g1xu4")

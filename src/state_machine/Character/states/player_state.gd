@@ -3,6 +3,7 @@ class_name PlayerState extends Node
 signal Transitioned
 @onready var player_node = self.owner as Character
 
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const SPEED = 120
 const JUMP_VELOCITY = -500
@@ -17,9 +18,6 @@ func process(delta):
 	pass
 
 func physics_process(delta):
-	pass
-
-func _gravity(delta):
 	player_node.velocity.y += gravity * delta
 	
 func _direction(delta):

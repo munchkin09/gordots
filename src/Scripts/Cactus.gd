@@ -1,4 +1,4 @@
-class_name Gun extends CharacterBody2D
+class_name Cactus extends CharacterBody2D
 
 # Esto nos permite componer escenas más complejas, ya que podemos inyectar
 # los elementos que necesitemos usar dentro de esta escena, y reusar todo
@@ -12,22 +12,27 @@ class_name Gun extends CharacterBody2D
 @onready var animation = $AnimatedSprite2D
 const logHeader = '🏹'
 
+signal start
+
+func _ready():
+	start.emit()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	animation.play("idle")
-
+	pass
+	
 
 # Esta lógica es para disparar una bala desde un enemigo
 # El usar un timer es un simple parche hasta que encontremos una forma mejor
-func _on_timer_timeout():
-	LogDuck.d(logHeader, ' Shooting!')
-
-	var new_bullet = bullet.instantiate()
-
-	animation.play("shoot")
-	new_bullet.position = global_position
-	new_bullet.global_rotation = rotation_degrees
-	get_tree().root.call_deferred("add_child", new_bullet)
-
-	await get_tree().create_timer(1/fire_rate).timeout
+#func _on_timer_timeout():
+	#LogDuck.d(logHeader, ' Shooting!')
+#
+	#var new_bullet = bullet.instantiate()
+#
+	#animation.play("shoot")
+	#new_bullet.position = global_position
+	#new_bullet.global_rotation = rotation_degrees
+	#get_tree().root.call_deferred("add_child", new_bullet)
+#
+	#await get_tree().create_timer(1/fire_rate).timeout
 

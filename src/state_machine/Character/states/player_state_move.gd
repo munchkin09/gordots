@@ -1,11 +1,10 @@
 class_name CharacterStateMove extends PlayerState
 
 func enter():
-	LogDuck.d('Greeting from move!!')
 	player_node.animated_sprite.play("run")
 
 func physics_process(delta):
-	self._gravity(delta)
+	super(delta)
 	if not Input.is_anything_pressed():
 		self.Transitioned.emit(self, 'characterstateidle')
 		return
