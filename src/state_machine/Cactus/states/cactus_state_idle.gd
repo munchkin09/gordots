@@ -3,7 +3,7 @@ class_name CactusStateIdle extends CactusState
 
 var move_direction : Vector2
 var wander_time :float
-@export var player_node : Character
+
 func enter():
 	LogDuck.d('Greeting from idle!')
 	randomize_wander()
@@ -15,8 +15,8 @@ func process(delta):
 	pass
 
 func physics_process(delta):
-	var direction = cactus_node.global_position - player_node.global_position
-	LogDuck.w("la direccion es :" + direction)
+	#var direction = cactus_node.global_position - player_node.global_position
+	#LogDuck.w("la direccion es :" + direction)
 	if wander_time > 0:
 		wander_time -=  delta
 	else:

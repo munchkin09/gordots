@@ -1,6 +1,7 @@
 class_name CactusStateMachine extends Node
 
 @export var initial_state: CactusState
+@export var player_node : Character
 var history: Array[String] = []
 var states: Dictionary = {}
 var current_state: CactusState
