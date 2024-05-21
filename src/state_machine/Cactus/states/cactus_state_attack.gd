@@ -4,11 +4,11 @@ class_name CactusStateAttack extends CactusState
 
 func enter():
 	LogDuck.d('Greeting from attack!!')
-	cactus_node.animation.play("move")
+	cactus_node.animation.play("attack")
 
 func physics_process(delta,player_node,cactus_node):
 	#self._gravity(delta)
-	var distance_to_player = cactus_node.get_last_motion () - player_node.get_last_motion()
+	var distance_to_player = player_node.global_position.x - cactus_node.global_position.x
 	if distance_to_player.length() >= 10:
 		self.Transitioned.emit(self, 'cactusstatemove')
 		return

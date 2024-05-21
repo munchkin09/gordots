@@ -5,9 +5,5 @@ var direction = Vector2.RIGHT
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	velocity = direction * speed 
-	var collision = move_and_collide(velocity)
-	
-	if collision:
-		self.free()
+	pass
 
