@@ -3,13 +3,14 @@ class_name PlayerState extends Node
 signal Transitioned
 @onready var player_node = self.owner as Character
 
-
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const SPEED = 120
 const JUMP_VELOCITY = -500
+var sprite: AnimatedSprite2D
 
 func enter():
-	pass
+	if not sprite:
+		sprite = player_node.get_node('AnimatedSprite2D') as AnimatedSprite2D
 
 func exit():
 	pass
@@ -19,7 +20,7 @@ func process(delta):
 
 func physics_process(delta):
 	player_node.velocity.y += gravity * delta
-	
+
 func _direction(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 
@@ -28,3 +29,6 @@ func _direction(delta):
 		player_node.velocity.x = direction * SPEED
 	else:
 		player_node.velocity.x = move_toward(player_node.velocity.x, 0, SPEED)
+
+func _play(anim):
+	sprite.play(anim)

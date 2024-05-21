@@ -1,7 +1,9 @@
 class_name CharacterStateMove extends PlayerState
 
 func enter():
-	player_node.animated_sprite.play("run")
+	super()
+	_play('run')
+	# player_node.animated_sprite.play('run')
 
 func physics_process(delta):
 	super(delta)

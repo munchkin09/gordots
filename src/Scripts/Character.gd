@@ -9,8 +9,8 @@ const logHeader = '👨‍🦳👩‍🦳'
 
 @export var health_controller: PackedScene
 
-@onready var animated_sprite = $AnimatedSprite2D
 @onready var coin_collected_sound = $CoinCollected
+@onready var animated_sprite = $AnimatedSprite2D
 
 var hc: HealthController
 

@@ -1,7 +1,9 @@
 class_name CharacterStateIdle extends PlayerState
 
 func enter():
+	super()
 	player_node.velocity.x = 0
+	_play('idle')
 
 func exit():
 	pass

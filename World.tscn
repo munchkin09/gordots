@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bu7wb1exa7x20"]
+[gd_scene load_steps=12 format=3 uid="uid://bu7wb1exa7x20"]
 
 [ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Character.tscn" id="1_dnfye"]
 [ext_resource type="PackedScene" uid="uid://24wocvjq6ji" path="res://src/Scenes/Cactus.tscn" id="2_kaisn"]
-[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Sprites/world_tileset.png" id="2_rh1o1"]
+[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Assets/Sprites/world_tileset.png" id="2_rh1o1"]
 [ext_resource type="PackedScene" uid="uid://bixu36y5f55m2" path="res://src/state_machine/cactus_state_machine.tscn" id="3_iev6q"]
 [ext_resource type="PackedScene" uid="uid://dp6wt03xw5pme" path="res://src/Scenes/Coin.tscn" id="4_dlvfm"]
 [ext_resource type="Script" path="res://src/state_machine/Cactus/states/cactus_state_move.gd" id="4_gq3bl"]
 [ext_resource type="Script" path="res://src/state_machine/Cactus/states/cactus_state_attack.gd" id="5_tye5g"]
+[ext_resource type="PackedScene" uid="uid://dtuqucr1r36ko" path="res://src/Scenes/Bullet.tscn" id="6_j82r7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yvsfk"]
 bounce = 0.2
@@ -440,16 +441,20 @@ position = Vector2(-278, 4)
 arc = 30.857
 fire_rate = 1.194
 
-[node name="CactusStateMachine" parent="Cactus" node_paths=PackedStringArray("initial_state", "player_node", "cactus_node") instance=ExtResource("3_iev6q")]
+[node name="CactusStateMachine" parent="Cactus" node_paths=PackedStringArray("initial_state", "player_node", "cactus_node", "bullet_node") instance=ExtResource("3_iev6q")]
 initial_state = NodePath("CactusStateMove")
 player_node = NodePath("../../Character")
 cactus_node = NodePath("..")
+bullet_node = NodePath("../Bullet")
+DEBUG = false
 
 [node name="CactusStateMove" type="Node" parent="Cactus/CactusStateMachine"]
 script = ExtResource("4_gq3bl")
 
 [node name="CactusStateAttack" type="Node" parent="Cactus/CactusStateMachine"]
 script = ExtResource("5_tye5g")
+
+[node name="Bullet" parent="Cactus" instance=ExtResource("6_j82r7")]
 
 [node name="Character" parent="." instance=ExtResource("1_dnfye")]
 
