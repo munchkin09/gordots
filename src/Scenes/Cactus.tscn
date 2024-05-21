@@ -1,11 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://24wocvjq6ji"]
+[gd_scene load_steps=18 format=3 uid="uid://24wocvjq6ji"]
 
 [ext_resource type="Script" path="res://src/Scripts/Cactus.gd" id="1_7ht65"]
 [ext_resource type="Texture2D" uid="uid://bm16ks6mffn6j" path="res://Sprites/slime_green.png" id="1_uksug"]
 [ext_resource type="PackedScene" uid="uid://dtuqucr1r36ko" path="res://src/Scenes/Bullet.tscn" id="3_lso7d"]
-[ext_resource type="Script" path="res://src/Scripts/CactusState.gd" id="4_ew1tg"]
-[ext_resource type="Script" path="res://src/state_machine/Cactus/states/cactus_state_idle.gd" id="5_n6dwj"]
-[ext_resource type="Script" path="res://src/state_machine/Cactus/states/cactus_state_move.gd" id="6_ovuvs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vq6iv"]
 size = Vector2(14, 13)
@@ -132,13 +129,3 @@ position = Vector2(-1, 0)
 scale = Vector2(1, 0.833333)
 sprite_frames = SubResource("SpriteFrames_h1j6d")
 animation = &"move"
-
-[node name="CactusStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_ew1tg")
-initial_state = NodePath("CactusStateIdle")
-
-[node name="CactusStateIdle" type="Node" parent="CactusStateMachine"]
-script = ExtResource("5_n6dwj")
-
-[node name="CactusStateMove" type="Node" parent="CactusStateMachine"]
-script = ExtResource("6_ovuvs")

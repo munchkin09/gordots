@@ -2,6 +2,9 @@ class_name CactusStateMachine extends Node
 
 @export var initial_state: CactusState
 @export var player_node : Character
+@export var cactus_node : Cactus
+@export var bullet_node : Bullet
+
 var history: Array[String] = []
 var states: Dictionary = {}
 var current_state: CactusState
@@ -25,7 +28,7 @@ func _process(delta):
 	current_state.process(delta)
 
 func _physics_process(delta):
-	current_state.physics_process(delta)
+	current_state.physics_process(delta,player_node,cactus_node)
 
 func on_child_transition(state: CactusState, newState: String):
 	if state.name == newState:

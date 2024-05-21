@@ -16,17 +16,18 @@ func exit():
 func process(delta):
 	pass
 
-func physics_process(delta):
+func physics_process(delta,player_node,cactus_node):
 	pass
 
 func _gravity(delta):
 	cactus_node.velocity.y += gravity * delta
 	
 func _direction(delta):
-	var direction = Input.get_axis("ui_left", "ui_right")
-
-	if direction:
-		#cactus_node.animated_sprite.flip_h = false if (direction == 1) else true
-		cactus_node.velocity.x = direction * SPEED
-	else:
-		cactus_node.velocity.x = move_toward(cactus_node.velocity.x, 0, SPEED)
+	pass
+	#var direction = Input.get_axis("ui_left", "ui_right")
+#
+	#if direction:
+		##cactus_node.animated_sprite.flip_h = false if (direction == 1) else true
+		#cactus_node.velocity.x = direction * SPEED
+	#else:
+		#cactus_node.velocity.x = move_toward(cactus_node.velocity.x, 0, SPEED)

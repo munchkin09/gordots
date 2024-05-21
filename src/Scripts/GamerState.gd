@@ -29,7 +29,7 @@ func _physics_process(delta):
 func on_child_transition(state: PlayerState, newState: String):
 	if state.name == newState:
 		return
-	LogDuck.d('Changin to: ', newState.to_lower())
+	#LogDuck.d('Changin to: ', newState.to_lower())
 	var new_state = states.get(newState.to_lower())
 
 	if !new_state:
