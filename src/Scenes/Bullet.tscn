@@ -1,10 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtuqucr1r36ko"]
+[gd_scene load_steps=6 format=3 uid="uid://dtuqucr1r36ko"]
 
 [ext_resource type="Script" path="res://src/Scripts/Bullet.gd" id="1_1ibfl"]
-[ext_resource type="Texture2D" uid="uid://bpgkoiox37im7" path="res://Assets/Sprites/coin.png" id="1_yjray"]
+[ext_resource type="Texture2D" uid="uid://ct5tgqhxan4op" path="res://Sprites/tank_bullet6.png" id="2_25b8g"]
+[ext_resource type="Texture2D" uid="uid://dyddmnatgsyy0" path="res://Sprites/explosion2.png" id="3_wi65a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eucdc"]
-radius = 9.0
+radius = 5.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xajho"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_25b8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_25b8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_25b8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_25b8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_25b8g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wi65a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wi65a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wi65a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wi65a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wi65a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wi65a")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]
 
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 5
@@ -15,7 +62,6 @@ script = ExtResource("1_1ibfl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_eucdc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-21, 5.96046e-08)
-scale = Vector2(0.239583, 1)
-texture = ExtResource("1_yjray")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xajho")
+animation = &"explosion"

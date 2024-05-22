@@ -3,19 +3,24 @@ class_name Cactus extends CharacterBody2D
 # Esto nos permite componer escenas más complejas, ya que podemos inyectar
 # los elementos que necesitemos usar dentro de esta escena, y reusar todo
 # lo posible y se convierte en opciones parametrizables desde la interfaz gráfica!
-@export var bullet: Bullet
+
 @export var character: Character
 @export var bullet_count: int = 1
-# Esto se convierte en opciones parametrizables desde la interfaz gráfica!
-@export_range(0, 360) var arc: float = 0
-@export_range(0, 20) var fire_rate: float = 2.0
+@export var debug_lines: bool = false
+
+
 
 @onready var animation = $AnimatedSprite2D
+@export var bullet: PackedScene 
 const logHeader = '🏹'
-
+var debug :Dictionary = 	{
+	"velocity": velocity,
+	"point": 		Vector2(1.0,1.0)
+}
 signal start
 
 func _ready():
+
 	for child in get_children(true):
 		if child.name == 'CactusStateMachine':
 			child._set('player_node', character)
@@ -26,6 +31,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+	
+
+func _physics_process(delta):
+	if debug_lines:
+		queue_redraw()
+
+func _draw():
+	if debug_lines:
+		var distance_to_player = character.global_position - self.global_position
+		draw_line(Vector2(0,0),distance_to_player, Color.BLACK,1.0)
 
 # Esta lógica es para disparar una bala desde un enemigo
 # El usar un timer es un simple parche hasta que encontremos una forma mejor
@@ -39,5 +54,5 @@ func _process(_delta):
 	#new_bullet.global_rotation = rotation_degrees
 	#get_tree().root.call_deferred("add_child", new_bullet)
 #
-	#await get_tree().create_timer(1/fire_rate).timeout
+	#
 

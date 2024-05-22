@@ -24,6 +24,8 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	if body.name == 'Bullet':
 		hc._on_player_hit(10)
+		body.destroy()
+		
 
 func _on_coin_coin_collected():
 	LogDuck.w('+1 coin')

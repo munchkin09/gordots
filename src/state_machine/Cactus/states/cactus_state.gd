@@ -2,7 +2,7 @@ class_name CactusState extends Node
 
 signal Transitioned
 var player_node: Character
-var bullet_node: Bullet
+var bullet_node: PackedScene
 var cactus_node: Cactus
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const SPEED = 120
@@ -25,15 +25,7 @@ func _gravity(delta):
 	
 func _direction(delta):
 	pass
-	#var direction = Input.get_axis("ui_left", "ui_right")
-#
-	#if direction:
-		##cactus_node.animated_sprite.flip_h = false if (direction == 1) else true
-		#cactus_node.velocity.x = direction * SPEED
-	#else:
-		#cactus_node.velocity.x = move_toward(cactus_node.velocity.x, 0, SPEED)
-
+	
 func _set(property, value):
-	LogDuck.d(property)
 	self[property] = value
 	return

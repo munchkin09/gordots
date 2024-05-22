@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu7wb1exa7x20"]
+[gd_scene load_steps=9 format=3 uid="uid://bu7wb1exa7x20"]
 
 [ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Character.tscn" id="1_dnfye"]
 [ext_resource type="PackedScene" uid="uid://24wocvjq6ji" path="res://src/Scenes/Cactus.tscn" id="2_kaisn"]
-[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Assets/Sprites/world_tileset.png" id="2_rh1o1"]
-[ext_resource type="PackedScene" uid="uid://dtuqucr1r36ko" path="res://src/Scenes/Bullet.tscn" id="6_nmkdm"]
+[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Sprites/world_tileset.png" id="2_rh1o1"]
 [ext_resource type="PackedScene" uid="uid://daubysgl6wmqr" path="res://src/Scenes/Level1/CoinLayout.tscn" id="8_ray6y"]
 [ext_resource type="Script" path="res://src/Scenes/Level1/CoinLayout.gd" id="9_g3t7y"]
 
@@ -437,17 +436,16 @@ layer_3/tile_data = PackedInt32Array(196577, 262144, 9, 196578, 262144, 9, 19657
 script = ExtResource("9_g3t7y")
 character_node = NodePath("../Character")
 
-[node name="Cactus" parent="." node_paths=PackedStringArray("bullet", "character") instance=ExtResource("2_kaisn")]
+[node name="Cactus" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_kaisn")]
 position = Vector2(-278, 4)
-bullet = NodePath("../Bullet")
 character = NodePath("../Character")
 bullet_count = 5
-arc = 30.857
-fire_rate = 1.194
+debug_lines = false
+
+[node name="Cactus2" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_kaisn")]
+position = Vector2(-90, -91)
+character = NodePath("../Character")
+bullet_count = 5
+debug_lines = false
 
 [node name="Character" parent="." instance=ExtResource("1_dnfye")]
-
-[node name="Bullet" parent="." instance=ExtResource("6_nmkdm")]
-visible = false
-collision_layer = 0
-collision_mask = 0

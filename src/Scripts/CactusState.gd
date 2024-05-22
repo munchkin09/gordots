@@ -2,7 +2,7 @@ class_name CactusStateMachine extends Node
 
 @export var initial_state: CactusState
 var player_node : Character
-var bullet: Bullet
+var bullet_node: PackedScene
 
 var history: Array[String] = []
 var states: Dictionary = {}
@@ -13,16 +13,18 @@ var current_state: CactusState
 @export var PRINT_HISTORY: bool = false
 
 var children = []
+
 func _ready():
 	for child in get_children(true):
 		if child is CactusState:
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
 			children.append(child)
+			if child.name == "CactusStateMove":
+				current_state = child	 
+				
+				
 
-	if initial_state:
-		initial_state.enter()
-		current_state = initial_state
 
 func _process(delta):
 	current_state.process(delta)
