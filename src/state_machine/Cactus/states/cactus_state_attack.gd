@@ -15,9 +15,9 @@ func exit():
 	
 	
 func physics_process(delta):
-
-	var distance_to_player = player_node.global_position.x - cactus_node.global_position.x
-	if distance_to_player >= 100:
+	flip_monito()
+	var direction_to_player = player_node.global_position - cactus_node.global_position
+	if direction_to_player.length() >= 100 and direction_to_player.length() <= -100:
 		self.Transitioned.emit(self, 'cactusstatemove')
 		return
 
@@ -29,10 +29,11 @@ func onbullettimeout(new_bullet):
 	new_bullet.free()
 
 func shoot_new_bullet():
-	var new_bullet = bullet_node.instantiate()
+	var new_bullet = bullet_node.instantiate() as Bullet
 	
 	cactus_node.animation.play("shoot")
-
+	new_bullet.scale.x = 0.5
+	new_bullet.scale.y = 0.6
 	new_bullet.position = cactus_node.global_position
 	new_bullet.bullet_direction = player_node.global_position
 	new_bullet.global_rotation = cactus_node.rotation_degrees

@@ -15,6 +15,6 @@ script = ExtResource("2_0218w")
 script = ExtResource("3_dj5bm")
 
 [node name="Timer" type="Timer" parent="CactusStateAttack"]
-wait_time = 5.0
+wait_time = 3.0
 
 [connection signal="timeout" from="CactusStateAttack/Timer" to="CactusStateAttack" method="_on_timer_timeout"]

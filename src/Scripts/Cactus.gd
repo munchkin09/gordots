@@ -20,7 +20,6 @@ var debug :Dictionary = 	{
 signal start
 
 func _ready():
-
 	for child in get_children(true):
 		if child.name == 'CactusStateMachine':
 			child._set('player_node', character)
@@ -31,7 +30,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
-	
 
 func _physics_process(delta):
 	if debug_lines:
@@ -41,6 +39,9 @@ func _draw():
 	if debug_lines:
 		var distance_to_player = character.global_position - self.global_position
 		draw_line(Vector2(0,0),distance_to_player, Color.BLACK,1.0)
+
+func rotate_to(direction):
+	animation.flip_h = false if (direction == 1) else true
 
 # Esta lógica es para disparar una bala desde un enemigo
 # El usar un timer es un simple parche hasta que encontremos una forma mejor

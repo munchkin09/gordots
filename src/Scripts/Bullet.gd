@@ -5,21 +5,22 @@ var speed = Vector2(0.2,0.2)
 @export_range(0, 360) var arc: float = 0
 var bullet_direction : Vector2
 @onready var animated_sprite = $AnimatedSprite2D
+var destroying = false;
 func _ready():
 	animated_sprite.play("default")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	LogDuck.w(bullet_direction)
-	velocity.x = (global_position.x + bullet_direction.x ) * _delta   * 300
-
-	move_and_slide()
+	if not destroying:
+		velocity.x = (global_position.x + bullet_direction.x) * _delta * 60
+		move_and_slide()
 	
 func _physics_process(delta):
 	pass
 
 	
 func destroy():
-	
+	destroying = true
+	velocity.x = 0
 	animated_sprite.play('explosion')
 	await get_tree().create_timer(1.0).timeout
-	queue_free()
+	self.free()

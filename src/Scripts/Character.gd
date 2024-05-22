@@ -22,7 +22,7 @@ func _physics_process(delta):
 	pass
 
 func _on_area_2d_body_entered(body):
-	if body.name == 'Bullet':
+	if body is Bullet:
 		hc._on_player_hit(10)
 		body.destroy()
 		

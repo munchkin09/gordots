@@ -22,10 +22,14 @@ func physics_process(delta):
 
 func _gravity(delta):
 	cactus_node.velocity.y += gravity * delta
-	
-func _direction(delta):
-	pass
-	
+
 func _set(property, value):
 	self[property] = value
 	return
+
+func flip_monito():
+	var direction = player_node.global_position.x + cactus_node.global_position.x
+	if (direction) < 16:
+		cactus_node.animation.set_flip_h(true)
+	else:
+		cactus_node.animation.set_flip_h(false)
