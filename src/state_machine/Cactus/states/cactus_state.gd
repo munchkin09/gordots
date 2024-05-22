@@ -1,8 +1,9 @@
 class_name CactusState extends Node
 
 signal Transitioned
-@onready var cactus_node = self.owner as Cactus
-
+var player_node: Character
+var bullet_node: Bullet
+var cactus_node: Cactus
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const SPEED = 120
 const JUMP_VELOCITY = -500
@@ -16,7 +17,7 @@ func exit():
 func process(delta):
 	pass
 
-func physics_process(delta,player_node,cactus_node):
+func physics_process(delta):
 	pass
 
 func _gravity(delta):
@@ -31,3 +32,8 @@ func _direction(delta):
 		#cactus_node.velocity.x = direction * SPEED
 	#else:
 		#cactus_node.velocity.x = move_toward(cactus_node.velocity.x, 0, SPEED)
+
+func _set(property, value):
+	LogDuck.d(property)
+	self[property] = value
+	return

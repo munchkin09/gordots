@@ -9,10 +9,6 @@ func _on_body_entered(body):
 	LogDuck.d(logHeader)
 	await coin_collected.emit()
 	queue_free()
-	
-	
-	
-
 
 func _on_character_coin_collected():
 	pass # Replace with function body.

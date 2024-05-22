@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bixu36y5f55m2"]
+[gd_scene load_steps=4 format=3 uid="uid://bixu36y5f55m2"]
 
 [ext_resource type="Script" path="res://src/Scripts/CactusState.gd" id="1_g1xu4"]
+[ext_resource type="Script" path="res://src/state_machine/Cactus/states/cactus_state_move.gd" id="2_0218w"]
+[ext_resource type="Script" path="res://src/state_machine/Cactus/states/cactus_state_attack.gd" id="3_dj5bm"]
 
-[node name="CactusStateMachine" type="Node"]
+[node name="CactusStateMachine" type="Node" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_g1xu4")
+initial_state = NodePath("CactusStateMove")
+
+[node name="CactusStateMove" type="Node" parent="."]
+script = ExtResource("2_0218w")
+
+[node name="CactusStateAttack" type="Node" parent="."]
+script = ExtResource("3_dj5bm")
