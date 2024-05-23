@@ -10,8 +10,9 @@ func _ready():
 	animated_sprite.play("default")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+
 	if not destroying:
-		velocity.x = (global_position.x + bullet_direction.x) * _delta * 60
+		velocity.x =  bullet_direction.x * _delta * 150
 		move_and_slide()
 	
 func _physics_process(delta):

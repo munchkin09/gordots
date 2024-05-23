@@ -34,6 +34,7 @@ func shoot_new_bullet():
 	cactus_node.animation.play("shoot")
 	new_bullet.scale.x = 0.5
 	new_bullet.scale.y = 0.6
+
 	new_bullet.position = cactus_node.global_position
 	new_bullet.bullet_direction = player_node.global_position
 	new_bullet.global_rotation = cactus_node.rotation_degrees
