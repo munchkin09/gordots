@@ -1,10 +1,10 @@
 [gd_scene load_steps=59 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Character.gd" id="1_3tkld"]
-[ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
-[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://time_for_adventure.mp3" id="2_shjv8"]
+[ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Assets/Sprites/knight.png" id="1_giw3n"]
+[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/time_for_adventure.mp3" id="2_shjv8"]
 [ext_resource type="PackedScene" uid="uid://cuqpfgivymptq" path="res://src/Scenes/HealthController.tscn" id="3_4p4dx"]
-[ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://coin_collected.mp3" id="4_jcgfc"]
+[ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://Assets/coin_collected.mp3" id="4_cd4f6"]
 [ext_resource type="PackedScene" uid="uid://ds45mv5gdn6hl" path="res://src/state_machine/gamer_state_machine.tscn" id="6_gnvny"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_idle.gd" id="7_ommpl"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_move.gd" id="8_3q1eh"]
@@ -393,7 +393,7 @@ position = Vector2(-0.5, 3)
 shape = SubResource("RectangleShape2D_i5eg3")
 
 [node name="CoinCollected" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_jcgfc")
+stream = ExtResource("4_cd4f6")
 
 [node name="IntroMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_shjv8")
@@ -402,25 +402,25 @@ script = SubResource("GDScript_ne7j2")
 
 [node name="HealthController" parent="." instance=ExtResource("3_4p4dx")]
 
-[node name="GamerStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_gnvny")]
+[node name="CharacterStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_gnvny")]
 initial_state = NodePath("CharacterStateIdle")
 
-[node name="CharacterStateIdle" type="Node" parent="GamerStateMachine"]
+[node name="CharacterStateIdle" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("7_ommpl")
 
-[node name="CharacterStateMove" type="Node" parent="GamerStateMachine"]
+[node name="CharacterStateMove" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("8_3q1eh")
 
-[node name="CharacterStateRoll" type="Node" parent="GamerStateMachine"]
+[node name="CharacterStateRoll" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("9_t28nu")
 
-[node name="CharacterStateHit" type="Node" parent="GamerStateMachine"]
+[node name="CharacterStateHit" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("10_uc67k")
 
-[node name="CharacterStateDeath" type="Node" parent="GamerStateMachine"]
+[node name="CharacterStateDeath" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("11_46ngb")
 
-[node name="CharacterStateJump" type="Node" parent="GamerStateMachine"]
+[node name="CharacterStateJump" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("12_5de2d")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
