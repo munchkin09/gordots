@@ -27,9 +27,18 @@ func _set(property, value):
 	self[property] = value
 	return
 
+var flipped = true
+
 func flip_monito():
-	var direction = player_node.global_position.x + cactus_node.global_position.x
-	if (direction) < 16:
-		cactus_node.animation.set_flip_h(true)
+	var direction = player_node.global_position.x - cactus_node.global_position.x
+	if (direction) > 0:
+		flipped = false
 	else:
-		cactus_node.animation.set_flip_h(false)
+		flipped = true
+	cactus_node.animation.set_flip_h(flipped)
+
+func changeStateTo(state: String):
+	const message = 'Changing state to [%s] [%s]'
+	var formated_message = message % [state, cactus_node.name]
+	#LogDuck.e(formated_message)
+	self.Transitioned.emit(self, state)

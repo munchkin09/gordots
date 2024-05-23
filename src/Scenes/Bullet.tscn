@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtuqucr1r36ko"]
+[gd_scene load_steps=10 format=3 uid="uid://dtuqucr1r36ko"]
 
 [ext_resource type="Script" path="res://src/Scripts/Bullet.gd" id="1_1ibfl"]
-[ext_resource type="Texture2D" uid="uid://ct5tgqhxan4op" path="res://Sprites/tank_bullet6.png" id="2_ji180"]
-[ext_resource type="Texture2D" uid="uid://dyddmnatgsyy0" path="res://Sprites/explosion2.png" id="3_b8c23"]
+[ext_resource type="Texture2D" uid="uid://blm6so4sg0myy" path="res://Assets/Sprites/Bullet/tank_bullet6.png" id="2_rjg38"]
+[ext_resource type="Texture2D" uid="uid://by8fejn08ndo" path="res://Assets/Sprites/Explosion/explosion2_1.png" id="3_qbmn6"]
+[ext_resource type="Texture2D" uid="uid://byp4jl0r6c4dq" path="res://Assets/Sprites/Explosion/explosion2_2.png" id="4_bkyja"]
+[ext_resource type="Texture2D" uid="uid://d1fcva5kbsi2b" path="res://Assets/Sprites/Explosion/explosion2_3.png" id="5_oedqq"]
+[ext_resource type="Texture2D" uid="uid://k2a2skye2q3d" path="res://Assets/Sprites/Explosion/explosion2_4.png" id="6_461c4"]
+[ext_resource type="Texture2D" uid="uid://r23sr2fxtx2y" path="res://Assets/Sprites/Explosion/explosion2_5.png" id="7_lei7h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eucdc"]
 radius = 26.0
@@ -11,16 +15,16 @@ radius = 26.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ji180")
+"texture": ExtResource("2_rjg38")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ji180")
+"texture": ExtResource("2_rjg38")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ji180")
+"texture": ExtResource("2_rjg38")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ji180")
+"texture": ExtResource("2_rjg38")
 }],
 "loop": true,
 "name": &"default",
@@ -28,19 +32,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 2.4,
-"texture": ExtResource("3_b8c23")
+"texture": ExtResource("3_qbmn6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_b8c23")
+"texture": ExtResource("3_qbmn6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_b8c23")
+"texture": ExtResource("4_bkyja")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_b8c23")
+"texture": ExtResource("5_oedqq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_b8c23")
+"texture": ExtResource("6_461c4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lei7h")
 }],
 "loop": true,
 "name": &"explosion",

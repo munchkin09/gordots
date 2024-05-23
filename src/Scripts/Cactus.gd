@@ -8,14 +8,13 @@ class_name Cactus extends CharacterBody2D
 @export var bullet_count: int = 1
 @export var debug_lines: bool = false
 
-
-
 @onready var animation = $AnimatedSprite2D
 @export var bullet: PackedScene 
-const logHeader = '🏹'
+var logHeader = '[Enemy]' + self.name
+
 var debug :Dictionary = 	{
 	"velocity": velocity,
-	"point": 		Vector2(1.0,1.0)
+	"point": Vector2(4.0,4.0)
 }
 signal start
 
@@ -39,9 +38,6 @@ func _draw():
 	if debug_lines:
 		var distance_to_player = character.global_position - self.global_position
 		draw_line(Vector2(0,0),distance_to_player, Color.BLACK,1.0)
-
-func rotate_to(direction):
-	animation.flip_h = false if (direction == 1) else true
 
 # Esta lógica es para disparar una bala desde un enemigo
 # El usar un timer es un simple parche hasta que encontremos una forma mejor

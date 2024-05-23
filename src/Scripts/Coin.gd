@@ -7,7 +7,7 @@ const logHeader = '🪙 -'
 
 func _on_body_entered(body):
 	LogDuck.d(logHeader)
-	await coin_collected.emit()
+	coin_collected.emit()
 	queue_free()
 
 func _on_character_coin_collected():

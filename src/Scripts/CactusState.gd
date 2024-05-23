@@ -17,6 +17,9 @@ var children = []
 func _ready():
 	for child in get_children(true):
 		if child is CactusState:
+			var pepa = 'State [%s] added' 
+			var pepe = pepa % child.name.to_lower()
+			LogDuck.w(pepe)
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
 			children.append(child)

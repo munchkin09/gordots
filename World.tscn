@@ -449,7 +449,6 @@ debug_lines = false
 position = Vector2(-90, -91)
 character = NodePath("../Character")
 bullet_count = 5
-debug_lines = false
 
 [node name="Character" parent="." instance=ExtResource("1_dnfye")]
 
