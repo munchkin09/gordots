@@ -10,8 +10,12 @@ class_name Cactus extends CharacterBody2D
 
 @onready var animation = $AnimatedSprite2D
 @export var bullet: PackedScene 
-var logHeader = '[Enemy]' + self.name
 
+var logDuckHeader = '[Enemy] 🌵' + self.name
+
+var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null):
+	LogDuck.d(logDuckHeader + msg, arg1, arg2, arg3, arg4, arg5, arg6)
+ 
 var debug :Dictionary = 	{
 	"velocity": velocity,
 	"point": Vector2(4.0,4.0)
@@ -42,7 +46,6 @@ func _draw():
 # Esta lógica es para disparar una bala desde un enemigo
 # El usar un timer es un simple parche hasta que encontremos una forma mejor
 #func _on_timer_timeout():
-	#LogDuck.d(logHeader, ' Shooting!')
 #
 	#var new_bullet = bullet.instantiate()
 #

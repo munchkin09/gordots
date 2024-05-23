@@ -17,7 +17,6 @@ func physics_process(delta):
 		self.Transitioned.emit(self, 'characterstateidle')
 		return
 
-	
 	self._direction(delta)
 
 	player_node.move_and_slide()

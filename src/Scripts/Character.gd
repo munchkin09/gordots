@@ -5,7 +5,6 @@ signal coin_collected
 
 var faceLeft = true
 var coins_collected = 0
-const logHeader = '👨‍🦳👩‍🦳'
 
 @export var health_controller: PackedScene
 
@@ -13,6 +12,10 @@ const logHeader = '👨‍🦳👩‍🦳'
 @onready var animated_sprite = $AnimatedSprite2D
 
 var hc: HealthController
+const logDuckHeader = '👨‍🦳👩‍🦳'
+
+var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null):
+	LogDuck.d(logDuckHeader + msg, arg1, arg2, arg3, arg4, arg5, arg6)
 
 func _ready():
 	hc = health_controller.instantiate()
@@ -28,7 +31,7 @@ func _on_area_2d_body_entered(body):
 		
 
 func _on_coin_coin_collected():
-	LogDuck.w('+1 coin')
+	Log.call('+1 coin')
 	coin_collected_sound.play()
 	coins_collected+=1
 	coin_collected.emit()

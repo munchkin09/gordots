@@ -7,6 +7,10 @@ var cactus_node: Cactus
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const SPEED = 120
 const JUMP_VELOCITY = -500
+const logDuckHeader = '🖥️🌵'
+
+var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null):
+	LogDuck.d(logDuckHeader + ' ' + msg, arg1, arg2, arg3, arg4, arg5, arg6)
 
 func enter():
 	pass

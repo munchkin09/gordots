@@ -10,18 +10,16 @@ func _ready():
 	animated_sprite.play("default")
 	if bullet_direction == -1:
 		animated_sprite.flip_h = true
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-
 	if not destroying:
 		velocity.x = bullet_direction * speed.x * _delta
-		
 		move_and_slide()
-	
+
 func _physics_process(delta):
 	pass
 
-	
 func destroy():
 	destroying = true
 	animated_sprite.play('explosion')

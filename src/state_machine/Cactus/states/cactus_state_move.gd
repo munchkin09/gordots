@@ -29,6 +29,3 @@ func process(delta):
 
 func physics_process(delta):
 	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
-	
-	# cactus_node.velocity.x = distance_to_player * delta * 25
-	
