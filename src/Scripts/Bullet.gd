@@ -17,7 +17,7 @@ func _process(_delta):
 		velocity.x = bullet_direction * speed.x * _delta
 		move_and_slide()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 func destroy():

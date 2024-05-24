@@ -15,7 +15,7 @@ func exit():
 
 var oneSec = 0.0
 
-func _process(delta):
+func _process(_delta):
 
 	if distance_to_player >= 100:
 		changeStateTo('cactusstatemove')
@@ -26,7 +26,7 @@ func _process(delta):
 		return
 	flip_monito()
 
-func physics_process(delta):
+func physics_process(_delta):
 	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
 
 func _on_timer_timeout():

@@ -18,10 +18,10 @@ func enter():
 func exit():
 	pass
 
-func process(delta):
+func process(_delta):
 	pass
 
-func physics_process(delta):
+func physics_process(_delta):
 	pass
 
 func _gravity(delta):
@@ -43,6 +43,6 @@ func flip_monito():
 
 func changeStateTo(state: String):
 	const message = 'Changing state to [%s] [%s]'
-	var formated_message = message % [state, cactus_node.name]
+	var _formated_message = message % [state, cactus_node.name]
 	#LogDuck.e(formated_message)
 	self.Transitioned.emit(self, state)

@@ -8,11 +8,11 @@ func enter():
 func exit():
 	pass
 
-func process(delta):
+func process(_delta):
 	pass
 
-func physics_process(delta):
-	super(delta)
+func physics_process(_delta):
+	super(_delta)
 
 	if Input.is_action_just_pressed("ui_up"):
 		self.Transitioned.emit(self, 'characterstatejump')

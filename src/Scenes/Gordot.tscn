@@ -1,6 +1,6 @@
 [gd_scene load_steps=59 format=3 uid="uid://bimqvxarfp4xy"]
 
-[ext_resource type="Script" path="res://src/Scripts/Character.gd" id="1_3tkld"]
+[ext_resource type="Script" path="res://src/Scripts/Gordot.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Assets/Sprites/knight.png" id="1_giw3n"]
 [ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/time_for_adventure.mp3" id="2_shjv8"]
 [ext_resource type="PackedScene" uid="uid://cuqpfgivymptq" path="res://src/Scenes/HealthController.tscn" id="3_4p4dx"]

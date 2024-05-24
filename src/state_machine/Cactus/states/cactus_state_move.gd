@@ -18,7 +18,7 @@ func exit():
 	cactus_node.animation.stop()
 
 var oneSec = 0.0
-func process(delta):
+func process(_delta):
 	flip_monito()
 	cactus_node.move_and_slide()
 	if distance_to_player < 95:
@@ -27,5 +27,5 @@ func process(delta):
 	if distance_to_player > -95:
 		changeStateTo('cactusstateattack')
 
-func physics_process(delta):
+func physics_process(_delta):
 	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
