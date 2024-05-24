@@ -8,6 +8,12 @@ const SPEED = 120
 const JUMP_VELOCITY = -500
 var sprite: AnimatedSprite2D
 
+const logDuckHeader = '🖥️🧓'
+
+var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null):
+	LogDuck.d(logDuckHeader + msg, arg1, arg2, arg3, arg4, arg5, arg6)
+ 
+
 func enter():
 	if not sprite:
 		sprite = player_node.get_node('AnimatedSprite2D') as AnimatedSprite2D
@@ -15,7 +21,7 @@ func enter():
 func exit():
 	pass
 
-func process(delta):
+func process(_delta):
 	pass
 
 func physics_process(delta):

@@ -1,4 +1,4 @@
-class_name GamerStateMachine extends Node
+class_name CharacterStateMachine extends Node
 
 @export var initial_state: PlayerState
 var history: Array[String] = []
@@ -8,6 +8,10 @@ var current_state: PlayerState
 @export var DEBUG: bool = true
 @export var ACTIVATE_HISTORY: bool = false
 @export var PRINT_HISTORY: bool = false
+const logDuckHeader = '🖥️🧓'
+
+var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null):
+	LogDuck.d(logDuckHeader + msg, arg1, arg2, arg3, arg4, arg5, arg6)
 
 func _ready():
 	for child in get_children():
@@ -46,4 +50,4 @@ func states_history():
 		history.append(current_state.name)
 
 	if (PRINT_HISTORY):
-		LogDuck.d('The state history so far: \n', history)
+		Log.call('The state history so far: \n', history)

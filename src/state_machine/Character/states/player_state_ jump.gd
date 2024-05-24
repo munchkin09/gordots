@@ -8,7 +8,7 @@ func enter():
 func exit():
 	pass
 
-func process(delta):
+func process(_delta):
 	pass
 
 func physics_process(delta):
@@ -17,7 +17,6 @@ func physics_process(delta):
 		self.Transitioned.emit(self, 'characterstateidle')
 		return
 
-	
 	self._direction(delta)
 
 	player_node.move_and_slide()

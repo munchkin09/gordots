@@ -1,17 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu7wb1exa7x20"]
+[gd_scene load_steps=11 format=3 uid="uid://bu7wb1exa7x20"]
 
-[ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Character.tscn" id="1_dnfye"]
-[ext_resource type="PackedScene" uid="uid://24wocvjq6ji" path="res://src/Scenes/Cactus.tscn" id="2_kaisn"]
-[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Sprites/world_tileset.png" id="2_rh1o1"]
-[ext_resource type="Texture2D" uid="uid://nwv3vyt4sl1c" path="res://Sprites/coinsingular.png" id="6_6gbkg"]
-[ext_resource type="PackedScene" uid="uid://daubysgl6wmqr" path="res://src/Scenes/Level1/CoinLayout.tscn" id="8_ray6y"]
-[ext_resource type="Script" path="res://src/Scenes/Level1/CoinLayout.gd" id="9_g3t7y"]
+[ext_resource type="Script" path="res://src/Scripts/World.gd" id="1_k8enr"]
+[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Assets/Sprites/world_tileset.png" id="2_x6146"]
+[ext_resource type="PackedScene" uid="uid://daubysgl6wmqr" path="res://src/Scenes/Level1/CoinLayout.tscn" id="3_6nqke"]
+[ext_resource type="Script" path="res://src/Scenes/Level1/CoinLayout.gd" id="4_0ux07"]
+[ext_resource type="PackedScene" uid="uid://24wocvjq6ji" path="res://src/Scenes/Cactus.tscn" id="5_12r6g"]
+[ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Gordot.tscn" id="6_vrrg2"]
+[ext_resource type="Texture2D" uid="uid://b1rtj4lyaae6b" path="res://Assets/Sprites/coinsingular.png" id="7_h0w2y"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yvsfk"]
 bounce = 0.2
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5s3ye"]
-texture = ExtResource("2_rh1o1")
+texture = ExtResource("2_x6146")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -413,8 +414,9 @@ physics_layer_0/collision_mask = 2
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_yvsfk")
 sources/0 = SubResource("TileSetAtlasSource_5s3ye")
 
-[node name="World" type="Node2D"]
+[node name="Level1_1" type="Node2D"]
 position = Vector2(1, 0)
+script = ExtResource("1_k8enr")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-68, -2)
@@ -435,29 +437,27 @@ layer_3/z_index = 2
 layer_3/navigation_enabled = false
 layer_3/tile_data = PackedInt32Array(196577, 262144, 9, 196578, 262144, 9, 196579, 262144, 9, 196580, 262144, 9, 196581, 262144, 9, 196582, 262144, 9, 196583, 262144, 9, 196584, 262144, 9, 196585, 262144, 9, 196586, 262144, 9, 196587, 262144, 9, 196588, 262144, 9, 196589, 262144, 9, 196590, 262144, 9, 196591, 262144, 9, 196592, 262144, 9, 196593, 262144, 9, 196594, 262144, 9, 196595, 262144, 9, 196596, 262144, 9, 196597, 262144, 9, 196598, 262144, 9, 196599, 262144, 9, 196600, 262144, 9, 196601, 262144, 9, 196602, 262144, 9, 196603, 262144, 9, 196604, 262144, 9, 196605, 262144, 9, 196606, 262144, 9, 196607, 262144, 9, 131072, 262144, 9, 131073, 262144, 9, 131074, 262144, 9, 131075, 262144, 9, 131076, 262144, 9, 131077, 262144, 9, 131078, 262144, 9, 131079, 262144, 9, 131080, 262144, 9, 131081, 262144, 9, 131082, 262144, 9, 131083, 262144, 9, 131084, 262144, 9, 131085, 262144, 9, 131086, 262144, 9, 131087, 262144, 9, 131088, 262144, 9, 131089, 262144, 9, 131090, 262144, 9, 131091, 262144, 9, 131092, 262144, 9, 131093, 262144, 9, 131094, 262144, 9, 131095, 262144, 9, 131096, 262144, 9, 196576, 262144, 9, -65565, 0, 3, -29, 0, 4, 65507, 0, 5, -65563, 0, 3, -27, 0, 4, 65509, 0, 5, -65561, 0, 3, -25, 0, 4, 65511, 0, 5, -65559, 0, 3, -23, 0, 4, 65513, 0, 5, 65508, 0, 5, 65510, 0, 5, 65512, 0, 5, -26, 0, 3, -28, 0, 3, -24, 0, 3, 917504, 458752, 9, 917505, 458752, 9, 917506, 458752, 9, 917507, 458752, 9, 917508, 458752, 9, 917509, 458752, 9, 917510, 458752, 9, 917511, 458752, 9, 917512, 458752, 9, 917513, 458752, 9, 917514, 458752, 9, 917515, 458752, 9, 917516, 458752, 9, 917517, 458752, 9, 917518, 458752, 9, 917519, 458752, 9, 917520, 458752, 9, 917521, 458752, 9, 917522, 458752, 9, 917523, 458752, 9, 917524, 458752, 9, 917525, 458752, 9, 917526, 458752, 9, 917527, 458752, 9, 917528, 458752, 9, 983016, 458752, 9, 983017, 458752, 9, 983018, 458752, 9, 983019, 458752, 9, 983020, 458752, 9, 983021, 458752, 9, 983022, 458752, 9, 983023, 458752, 9, 983024, 458752, 9, 983025, 458752, 9, 983026, 458752, 9, 983027, 458752, 9, 983028, 458752, 9, 983029, 458752, 9, 983030, 458752, 9, 983031, 458752, 9, 983032, 458752, 9, 983033, 458752, 9, 983034, 458752, 9, 983035, 458752, 9, 983036, 458752, 9, 983037, 458752, 9, 983038, 458752, 9, 983039, 458752, 9, 983008, 458752, 9, 983009, 458752, 9, 983010, 458752, 9, 983011, 458752, 9, 983012, 458752, 9, 983013, 458752, 9, 983014, 458752, 9, 983015, 458752, 9)
 
-[node name="CoinLayoutLvl1" parent="." node_paths=PackedStringArray("character_node") instance=ExtResource("8_ray6y")]
-script = ExtResource("9_g3t7y")
-character_node = NodePath("../Character")
+[node name="CoinLayoutLvl1" parent="." node_paths=PackedStringArray("character_node") instance=ExtResource("3_6nqke")]
+script = ExtResource("4_0ux07")
+character_node = NodePath("../Gordot")
 
-[node name="Cactus" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_kaisn")]
+[node name="Cactus" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_12r6g")]
 position = Vector2(-278, 4)
-character = NodePath("../Character")
-bullet_count = 5
+character = NodePath("../Gordot")
 debug_lines = false
 
-[node name="Cactus2" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_kaisn")]
+[node name="Cactus2" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_12r6g")]
 position = Vector2(-90, -91)
-character = NodePath("../Character")
-bullet_count = 5
+character = NodePath("../Gordot")
 
-[node name="Character" parent="." instance=ExtResource("1_dnfye")]
+[node name="Gordot" parent="." instance=ExtResource("6_vrrg2")]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(357, -165)
 energy = 4.77
 shadow_enabled = true
 shadow_color = Color(0.385493, 0.385492, 0.385492, 0)
-texture = ExtResource("6_6gbkg")
+texture = ExtResource("7_h0w2y")
 texture_scale = 1.8
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
