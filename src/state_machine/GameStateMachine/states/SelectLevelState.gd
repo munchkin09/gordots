@@ -2,10 +2,10 @@ class_name SelectLevelState extends BaseStateClass
 
 var current_scene: Node2D
 var initial_node: Node2D
-var path = 'res://src/Scenes/Level1/Level1_1.tscn'
 
+var level_to_load
 func enter():
-	goto_scene(path)
+	goto_scene(level_to_load)
 
 func goto_scene(_path):
 	call_deferred("_deferred_goto_scene", _path)
@@ -27,8 +27,13 @@ func _deferred_goto_scene(new_scene_path):
 func setInitial(node: Node2D):
 	initial_node = node
 
+func setLevelTo(scene_path: String):
+	level_to_load = scene_path
+
 func process(_delta):
 	pass
 
 func physics_process(_delta):
 	pass
+	
+	

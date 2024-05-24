@@ -8,6 +8,7 @@ var startlevelstate = StartLevelState.new()
 var playinglevelstate = PlayingLevelState.new()
 var pausestate = PauseState.new()
 var initial_state = BaseStateClass.new()
+var initial_menu = 'res://src/Scenes/Menus/Initial.tscn'
 
 var DEBUG: bool = false
 var ACTIVATE_HISTORY: bool = false
@@ -63,4 +64,8 @@ func states_history():
 func startStateMachine(node: Node2D):
 	pausestate.root_node = node
 	selectlevelstate.setInitial(node)
+	self.changeSceneTo(initial_menu)
+
+func changeSceneTo(scene_path: String):
+	selectlevelstate.setLevelTo(scene_path)
 	selectlevelstate.enter()
