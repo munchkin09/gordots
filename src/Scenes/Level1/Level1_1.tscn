@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bu7wb1exa7x20"]
+[gd_scene load_steps=13 format=3 uid="uid://bu7wb1exa7x20"]
 
 [ext_resource type="Script" path="res://src/Scripts/World.gd" id="1_k8enr"]
 [ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Assets/Sprites/world_tileset.png" id="2_x6146"]
@@ -6,10 +6,16 @@
 [ext_resource type="Script" path="res://src/Scenes/Level1/CoinLayout.gd" id="4_0ux07"]
 [ext_resource type="PackedScene" uid="uid://24wocvjq6ji" path="res://src/Scenes/Cactus.tscn" id="5_12r6g"]
 [ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Gordot.tscn" id="6_vrrg2"]
-[ext_resource type="Texture2D" uid="uid://b1rtj4lyaae6b" path="res://Assets/Sprites/coinsingular.png" id="7_h0w2y"]
+[ext_resource type="Texture2D" uid="uid://r23sr2fxtx2y" path="res://Assets/Sprites/Explosion/explosion2_5.png" id="7_jmcc0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yvsfk"]
 bounce = 0.2
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pkfig"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fu4ma"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5s3ye"]
 texture = ExtResource("2_x6146")
@@ -18,6 +24,7 @@ texture = ExtResource("2_x6146")
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_pkfig")
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -66,6 +73,7 @@ texture = ExtResource("2_x6146")
 0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
+1:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_fu4ma")
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -82,6 +90,7 @@ texture = ExtResource("2_x6146")
 4:1/0/physics_layer_0/angular_velocity = 0.0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0 = 0
+5:1/0/modulate = Color(0.70635, 0.0988225, 0.367603, 1)
 5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:1/0/physics_layer_0/angular_velocity = 0.0
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -409,6 +418,8 @@ texture = ExtResource("2_x6146")
 2:4/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_2w8d1"]
+uv_clipping = true
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_yvsfk")
@@ -419,7 +430,7 @@ position = Vector2(1, 0)
 script = ExtResource("1_k8enr")
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-68, -2)
+position = Vector2(-68, -5)
 tile_set = SubResource("TileSet_2w8d1")
 format = 2
 layer_0/name = "Foreground"
@@ -453,17 +464,18 @@ character = NodePath("../Gordot")
 [node name="Gordot" parent="." instance=ExtResource("6_vrrg2")]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(357, -165)
-energy = 4.77
-shadow_enabled = true
-shadow_color = Color(0.385493, 0.385492, 0.385492, 0)
-texture = ExtResource("7_h0w2y")
-texture_scale = 1.8
+position = Vector2(400, -119)
+color = Color(0.193049, 0.373668, 0.42655, 1)
+energy = 4.16
+shadow_color = Color(0.16839, 0.415951, 0.534096, 0)
+texture = ExtResource("7_jmcc0")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-position = Vector2(-353, -17)
-color = Color(0.446777, 0.446777, 0.446777, 1)
-max_distance = 1000.0
+position = Vector2(136, -308)
+skew = -0.785398
+color = Color(0.467895, 0.385514, 0.689817, 1)
+shadow_enabled = true
+max_distance = 600.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(10, 0)

@@ -59,7 +59,6 @@ func states_history():
 
 	if (PRINT_HISTORY):
 		Log.call('The state history so far: \n', history)
-	pass
 
 func startStateMachine(node: Node2D):
 	pausestate.root_node = node

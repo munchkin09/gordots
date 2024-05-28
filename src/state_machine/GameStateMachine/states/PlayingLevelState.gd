@@ -7,7 +7,8 @@ func exit():
 	pass
 
 func process(_delta):
-	pass
+	if Input.is_action_pressed('ui_menu'):
+		Transitioned.emit(self, 'pausestate')
 
 func physics_process(_delta):
 	pass

@@ -1,10 +1,11 @@
 extends Node2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	await get_tree().create_timer(2.0).timeout
-	GameStateMachine.startStateMachine(self)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+var times_looped = 0
+@onready var animation = $AnimatedSprite2D
+func _on_animated_sprite_2d_animation_looped():
+	times_looped += 1
+	if times_looped >= 1:
+		GameStateMachine.startStateMachine(self)
+		animation.stop()
+		get_node("AnimatedSprite2D").queue_free()
+		get_node("Sprite2D").queue_free()

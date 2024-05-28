@@ -5,20 +5,41 @@
 [node name="Initial" type="Node2D"]
 script = ExtResource("1_t3qqu")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_right = 1126.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+columns = 4
 
-[node name="GridContainer" type="GridContainer" parent="Panel"]
-layout_mode = 0
-offset_right = 20.0
-offset_bottom = 8.0
-columns = 2
-
-[node name="Button" type="Button" parent="Panel/GridContainer"]
+[node name="Button" type="Button" parent="GridContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 text = "Nivel 1"
 
-[node name="Button2" type="Button" parent="Panel/GridContainer"]
+[node name="Button2" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "No hace ná"
 
-[connection signal="pressed" from="Panel/GridContainer/Button" to="." method="_on_button_pressed"]
+[node name="Button3" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Niveles con nombres largos"
+
+[node name="Button4" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Niveles de nombres todavía más largos"
+
+[node name="Button5" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Estamos quizás ante el nombre de nivel más largo de todos???"
+
+[node name="Button6" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Si"
+
+[connection signal="pressed" from="GridContainer/Button" to="." method="_on_button_pressed"]
