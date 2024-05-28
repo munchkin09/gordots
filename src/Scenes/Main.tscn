@@ -1,6 +1,108 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckv658wnd7rr3"]
+[gd_scene load_steps=16 format=3 uid="uid://ckv658wnd7rr3"]
 
 [ext_resource type="Script" path="res://src/Scripts/Main.gd" id="1_8808s"]
+[ext_resource type="Texture2D" uid="uid://cs3nlv2e5421c" path="res://Assets/Sprites/Logo1SpriteSheet.png" id="2_xp5x7"]
+
+[sub_resource type="Gradient" id="Gradient_dfflu"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qbq2b"]
+gradient = SubResource("Gradient_dfflu")
+fill_from = Vector2(0.46789, 0.678899)
+fill_to = Vector2(0.775229, 0.059633)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw8vr"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxxib"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml8hy"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eui1k"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4jcr"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eacq8"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqadn"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma3lr"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5j2c"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hriq1"]
+atlas = ExtResource("2_xp5x7")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iyo5a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw8vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxxib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml8hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eui1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4jcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eacq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqadn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma3lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5j2c")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_hriq1")
+}],
+"loop": true,
+"name": &"logo",
+"speed": 10.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8808s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(572, 324)
+scale = Vector2(200, 10)
+texture = SubResource("GradientTexture2D_qbq2b")
+hframes = 10
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(591, 331)
+scale = Vector2(9, 8.374)
+sprite_frames = SubResource("SpriteFrames_iyo5a")
+animation = &"logo"
+autoplay = "logo"
+speed_scale = 0.1
+
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

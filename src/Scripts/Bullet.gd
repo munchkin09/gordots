@@ -1,6 +1,6 @@
 class_name Bullet extends CharacterBody2D
 
-var speed = Vector2(800,0.0)
+var speed = Vector2(8000,0.0)
 # Esto se convierte en opciones parametrizables desde la interfaz gráfica!
 @export_range(0, 360) var arc: float = 0
 var bullet_direction : int
@@ -15,6 +15,7 @@ func _ready():
 func _process(_delta):
 	if not destroying:
 		velocity.x = bullet_direction * speed.x * _delta
+
 		move_and_slide()
 
 func _physics_process(_delta):
