@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://daubysgl6wmqr"]
+[gd_scene load_steps=4 format=3 uid="uid://daubysgl6wmqr"]
 
 [ext_resource type="PackedScene" uid="uid://dp6wt03xw5pme" path="res://src/Scenes/Coin.tscn" id="1_kjnn3"]
+[ext_resource type="PackedScene" uid="uid://xmmp552hcrfk" path="res://src/Scenes/CoinPath.tscn" id="2_06muj"]
+[ext_resource type="Script" path="res://src/Scripts/CoinPathFollow2D.gd" id="3_ugmvg"]
 
 [node name="CoinLayoutLvl1" type="Node2D"]
 
@@ -16,5 +18,19 @@ position = Vector2(-152, -7)
 [node name="Coin4" parent="." instance=ExtResource("1_kjnn3")]
 position = Vector2(-176, -4)
 
-[node name="Coin5" parent="." instance=ExtResource("1_kjnn3")]
-position = Vector2(-165, -91)
+[node name="Path2D" parent="." instance=ExtResource("2_06muj")]
+position = Vector2(-227.72, -179.19)
+rotation = -0.891791
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-253.431, -177.212)
+rotation = 2.97644
+progress = 374.541
+rotates = false
+script = ExtResource("3_ugmvg")
+
+[node name="Coin5" parent="Path2D/PathFollow2D2" instance=ExtResource("1_kjnn3")]
+position = Vector2(-220.848, -216.465)
+rotation = -2.97644
+
+[connection signal="child_entered_tree" from="Path2D/PathFollow2D2" to="Path2D/PathFollow2D2" method="_on_child_entered_tree"]
