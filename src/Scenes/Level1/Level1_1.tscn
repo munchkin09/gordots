@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bu7wb1exa7x20"]
+[gd_scene load_steps=14 format=3 uid="uid://bu7wb1exa7x20"]
 
 [ext_resource type="Script" path="res://src/Scripts/World.gd" id="1_k8enr"]
 [ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Sprites/world_tileset.png" id="2_x6146"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://24wocvjq6ji" path="res://src/Scenes/Cactus.tscn" id="5_12r6g"]
 [ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Gordot.tscn" id="6_vrrg2"]
 [ext_resource type="Texture2D" uid="uid://r23sr2fxtx2y" path="res://Assets/Sprites/Explosion/explosion2_5.png" id="7_jmcc0"]
-[ext_resource type="Texture2D" uid="uid://217ol62ati0r" path="res://Assets/Sprites/coinsingular.png" id="7_h0w2y"]
 [ext_resource type="PackedScene" uid="uid://b8eopy63duh7n" path="res://src/Scenes/Menus/Pause.tscn" id="8_20kmm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yvsfk"]

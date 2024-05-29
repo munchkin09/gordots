@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.554109, 0.223338, 0.457535, 1)
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="PauseGridContainer" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,24 +35,35 @@ offset_bottom = 23.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="GridContainer"]
+[node name="Label" type="Label" parent="PauseGridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="GridContainer"]
+[node name="ResumeButton" type="Button" parent="PauseGridContainer"]
 layout_mode = 2
 text = "Resume"
 
-[node name="SettingsButton" type="Button" parent="GridContainer"]
+[node name="SettingsButton" type="Button" parent="PauseGridContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="QuitButton" type="Button" parent="GridContainer"]
+[node name="QuitButton" type="Button" parent="PauseGridContainer"]
 layout_mode = 2
 text = "Quit game"
 
-[connection signal="pressed" from="GridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="GridContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="GridContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="SettingsGridContainer" type="GridContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="SettingsGridContainer"]
+layout_mode = 2
+text = "Settings
+"
+
+[connection signal="pressed" from="PauseGridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseGridContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PauseGridContainer/QuitButton" to="." method="_on_quit_button_pressed"]
