@@ -1,6 +1,6 @@
 extends Node2D
 
-var times_looped = 0
+var times_looped = 1
 @onready var animation = $AnimatedSprite2D
 func _on_animated_sprite_2d_animation_looped():
 	times_looped += 1

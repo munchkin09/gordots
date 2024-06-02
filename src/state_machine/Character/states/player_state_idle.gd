@@ -16,7 +16,6 @@ func physics_process(_delta):
 
 	if Input.is_action_just_pressed("ui_up"):
 		self.Transitioned.emit(self, 'characterstatejump')
-		return
 
 	if (Input.is_anything_pressed()):
 		self.Transitioned.emit(self,'characterstatemove')

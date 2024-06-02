@@ -2,7 +2,7 @@ class_name CharacterStateJump extends PlayerState
 
 func enter():
 	super()
-	player_node.velocity.y = JUMP_VELOCITY
+	player_node.velocity.y = JUMP_VELOCITY + 300
 	_play('jump')
 
 func exit():

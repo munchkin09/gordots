@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Gordot.tscn" id="6_vrrg2"]
 [ext_resource type="Texture2D" uid="uid://r23sr2fxtx2y" path="res://Assets/Sprites/Explosion/explosion2_5.png" id="7_jmcc0"]
 [ext_resource type="PackedScene" uid="uid://b8eopy63duh7n" path="res://src/Scenes/Menus/Pause.tscn" id="8_20kmm"]
+[ext_resource type="PackedScene" uid="uid://dpway13lpk3mc" path="res://src/Scenes/death_zone.tscn" id="9_wekop"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2d1bf"]
 radius = 17.61
@@ -457,6 +458,8 @@ region_rect = Rect2(4.16781, 130.692, 7.66517, 13.0402)
 position = Vector2(487, -233)
 shape = SubResource("CapsuleShape2D_2d1bf")
 debug_color = Color(0.207711, 0.389489, 0.599829, 0.42)
+[node name="DeathZone" parent="." instance=ExtResource("9_wekop")]
+position = Vector2(-581, -2)
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-68, -5)
@@ -509,9 +512,10 @@ max_distance = 600.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(10, 0)
-color = Color(0.238468, 0.237318, 0.272561, 1)
+color = Color(0.175618, 0.250741, 0.313091, 1)
 
 [node name="PauseMenu" parent="." instance=ExtResource("8_20kmm")]
 visible = false
 
 [connection signal="body_entered" from="Bottle" to="." method="_on_bottle_body_entered"]
+[connection signal="character_on_death_zone" from="DeathZone" to="." method="_on_death_zone_character_on_death_zone"]
