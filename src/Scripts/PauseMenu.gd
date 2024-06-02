@@ -12,7 +12,7 @@ func _on_resume_button_pressed():
 
 func _on_settings_button_pressed():
 	pause_menu.hide()
-	settings_menu.show() # Replace with function body.
-
+	settings_menu.show() 
+	
 func _on_quit_button_pressed():
 	get_tree().quit()

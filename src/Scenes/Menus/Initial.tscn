@@ -1,45 +1,241 @@
-[gd_scene load_steps=2 format=3 uid="uid://cckbfjtrdlut2"]
+[gd_scene load_steps=20 format=3 uid="uid://cckbfjtrdlut2"]
 
 [ext_resource type="Script" path="res://src/Scenes/Menus/Initial.gd" id="1_t3qqu"]
+[ext_resource type="Texture2D" uid="uid://cvgwv05consa7" path="res://Assets/Tiles/TtileScreen.png" id="2_50oh3"]
+[ext_resource type="Theme" uid="uid://b1cbnmt6ej455" path="res://Assets/Themes/default_theme.tres" id="2_sqhqk"]
+[ext_resource type="Texture2D" uid="uid://up2v47smrn3w" path="res://Assets/Sprites/PuntoDeFuga.png" id="4_2inf0"]
+[ext_resource type="Script" path="res://src/Scenes/Menus/SettingsPanelContainer.gd" id="4_o28fm"]
+[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/time_for_adventure.mp3" id="5_7yke4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_115qw"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjfl5"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vul8w"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8h0p"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8pf2"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td5sm"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axbx4"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmgyk"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5tp3"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2awe7"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4i6w"]
+atlas = ExtResource("2_50oh3")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1bhm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_115qw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjfl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vul8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8h0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8pf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_td5sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axbx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmgyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5tp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2awe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4i6w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="FontVariation" id="FontVariation_kuv0c"]
+spacing_glyph = 31
 
 [node name="Initial" type="Node2D"]
 script = ExtResource("1_t3qqu")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1126.0
-offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 0
-columns = 4
+color = Color(0.54147, 0.251188, 0.668529, 1)
 
-[node name="Button" type="Button" parent="GridContainer"]
+[node name="MainMenuPanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.5
+offset_top = -65.0
+offset_right = 150.5
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_sqhqk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainMenuPanelContainer"]
+position = Vector2(114.75, 65.5)
+sprite_frames = SubResource("SpriteFrames_w1bhm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuPanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenuPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_kuv0c")
+theme_override_font_sizes/font_size = 24
+text = "GORDOTS"
+
+[node name="ButtonsVBoxContainer" type="VBoxContainer" parent="MainMenuPanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartGame" type="Button" parent="MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-text = "Nivel 1"
+focus_neighbor_top = NodePath("../ExitGame")
+focus_neighbor_bottom = NodePath("../Settings")
+text = "Jugar"
 
-[node name="Button2" type="Button" parent="GridContainer"]
+[node name="Settings" type="Button" parent="MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer"]
 layout_mode = 2
-text = "No hace ná"
+focus_neighbor_top = NodePath("../StartGame")
+focus_neighbor_bottom = NodePath("../ExitGame")
+text = "Opciones"
 
-[node name="Button3" type="Button" parent="GridContainer"]
+[node name="ExitGame" type="Button" parent="MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer"]
 layout_mode = 2
-text = "Niveles con nombres largos"
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../StartGame")
+text = "Salir"
 
-[node name="Button4" type="Button" parent="GridContainer"]
+[node name="SettingsPanelContainer" type="PanelContainer" parent="."]
+visible = false
+offset_left = -150.5
+offset_top = -69.5
+offset_right = 150.5
+offset_bottom = 69.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_sqhqk")
+script = ExtResource("4_o28fm")
+action_items = Array[String](["ui_up", "ui_down", "ui_left", "ui_right"])
+
+[node name="Sprite2D" type="Sprite2D" parent="SettingsPanelContainer"]
+show_behind_parent = true
+texture = ExtResource("4_2inf0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanelContainer"]
 layout_mode = 2
-text = "Niveles de nombres todavía más largos"
+theme = ExtResource("2_sqhqk")
 
-[node name="Button5" type="Button" parent="GridContainer"]
+[node name="SettingsVBoxContainer" type="VBoxContainer" parent="SettingsPanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Estamos quizás ante el nombre de nivel más largo de todos???"
 
-[node name="Button6" type="Button" parent="GridContainer"]
+[node name="Label" type="Label" parent="SettingsPanelContainer/VBoxContainer/SettingsVBoxContainer"]
 layout_mode = 2
-text = "Si"
+theme_override_fonts/font = SubResource("FontVariation_kuv0c")
+theme_override_font_sizes/font_size = 24
+text = "Settings
+"
 
-[connection signal="pressed" from="GridContainer/Button" to="." method="_on_button_pressed"]
+[node name="SoundLabel" type="Label" parent="SettingsPanelContainer/VBoxContainer/SettingsVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sonido
+"
+
+[node name="SoundHSlider" type="HSlider" parent="SettingsPanelContainer/VBoxContainer/SettingsVBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.6
+
+[node name="CheckButton" type="CheckButton" parent="SettingsPanelContainer/VBoxContainer/SettingsVBoxContainer"]
+layout_mode = 2
+text = "¿Con papas grandes?"
+
+[node name="RemapControllersButton" type="Button" parent="SettingsPanelContainer/VBoxContainer/SettingsVBoxContainer"]
+layout_mode = 2
+text = "Controles
+"
+
+[node name="RetunButton" type="Button" parent="SettingsPanelContainer/VBoxContainer/SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Salir"
+
+[node name="ControllersVBoxContainer" type="VBoxContainer" parent="SettingsPanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanelContainer/VBoxContainer/ControllersVBoxContainer"]
+layout_mode = 2
+text = "Controles"
+
+[node name="ReturnToSettingsButton" type="Button" parent="SettingsPanelContainer/VBoxContainer/ControllersVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Volver"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7yke4")
+volume_db = -1.576
+pitch_scale = 0.46
+attenuation = 0.840897
+
+[connection signal="pressed" from="MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer/StartGame" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer/ExitGame" to="." method="_on_button_3_pressed"]
+[connection signal="value_changed" from="SettingsPanelContainer/VBoxContainer/SettingsVBoxContainer/SoundHSlider" to="." method="_on_sound_h_slider_value_changed"]
+[connection signal="pressed" from="SettingsPanelContainer/VBoxContainer/SettingsVBoxContainer/RemapControllersButton" to="SettingsPanelContainer" method="_on_remap_controllers_button_pressed"]
+[connection signal="pressed" from="SettingsPanelContainer/VBoxContainer/SettingsVBoxContainer/RetunButton" to="." method="_on_retun_button_pressed"]
+[connection signal="pressed" from="SettingsPanelContainer/VBoxContainer/ControllersVBoxContainer/ReturnToSettingsButton" to="SettingsPanelContainer" method="_on_return_to_settings_button_pressed"]
