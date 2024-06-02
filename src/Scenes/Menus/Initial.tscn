@@ -165,3 +165,4 @@ attenuation = 0.840897
 [connection signal="pressed" from="MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer/StartGame" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer/ExitGame" to="." method="_on_button_3_pressed"]
+[connection signal="return_from_menu" from="SettingsPanelContainer" to="." method="_on_settings_panel_container_return_from_menu"]

@@ -40,10 +40,11 @@ func focus_button():
 		if button is Button:
 			button.grab_focus()
 
-func _on_retun_button_pressed():
-	main_panel.show()
-	settings_panel.hide()
-
 func _on_sound_h_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(MAIN_AUDIO_BUS_ID,linear_to_db(value))
 	AudioServer.set_bus_mute(MAIN_AUDIO_BUS_ID, value < .05)
+
+
+func _on_settings_panel_container_return_from_menu():
+	main_panel.show()
+	settings_panel.hide()

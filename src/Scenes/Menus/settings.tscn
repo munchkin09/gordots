@@ -79,4 +79,5 @@ layout_mode = 2
 text = "Volver"
 
 [connection signal="pressed" from="VBoxContainer/SettingsVBoxContainer/RemapControllersButton" to="." method="_on_remap_controllers_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsVBoxContainer/RetunButton" to="." method="_on_retun_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControllersVBoxContainer/ReturnToSettingsButton" to="." method="_on_return_to_settings_button_pressed"]

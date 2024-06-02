@@ -7,6 +7,9 @@ extends PanelContainer
 
 @onready var return_button = %ReturnToSettingsButton
 @onready var controllers_menu = $VBoxContainer/ControllersVBoxContainer
+
+signal return_from_menu
+
 func _ready():
 	create_action_remap_items()
 	
@@ -36,4 +39,9 @@ func _on_remap_controllers_button_pressed():
 func _on_return_to_settings_button_pressed():
 	controller_setup_grid_container.hide()
 	settings_grid_container.show()
+	
+
+
+func _on_retun_button_pressed():
+	return_from_menu.emit()
 	
