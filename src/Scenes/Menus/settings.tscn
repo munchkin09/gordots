@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvdkquhr0v87a"]
+
+[ext_resource type="Theme" uid="uid://b1cbnmt6ej455" path="res://Assets/Themes/default_theme.tres" id="1_dyelr"]
+[ext_resource type="Script" path="res://src/Scenes/Menus/SettingsPanelContainer.gd" id="2_aalxc"]
+[ext_resource type="Texture2D" uid="uid://up2v47smrn3w" path="res://Assets/Sprites/PuntoDeFuga.png" id="3_mdj7l"]
+
+[sub_resource type="FontVariation" id="FontVariation_kuv0c"]
+spacing_glyph = 31
+
+[node name="SettingsPanelContainer" type="PanelContainer"]
+visible = false
+offset_left = -150.5
+offset_top = -69.5
+offset_right = 150.5
+offset_bottom = 69.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dyelr")
+script = ExtResource("2_aalxc")
+action_items = Array[String](["ui_up", "ui_down", "ui_left", "ui_right"])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture = ExtResource("3_mdj7l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_dyelr")
+
+[node name="SettingsVBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/SettingsVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_kuv0c")
+theme_override_font_sizes/font_size = 24
+text = "Settings
+"
+
+[node name="SoundLabel" type="Label" parent="VBoxContainer/SettingsVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sonido
+"
+
+[node name="SoundHSlider" type="HSlider" parent="VBoxContainer/SettingsVBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.6
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/SettingsVBoxContainer"]
+layout_mode = 2
+text = "¿Con papas grandes?"
+
+[node name="RemapControllersButton" type="Button" parent="VBoxContainer/SettingsVBoxContainer"]
+layout_mode = 2
+text = "Controles
+"
+
+[node name="RetunButton" type="Button" parent="VBoxContainer/SettingsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Salir"
+
+[node name="ControllersVBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ControllersVBoxContainer"]
+layout_mode = 2
+text = "Controles"
+
+[node name="ReturnToSettingsButton" type="Button" parent="VBoxContainer/ControllersVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Volver"
+
+[connection signal="pressed" from="VBoxContainer/SettingsVBoxContainer/RemapControllersButton" to="." method="_on_remap_controllers_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControllersVBoxContainer/ReturnToSettingsButton" to="." method="_on_return_to_settings_button_pressed"]

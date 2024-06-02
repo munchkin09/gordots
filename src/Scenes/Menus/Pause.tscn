@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8eopy63duh7n"]
+[gd_scene load_steps=3 format=3 uid="uid://b8eopy63duh7n"]
 
 [ext_resource type="Script" path="res://src/Scripts/PauseMenu.gd" id="1_v72mw"]
+[ext_resource type="PackedScene" uid="uid://cvdkquhr0v87a" path="res://src/Scenes/Menus/settings.tscn" id="2_k01hr"]
 
 [node name="PauseMenu" type="Control"]
 z_index = 1
@@ -55,14 +56,16 @@ text = "Quit game"
 
 [node name="SettingsGridContainer" type="GridContainer" parent="."]
 visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="SettingsGridContainer"]
+[node name="SettingsPanelContainer" parent="SettingsGridContainer" instance=ExtResource("2_k01hr")]
 layout_mode = 2
-text = "Settings
-"
 
 [connection signal="pressed" from="PauseGridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseGridContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

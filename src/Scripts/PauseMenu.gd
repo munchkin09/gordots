@@ -8,7 +8,7 @@ func _ready():
 	
 func _on_resume_button_pressed():
 	GameStateMachine.current_state.Transitioned.emit(GameStateMachine.current_state, 'startlevelstate')
-	queue_free()
+	pause_menu.hide()
 
 func _on_settings_button_pressed():
 	pause_menu.hide()
