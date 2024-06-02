@@ -1,11 +1,10 @@
 extends Node2D
 
-var path = 'res://src/Scenes/Level1/Level1_1.tscn'
+var path = 'res://src/Scenes/Level1/Level1_1/Level1_1.tscn'
 @onready var animation : AnimatedSprite2D = get_node("MainMenuPanelContainer/AnimatedSprite2D")
 @onready var settings_animation : Sprite2D = get_node("SettingsPanelContainer/Sprite2D")
 @onready var color : ColorRect =  get_node("ColorRect")
 @onready var v_box_container = get_node("MainMenuPanelContainer/VBoxContainer/ButtonsVBoxContainer")
-@onready var MAIN_AUDIO_BUS_ID = AudioServer.get_bus_index("Master")
 @onready var settings_panel : PanelContainer =  get_node("SettingsPanelContainer")
 @onready var main_panel : PanelContainer =  get_node("MainMenuPanelContainer")
 @onready var music : AudioStreamPlayer2D =  $AudioStreamPlayer2D
@@ -39,11 +38,6 @@ func focus_button():
 		var button :Button = v_box_container.get_child(0)
 		if button is Button:
 			button.grab_focus()
-
-func _on_sound_h_slider_value_changed(value):
-	AudioServer.set_bus_volume_db(MAIN_AUDIO_BUS_ID,linear_to_db(value))
-	AudioServer.set_bus_mute(MAIN_AUDIO_BUS_ID, value < .05)
-
 
 func _on_settings_panel_container_return_from_menu():
 	main_panel.show()

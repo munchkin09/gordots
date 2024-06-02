@@ -4,7 +4,7 @@ extends PanelContainer
 
 @onready var settings_grid_container = %SettingsVBoxContainer
 @onready var controller_setup_grid_container = %ControllersVBoxContainer
-
+@onready var MAIN_AUDIO_BUS_ID = AudioServer.get_bus_index("Master")
 @onready var return_button = %ReturnToSettingsButton
 @onready var controllers_menu = $VBoxContainer/ControllersVBoxContainer
 
@@ -45,3 +45,8 @@ func _on_return_to_settings_button_pressed():
 func _on_retun_button_pressed():
 	return_from_menu.emit()
 	
+
+
+func _on_sound_h_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(MAIN_AUDIO_BUS_ID,linear_to_db(value))
+	AudioServer.set_bus_mute(MAIN_AUDIO_BUS_ID, value < .05)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://24wocvjq6ji"]
 
 [ext_resource type="Script" path="res://src/Scripts/Cactus.gd" id="1_7ht65"]
-[ext_resource type="Texture2D" uid="uid://bm16ks6mffn6j" path="res://Assets/Sprites/slime_green.png" id="1_uksug"]
+[ext_resource type="Texture2D" uid="uid://bm16ks6mffn6j" path="res://Sprites/slime_green.png" id="1_uksug"]
 [ext_resource type="PackedScene" uid="uid://dtuqucr1r36ko" path="res://src/Scenes/Bullet.tscn" id="4_nl1un"]
 [ext_resource type="PackedScene" uid="uid://bixu36y5f55m2" path="res://src/state_machine/cactus_state_machine.tscn" id="4_otx17"]
 
@@ -119,8 +119,8 @@ animations = [{
 [node name="Cactus" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_7ht65")
-debug_lines = true
 bullet = ExtResource("4_nl1un")
+debug_lines = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.5)
