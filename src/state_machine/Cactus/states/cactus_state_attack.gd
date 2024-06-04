@@ -3,6 +3,7 @@ class_name CactusStateAttack extends CactusState
 @onready var timer : Timer = $Timer
 @export_range(0, 20) var fire_rate: float = 100.0
 var distance_to_player: float
+
 func enter():
 	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
 	cactus_node.velocity = Vector2(0.0, 0.0)

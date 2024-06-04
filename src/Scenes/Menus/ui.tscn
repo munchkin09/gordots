@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7douexw44wmt"]
+
+[ext_resource type="Theme" uid="uid://ciciaejtsirtf" path="res://Assets/Themes/hud.tres" id="1_gk6hx"]
+[ext_resource type="Texture2D" uid="uid://5s0b2713j34m" path="res://Assets/Sprites/hud_coins.png" id="2_5wnjd"]
+[ext_resource type="Texture2D" uid="uid://bj6iwbfgme2uq" path="res://Assets/Sprites/heart.png" id="3_s7ssc"]
+
+[node name="UI" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_gk6hx")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="HudCoins" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_5wnjd")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="HudLife" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_s7ssc")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="LifeLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "100"

@@ -1,10 +1,10 @@
-[gd_scene load_steps=62 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=61 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Gordot.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
-[ext_resource type="AudioStream" path="res://Assets/time_for_adventure.mp3" id="2_shjv8"]
+[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/Sound/time_for_adventure.mp3" id="2_shjv8"]
 [ext_resource type="PackedScene" uid="uid://cuqpfgivymptq" path="res://src/Scenes/HealthController.tscn" id="3_4p4dx"]
-[ext_resource type="AudioStream" path="res://Assets/coin_collected.mp3" id="4_cd4f6"]
+[ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://Assets/Sound/coin_collected.mp3" id="4_cd4f6"]
 [ext_resource type="PackedScene" uid="uid://ds45mv5gdn6hl" path="res://src/state_machine/gamer_state_machine.tscn" id="6_gnvny"]
 [ext_resource type="AudioStream" uid="uid://bdifq76rbv2it" path="res://Assets/Sound/hit4.ogg" id="6_w3y13"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_idle.gd" id="7_ommpl"]
@@ -13,9 +13,8 @@
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_hit.gd" id="10_uc67k"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_death.gd" id="11_46ngb"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_ jump.gd" id="12_5de2d"]
-[ext_resource type="Theme" uid="uid://ciciaejtsirtf" path="res://Assets/Themes/hud.tres" id="14_8y0pf"]
-[ext_resource type="Texture2D" uid="uid://5s0b2713j34m" path="res://Assets/Sprites/hud_coins.png" id="14_vudmj"]
-[ext_resource type="Texture2D" uid="uid://bj6iwbfgme2uq" path="res://Assets/Sprites/heart.png" id="15_ghvse"]
+[ext_resource type="PackedScene" uid="uid://b7douexw44wmt" path="res://src/Scenes/Menus/ui.tscn" id="14_xt140"]
+[ext_resource type="Script" path="res://src/Scenes/Menus/ui.gd" id="15_t23uc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dihdx"]
 atlas = ExtResource("1_giw3n")
@@ -411,6 +410,7 @@ attenuation = 3.03143
 panning_strength = 1.61
 
 [node name="HealthController" parent="." instance=ExtResource("3_4p4dx")]
+unique_name_in_owner = true
 
 [node name="CharacterStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_gnvny")]
 initial_state = NodePath("CharacterStateIdle")
@@ -433,48 +433,11 @@ script = ExtResource("11_46ngb")
 [node name="CharacterStateJump" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("12_5de2d")
 
-[node name="UI" type="Node" parent="."]
+[node name="UI" parent="." instance=ExtResource("14_xt140")]
+script = ExtResource("15_t23uc")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-theme = ExtResource("14_8y0pf")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/CanvasLayer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="GridContainer" type="GridContainer" parent="UI/CanvasLayer/PanelContainer/MarginContainer"]
-layout_mode = 2
-columns = 2
-
-[node name="HudCoins" type="TextureRect" parent="UI/CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("14_vudmj")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="CoinsLabel" type="Label" parent="UI/CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "0"
-
-[node name="HudLife" type="TextureRect" parent="UI/CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("15_ghvse")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="LifeLabel" type="Label" parent="UI/CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "100"
-
+[connection signal="coin_collected" from="." to="UI" method="_on_character_coin_collected"]
+[connection signal="health_changed" from="." to="UI" method="_on_character_health_changed"]
 [connection signal="start" from="." to="IntroMusic" method="_on_player_start"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

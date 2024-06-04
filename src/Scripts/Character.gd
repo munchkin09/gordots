@@ -3,6 +3,7 @@ class_name Character extends CharacterBody2D
 signal start
 signal coin_collected
 
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
