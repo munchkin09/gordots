@@ -91,18 +91,26 @@ animations = [{
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8808s")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(572, 324)
-scale = Vector2(200, 10)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/PanelContainer"]
+unique_name_in_owner = true
+position = Vector2(959, 551)
+scale = Vector2(330, 17.0938)
 texture = SubResource("GradientTexture2D_qbq2b")
 hframes = 10
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(591, 331)
-scale = Vector2(9, 8.374)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/PanelContainer"]
+unique_name_in_owner = true
+position = Vector2(980, 541.5)
+scale = Vector2(30.7187, 16.8281)
 sprite_frames = SubResource("SpriteFrames_iyo5a")
 animation = &"logo"
 autoplay = "logo"
 speed_scale = 0.1
 
-[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="animation_looped" from="CanvasLayer/PanelContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

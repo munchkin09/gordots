@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 LogDuck="*res://addons/LogDuck/LogDuck.gd"
 GameStateMachine="*res://src/state_machine/GameStateMachine/GameState.gd"
 
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600
+
 [editor_plugins]
 
 enabled=PackedStringArray()

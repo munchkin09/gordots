@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cvgwv05consa7" path="res://Assets/Tiles/TtileScreen.png" id="2_50oh3"]
 [ext_resource type="Theme" uid="uid://b1cbnmt6ej455" path="res://Assets/Themes/default_theme.tres" id="2_sqhqk"]
 [ext_resource type="PackedScene" uid="uid://cvdkquhr0v87a" path="res://src/Scenes/Menus/Settings.tscn" id="4_qi2gh"]
-[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/time_for_adventure.mp3" id="5_7yke4"]
+[ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/Sound/time_for_adventure.mp3" id="5_7yke4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_115qw"]
 atlas = ExtResource("2_50oh3")
