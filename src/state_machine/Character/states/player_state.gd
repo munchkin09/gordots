@@ -5,7 +5,7 @@ signal Transitioned
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const SPEED = 120
-const JUMP_VELOCITY = -1000
+const JUMP_VELOCITY = -500
 var sprite: AnimatedSprite2D
 
 const logDuckHeader = '🖥️🧓'
@@ -25,7 +25,7 @@ func process(_delta):
 	pass
 
 func physics_process(delta):
-	player_node.velocity.y += gravity
+	player_node.velocity.y += gravity * delta
 
 func _direction(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")

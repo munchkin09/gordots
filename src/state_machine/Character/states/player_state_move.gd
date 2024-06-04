@@ -6,6 +6,7 @@ func enter():
 	# player_node.animated_sprite.play('run')
 
 func physics_process(delta):
+	super(delta)
 	if not Input.is_anything_pressed():
 		self.Transitioned.emit(self, 'characterstateidle')
 		return

@@ -334,6 +334,7 @@ func _process(_delta):
 		self.zoom = Vector2(actualZoom.x + (0.4 * _delta), actualZoom.y + (0.4 * _delta))
 	else:
 		startZooming = false
+
 func _on_timer_timeout():
 	startZooming = true
 "
@@ -362,10 +363,13 @@ health_controller = ExtResource("3_4p4dx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_vulta")
-animation = &"run"
+animation = &"hit"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+limit_left = -590
+limit_top = -330
+limit_bottom = 40
 position_smoothing_enabled = true
 script = SubResource("GDScript_lmkjx")
 

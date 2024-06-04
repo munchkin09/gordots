@@ -1,6 +1,5 @@
 class_name Gordot extends Character
 
-
 var faceLeft = true
 var coins_collected = 0
 
@@ -18,6 +17,7 @@ func _on_area_2d_body_entered(body):
 	if body is Bullet:
 		hc._on_player_hit(10)
 		body.destroy()
+		animated_sprite.play("hit")
 		
 
 func _on_coin_coin_collected():
