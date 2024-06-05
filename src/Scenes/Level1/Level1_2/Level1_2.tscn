@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bocotinj74j4v"]
 
-[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Assets/Sprites/world_tileset.png" id="1_egsb2"]
+[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Sprites/world_tileset.png" id="1_egsb2"]
 [ext_resource type="PackedScene" uid="uid://bimqvxarfp4xy" path="res://src/Scenes/Gordot.tscn" id="2_ygcfn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rn4po"]

@@ -518,5 +518,17 @@ color = Color(0.175618, 0.250741, 0.313091, 1)
 [node name="PauseMenu" parent="." instance=ExtResource("8_20kmm")]
 visible = false
 
+[node name="GameOverCanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="GameOverCanvasLayer"]
+offset_left = 388.0
+offset_top = 217.0
+offset_right = 473.0
+offset_bottom = 240.0
+text = "Game over
+"
+
 [connection signal="body_entered" from="Bottle" to="." method="_on_bottle_body_entered"]
 [connection signal="character_on_death_zone" from="DeathZone" to="." method="_on_death_zone_character_on_death_zone"]
+[connection signal="im_death" from="Gordot" to="." method="_on_gordot_im_death"]

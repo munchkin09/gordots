@@ -2,6 +2,7 @@ class_name PlayerState extends Node
 
 signal Transitioned
 @onready var player_node = self.owner as Character
+@onready var camera_node : Camera2D = player_node.get_node("Camera2D")
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const SPEED = 120

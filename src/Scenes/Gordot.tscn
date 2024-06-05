@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=62 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Gordot.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ds45mv5gdn6hl" path="res://src/state_machine/gamer_state_machine.tscn" id="6_gnvny"]
 [ext_resource type="AudioStream" uid="uid://bdifq76rbv2it" path="res://Assets/Sound/hit4.ogg" id="6_w3y13"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_idle.gd" id="7_ommpl"]
+[ext_resource type="AudioStream" uid="uid://crpx7u20xd7aj" path="res://Assets/Sound/game_over.ogg" id="7_vkg2i"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_move.gd" id="8_3q1eh"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_roll.gd" id="9_t28nu"]
 [ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_hit.gd" id="10_uc67k"]
@@ -340,6 +341,16 @@ func _process(_delta):
 
 func _on_timer_timeout():
 	startZooming = true
+
+func _shake(strength):
+	for i in strength:
+		var randomx = randf_range(1575,-1575)
+		var randomy = randf_range(0.0855,-0.87)
+		var tween_camera_shake = create_tween()
+		tween_camera_shake.tween_property(self,\"offset\",Vector2(randomx,randomy),0.01)
+		tween_camera_shake.tween_property(self,\"offset\",Vector2(randomx,randomy),0.01)
+		await tween_camera_shake.finished
+	offset = Vector2.ZERO
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mewk"]
@@ -409,6 +420,9 @@ pitch_scale = 0.79
 attenuation = 3.03143
 panning_strength = 1.61
 
+[node name="GameOverSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_vkg2i")
+
 [node name="HealthController" parent="." instance=ExtResource("3_4p4dx")]
 unique_name_in_owner = true
 
@@ -430,6 +444,8 @@ script = ExtResource("10_uc67k")
 [node name="CharacterStateDeath" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("11_46ngb")
 
+[node name="Timer" type="Timer" parent="CharacterStateMachine/CharacterStateDeath"]
+
 [node name="CharacterStateJump" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("12_5de2d")
 
@@ -438,6 +454,7 @@ script = ExtResource("15_t23uc")
 
 [connection signal="coin_collected" from="." to="UI" method="_on_character_coin_collected"]
 [connection signal="health_changed" from="." to="UI" method="_on_character_health_changed"]
+[connection signal="im_death" from="." to="CharacterStateMachine" method="_on_character_im_death"]
 [connection signal="start" from="." to="IntroMusic" method="_on_player_start"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

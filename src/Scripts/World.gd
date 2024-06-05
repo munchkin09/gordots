@@ -4,6 +4,7 @@ var level_2_path = 'res://src/Scenes/Level1/Level1_2/Level1_2.tscn'
 @onready var tile_map = $TileMap
 @onready var death_zone = $DeathZone
 @onready var gordot     = $Gordot
+@onready var game_over_message = $GameOverCanvasLayer
 var finishing_level = false
 var actual_zoom  :Vector2
 
@@ -33,5 +34,10 @@ func _on_bottle_body_entered(body):
 		finishing_level = true 
 		
 
+
 func _on_death_zone_character_on_death_zone():
 	LogDuck.d("YOU DIE 💀💀💀")
+
+func _on_gordot_im_death():
+	game_over_message.visible = true
+
