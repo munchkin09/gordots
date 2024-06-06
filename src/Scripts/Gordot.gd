@@ -14,8 +14,9 @@ signal im_death
 
 func _ready():
 	hc = health_controller.instantiate()
+	health_changed.emit(hc.get_actual_health())
 	start.emit()
-
+	
 func _on_area_2d_body_entered(body):
 	if body is Bullet:
 		hc._on_player_hit(10)

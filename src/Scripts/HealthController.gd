@@ -1,7 +1,7 @@
 class_name HealthController extends Node
 
-var max_health = 10
-var actual_health = 10
+var max_health = 100
+var actual_health = 20
 var health_remove_factor = 1
 @onready var player_node = self.get_parent() as Character
 
