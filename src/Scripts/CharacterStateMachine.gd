@@ -18,7 +18,7 @@ func _ready():
 		if child is PlayerState:
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
-
+				
 	if initial_state:
 		initial_state.enter()
 		current_state = initial_state
@@ -52,15 +52,9 @@ func states_history():
 	if (PRINT_HISTORY):
 		Log.call('The state history so far: \n', history)
 
-func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
-	if not has_node(target_state_name):
-		return
-
-	current_state.exit()
-	current_state = get_node("CharacterStateDeath")
-	current_state.enter()
-	emit_signal("transitioned", current_state.name)
-
+func transition_to(target_state_name: String) :
+	current_state.Transitioned.emit(current_state,target_state_name)
+	
 func _on_character_im_death():
 	transition_to("CharacterStateDeath")
 	

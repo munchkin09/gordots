@@ -2,8 +2,11 @@ class_name SelectLevelState extends BaseStateClass
 
 var current_scene: Node2D
 var initial_node: Node2D
-
 var level_to_load
+
+func configure(node: Node2D):
+	initial_node = node
+	
 func enter():
 	goto_scene(level_to_load)
 
@@ -23,9 +26,6 @@ func _deferred_goto_scene(new_scene_path):
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	initial_node.get_tree().set_current_scene(current_scene)
 	self.Transitioned.emit(self, 'startlevelstate')
-
-func setInitial(node: Node2D):
-	initial_node = node
 
 func setLevelTo(scene_path: String):
 	level_to_load = scene_path

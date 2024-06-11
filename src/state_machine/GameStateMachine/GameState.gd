@@ -6,6 +6,7 @@ var history: Array[String] = []
 var selectlevelstate = SelectLevelState.new()
 var startlevelstate = StartLevelState.new()
 var playinglevelstate = PlayingLevelState.new()
+var gameoverstate  = GameOverState.new()
 var pausestate = PauseState.new()
 var initial_state = BaseStateClass.new()
 var initial_menu = 'res://src/Scenes/Menus/Initial.tscn'
@@ -19,21 +20,17 @@ var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = n
 	LogDuck.d(logDuckHeader + msg, arg1, arg2, arg3, arg4, arg5, arg6)
 
 func _ready():
-	current_state = initial_state
-	states['selectlevelstate'] = selectlevelstate
-	states['startlevelstate'] = startlevelstate
-	states['playinglevelstate'] = playinglevelstate
-	states['pausestate'] = pausestate
-	selectlevelstate.Transitioned.connect(on_child_transition)
-	startlevelstate.Transitioned.connect(on_child_transition)
-	playinglevelstate.Transitioned.connect(on_child_transition)
-	pausestate.Transitioned.connect(on_child_transition)
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(delta):
+	if not current_state:
+		return
 	current_state.process(delta)
 
 func _physics_process(delta):
+	if not current_state:
+		return
 	current_state.physics_process(delta)
 
 func on_child_transition(state: BaseStateClass, newState: String):
@@ -61,8 +58,19 @@ func states_history():
 		Log.call('The state history so far: \n', history)
 
 func startStateMachine(node: Node2D):
-	pausestate.root_node = node
-	selectlevelstate.setInitial(node)
+	current_state = initial_state
+	states['selectlevelstate'] = selectlevelstate
+	states['startlevelstate'] = startlevelstate
+	states['playinglevelstate'] = playinglevelstate
+	states['gameoverstate'] = gameoverstate
+	states['pausestate'] = pausestate
+	selectlevelstate.Transitioned.connect(on_child_transition)
+	startlevelstate.Transitioned.connect(on_child_transition)
+	playinglevelstate.Transitioned.connect(on_child_transition)
+	pausestate.Transitioned.connect(on_child_transition)
+	pausestate.configure(node)
+	selectlevelstate.configure(node)
+	gameoverstate.configure(node)
 	self.changeSceneTo(initial_menu)
 
 func changeSceneTo(scene_path: String):
