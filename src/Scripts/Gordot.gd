@@ -2,6 +2,8 @@ class_name Gordot extends Character
 
 var faceLeft = true
 var coins_collected = 0
+var sword_weapon = preload("res://src/Scenes/Objects/sword_weapon.tscn")
+
 @export var health_controller: PackedScene
 @onready var coin_collected_sound = $CoinCollected
 @onready var animated_sprite = $AnimatedSprite2D
@@ -29,9 +31,16 @@ func _on_area_2d_body_entered(body):
 			im_death.emit()
 			death_sound.play()		
 						
-
 func _on_coin_coin_collected():
 	Log.call('+1 coin')
 	coin_collected_sound.play()
 	coins_collected+=1
 	coin_collected.emit(coins_collected)
+
+func _on_sword_body_entered(body):
+	#body.queue_free()
+	var weapon = sword_weapon.instantiate()
+	weapon.position = get_node("Hand").position
+	weapon.scale = Vector2(0.15,0.15)
+	get_node("Hand").add_child(weapon)
+	Log.call("soy gordito y bonachon.soy gordot")

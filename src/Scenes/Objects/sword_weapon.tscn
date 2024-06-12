@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://7t1pn10hr7wq"]
+
+[ext_resource type="Texture2D" uid="uid://cufefhadmo48a" path="res://Assets/Sprites/sword_silver.png" id="1_2o4y8"]
+
+[node name="SwordWeapon" type="RigidBody2D"]
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, -35)
+texture = ExtResource("1_2o4y8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(22, -16, 75, -57, 80, -92, 43, -76, 9, -24)

@@ -13,14 +13,11 @@ func _ready():
 	var shape = RectangleShape2D.new()
 	shape.size = Vector2(900, 100)
 	death_zone.get_node('CollisionShape2D').set_shape(shape)
-	#LogDuck.d(death_zone.get_node('CollisionShape2D').shape.size)
-	#LogDuck.d(death_zone.get_node('CollisionShape2D'))
 
 func _process(delta):
 	if (finishing_level && gordot.get_node("Camera2D").zoom <= Vector2(50,50)) :
 		set_process_input(false)
 		var actualZoom = gordot.get_node("Camera2D").zoom 
-		LogDuck.w(actualZoom)
 		gordot.get_node("Camera2D").zoom = Vector2(actualZoom.x + 0.4 , actualZoom.y + 0.4 	) 
 		gordot.get_node("IntroMusic").pitch_scale += gordot.get_node("IntroMusic").pitch_scale * delta 
 		

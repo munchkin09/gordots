@@ -416,12 +416,14 @@ script = SubResource("GDScript_ne7j2")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_w3y13")
+volume_db = -3.939
 pitch_scale = 0.79
 attenuation = 3.03143
 panning_strength = 1.61
 
 [node name="GameOverSounds" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_vkg2i")
+volume_db = -34.354
 
 [node name="HealthController" parent="." instance=ExtResource("3_4p4dx")]
 unique_name_in_owner = true
@@ -451,6 +453,10 @@ script = ExtResource("12_5de2d")
 
 [node name="UI" parent="." instance=ExtResource("14_xt140")]
 script = ExtResource("15_t23uc")
+
+[node name="Hand" type="Node2D" parent="."]
+position = Vector2(4, 8)
+scale = Vector2(100, 100)
 
 [connection signal="coin_collected" from="." to="UI" method="_on_character_coin_collected"]
 [connection signal="health_changed" from="." to="UI" method="_on_character_health_changed"]

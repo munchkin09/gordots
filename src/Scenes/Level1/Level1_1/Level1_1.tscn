@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bu7wb1exa7x20"]
+[gd_scene load_steps=19 format=3 uid="uid://bu7wb1exa7x20"]
 
 [ext_resource type="Script" path="res://src/Scripts/World.gd" id="1_k8enr"]
 [ext_resource type="Script" path="res://src/Scripts/Items/Bottle.gd" id="2_exe4a"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://r23sr2fxtx2y" path="res://Assets/Sprites/Explosion/explosion2_5.png" id="7_jmcc0"]
 [ext_resource type="PackedScene" uid="uid://b8eopy63duh7n" path="res://src/Scenes/Menus/Pause.tscn" id="8_20kmm"]
 [ext_resource type="PackedScene" uid="uid://dpway13lpk3mc" path="res://src/Scenes/death_zone.tscn" id="9_wekop"]
+[ext_resource type="PackedScene" uid="uid://dyyulcjmm7ln6" path="res://src/Scenes/Objects/Sword.tscn" id="12_8euxu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2d1bf"]
 radius = 17.61
@@ -529,6 +530,12 @@ offset_bottom = 240.0
 text = "Game over
 "
 
+[node name="Sword" parent="." instance=ExtResource("12_8euxu")]
+position = Vector2(51, -56)
+scale = Vector2(0.15, 0.15)
+collision_mask = 3
+
 [connection signal="body_entered" from="Bottle" to="." method="_on_bottle_body_entered"]
 [connection signal="character_on_death_zone" from="DeathZone" to="." method="_on_death_zone_character_on_death_zone"]
 [connection signal="im_death" from="Gordot" to="." method="_on_gordot_im_death"]
+[connection signal="body_entered" from="Sword" to="Gordot" method="_on_sword_body_entered"]
