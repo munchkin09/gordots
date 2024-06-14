@@ -8,6 +8,8 @@ func configure(node : Node2D):
 func enter():
 	Log.call("Greeting from Game Over State")
 	root_node.get_tree().get_first_node_in_group('current_scene').get_tree().paused = true
+	GameStateMachine.restart_scene()	
+	root_node.get_tree().get_first_node_in_group('current_scene').get_tree().paused = false
 		
 func _process(delta):
 	pass

@@ -532,7 +532,6 @@ text = "Game over
 
 [node name="Sword" parent="." instance=ExtResource("12_8euxu")]
 position = Vector2(51, -56)
-scale = Vector2(0.15, 0.15)
 collision_mask = 3
 
 [connection signal="body_entered" from="Bottle" to="." method="_on_bottle_body_entered"]

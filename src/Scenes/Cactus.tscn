@@ -117,7 +117,7 @@ animations = [{
 }]
 
 [node name="Cactus" type="CharacterBody2D"]
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_7ht65")
 bullet = ExtResource("4_nl1un")
 debug_lines = true

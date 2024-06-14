@@ -38,9 +38,11 @@ func _on_coin_coin_collected():
 	coin_collected.emit(coins_collected)
 
 func _on_sword_body_entered(body):
-	#body.queue_free()
 	var weapon = sword_weapon.instantiate()
-	weapon.position = get_node("Hand").position
-	weapon.scale = Vector2(0.15,0.15)
 	get_node("Hand").add_child(weapon)
+	
+
+
+func _on_hand_child_entered_tree(node):
+	LogDuck.w(node)
 	Log.call("soy gordito y bonachon.soy gordot")
