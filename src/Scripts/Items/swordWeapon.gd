@@ -1,8 +1,5 @@
 class_name SwordWeapon extends Area2D
 
-func _ready():
-	$AnimationPlayer.play("idle")
-
 func _process(delta):
 	global_position = get_parent().global_position
 
