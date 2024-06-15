@@ -56,5 +56,5 @@ func transition_to(target_state_name: String) :
 	current_state.Transitioned.emit(current_state,target_state_name)
 	
 func _on_character_im_death():
-	transition_to("CharacterStateDeath")
+	transition_to("playerDeath")
 	

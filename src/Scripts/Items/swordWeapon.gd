@@ -6,11 +6,8 @@ func _ready():
 func _process(delta):
 	global_position = get_parent().global_position
 
-
-
-func _on_body_entered(body):
+func _on_area_2d_body_entered(body):
 	LogDuck.w(body)
 
-
-func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func _on_body_entered(body):
 	LogDuck.w(body)

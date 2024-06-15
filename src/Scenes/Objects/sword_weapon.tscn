@@ -26,7 +26,6 @@ _data = {
 }
 
 [node name="SwordWeapon" type="Area2D"]
-rotation = 0.508021
 scale = Vector2(0.08, 0.08)
 collision_layer = 8
 collision_mask = 15
@@ -46,4 +45,3 @@ position = Vector2(-35, 41)
 polygon = PackedVector2Array(34, -38, 41, -44, 42, -49, 36, -47, 31, -39)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

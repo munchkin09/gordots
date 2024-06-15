@@ -1,21 +1,22 @@
-[gd_scene load_steps=62 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=63 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Gordot.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
 [ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/Sound/time_for_adventure.mp3" id="2_shjv8"]
 [ext_resource type="PackedScene" uid="uid://cuqpfgivymptq" path="res://src/Scenes/HealthController.tscn" id="3_4p4dx"]
 [ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://Assets/Sound/coin_collected.mp3" id="4_cd4f6"]
-[ext_resource type="PackedScene" uid="uid://ds45mv5gdn6hl" path="res://src/state_machine/gamer_state_machine.tscn" id="6_gnvny"]
 [ext_resource type="AudioStream" uid="uid://bdifq76rbv2it" path="res://Assets/Sound/hit4.ogg" id="6_w3y13"]
-[ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_idle.gd" id="7_ommpl"]
 [ext_resource type="AudioStream" uid="uid://crpx7u20xd7aj" path="res://Assets/Sound/game_over.ogg" id="7_vkg2i"]
-[ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_move.gd" id="8_3q1eh"]
-[ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_roll.gd" id="9_t28nu"]
-[ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_hit.gd" id="10_uc67k"]
-[ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_death.gd" id="11_46ngb"]
-[ext_resource type="Script" path="res://src/state_machine/Character/states/player_state_ jump.gd" id="12_5de2d"]
+[ext_resource type="PackedScene" uid="uid://deyubj3jv20da" path="res://src/state_machine/player_movement_state_machine.tscn" id="10_djxpv"]
+[ext_resource type="Script" path="res://src/state_machine/Character/CharacterStateMachine.gd" id="11_2kcs4"]
+[ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_ jump.gd" id="11_8466l"]
+[ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_death.gd" id="12_41dqr"]
+[ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_hit.gd" id="13_hgusp"]
+[ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_idle.gd" id="14_jsxrp"]
 [ext_resource type="PackedScene" uid="uid://b7douexw44wmt" path="res://src/Scenes/Menus/ui.tscn" id="14_xt140"]
+[ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_move.gd" id="15_dvys1"]
 [ext_resource type="Script" path="res://src/Scenes/Menus/ui.gd" id="15_t23uc"]
+[ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_roll.gd" id="16_2d0fs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dihdx"]
 atlas = ExtResource("1_giw3n")
@@ -428,29 +429,6 @@ volume_db = -34.354
 [node name="HealthController" parent="." instance=ExtResource("3_4p4dx")]
 unique_name_in_owner = true
 
-[node name="CharacterStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_gnvny")]
-initial_state = NodePath("CharacterStateIdle")
-
-[node name="CharacterStateIdle" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("7_ommpl")
-
-[node name="CharacterStateMove" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("8_3q1eh")
-
-[node name="CharacterStateRoll" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("9_t28nu")
-
-[node name="CharacterStateHit" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("10_uc67k")
-
-[node name="CharacterStateDeath" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("11_46ngb")
-
-[node name="Timer" type="Timer" parent="CharacterStateMachine/CharacterStateDeath"]
-
-[node name="CharacterStateJump" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("12_5de2d")
-
 [node name="UI" parent="." instance=ExtResource("14_xt140")]
 script = ExtResource("15_t23uc")
 
@@ -458,9 +436,34 @@ script = ExtResource("15_t23uc")
 position = Vector2(4, 8)
 scale = Vector2(100, 100)
 
+[node name="GamerStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_djxpv")]
+script = ExtResource("11_2kcs4")
+initial_state = NodePath("PlayerIdle")
+DEBUG = true
+ACTIVATE_HISTORY = false
+PRINT_HISTORY = false
+
+[node name="PlayerJump" type="Node" parent="GamerStateMachine"]
+script = ExtResource("11_8466l")
+
+[node name="PlayerDeath" type="Node" parent="GamerStateMachine"]
+script = ExtResource("12_41dqr")
+
+[node name="PlayerHit" type="Node" parent="GamerStateMachine"]
+script = ExtResource("13_hgusp")
+
+[node name="PlayerIdle" type="Node" parent="GamerStateMachine"]
+script = ExtResource("14_jsxrp")
+
+[node name="PlayerMove" type="Node" parent="GamerStateMachine"]
+script = ExtResource("15_dvys1")
+
+[node name="PlayerRoll" type="Node" parent="GamerStateMachine"]
+script = ExtResource("16_2d0fs")
+
 [connection signal="coin_collected" from="." to="UI" method="_on_character_coin_collected"]
 [connection signal="health_changed" from="." to="UI" method="_on_character_health_changed"]
-[connection signal="im_death" from="." to="CharacterStateMachine" method="_on_character_im_death"]
+[connection signal="im_death" from="." to="GamerStateMachine" method="_on_character_im_death"]
 [connection signal="start" from="." to="IntroMusic" method="_on_player_start"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

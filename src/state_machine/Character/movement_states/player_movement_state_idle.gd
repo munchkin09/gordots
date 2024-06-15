@@ -16,9 +16,9 @@ func physics_process(_delta):
 	super(_delta)
 
 	if Input.is_action_just_pressed("ui_up"):
-		self.Transitioned.emit(self, 'characterstatejump')
+		self.Transitioned.emit(self, 'playerjump')
 		return
 	if (Input.is_anything_pressed()):
-		self.Transitioned.emit(self,'characterstatemove')
+		self.Transitioned.emit(self,'playermove')
 		return
 	player_node.move_and_slide()

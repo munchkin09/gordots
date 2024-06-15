@@ -17,7 +17,7 @@ func physics_process(delta):
 	super(delta)
 	
 	if player_node.is_on_floor():
-		self.Transitioned.emit(self, 'characterstateidle')
+		self.Transitioned.emit(self, 'playeridle')
 		return
 
 	self._direction(delta)
