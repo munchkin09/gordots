@@ -21,18 +21,12 @@ var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = n
 func _ready():
 	for child in get_children(true):
 		if child is CactusState:
-			var pepa = 'State [%s] added' 
-			var pepe = pepa % child.name.to_lower()
-			Log.call(pepe)
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
 			children.append(child)
 			if child.name == "CactusStateMove":
 				current_state = child	 
 				
-				
-
-
 func _process(delta):
 	current_state.process(delta)
 

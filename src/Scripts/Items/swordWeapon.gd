@@ -1,15 +1,15 @@
 class_name SwordWeapon extends Area2D
 
 @onready var collision :CollisionPolygon2D = $CollisionPolygon2D
-@onready var animation :AnimationPlayer = $AnimationPlayer
+@onready var animation :AnimationPlayer = $AnimationPlaye
+@onready var damage = 50
+
 func _process(delta):
 	global_position = get_parent().global_position
 
-func _on_area_2d_body_entered(body):
-	LogDuck.w(body)
-
 func _on_body_entered(body):
-	LogDuck.w(body)
+	if body.is_in_group("Enemies"):
+		body.receive_hit(damage)
 
 func activate():
 	collision.disabled = false

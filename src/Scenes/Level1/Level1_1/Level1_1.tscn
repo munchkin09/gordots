@@ -486,12 +486,12 @@ layer_3/tile_data = PackedInt32Array(196577, 262144, 9, 196578, 262144, 9, 19657
 script = ExtResource("4_0ux07")
 character_node = NodePath("../Gordot")
 
-[node name="Cactus" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_12r6g")]
+[node name="Cactus" parent="." node_paths=PackedStringArray("character") groups=["Enemies"] instance=ExtResource("5_12r6g")]
 position = Vector2(-260, 0)
 character = NodePath("../Gordot")
 debug_lines = false
 
-[node name="Cactus2" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_12r6g")]
+[node name="Cactus2" parent="." node_paths=PackedStringArray("character") groups=["Enemies"] instance=ExtResource("5_12r6g")]
 position = Vector2(-90, -96)
 character = NodePath("../Gordot")
 

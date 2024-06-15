@@ -51,6 +51,5 @@ func _on_sword_body_entered(body):
 	weapon_on_hand = weapon
 	player_action_state_machine.current_state.animation_player = weapon
 	
-
 func _on_hand_child_entered_tree(node):
 	Log.call("soy gordito y bonachon.soy gordot")
