@@ -33,10 +33,9 @@ func physics_process(delta):
 
 
 func _direction(delta):
-	pass
-	#var direction = Input.get_axis("ui_left", "ui_right")
-	#if direction:
-	#	animation.flip_h = false if (direction == 1) else true
+	var direction = Input.get_axis("ui_left", "ui_right")
+	if direction:
+		player_node.weapon_on_hand.get_node('Sprite2D').flip_h = false if (direction == 1) else true
 		
 
 func _play(animation,connect_to = null):

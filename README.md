@@ -1,6 +1,6 @@
 #Setup
 Descargar los Assets aparte del siguiente enlace, y descomprimir en la raiz de git.
-https://www.transfernow.net/dl/20240612Z6BKm9Zm/cvDJP7M0
+https://www.transfernow.net/dl/20240615MUkKGcRt/tmm0WKnH
 
 Instalar los siguientes complementos
 

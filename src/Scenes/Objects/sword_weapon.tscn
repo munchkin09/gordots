@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://7t1pn10hr7wq"]
+[gd_scene load_steps=11 format=3 uid="uid://7t1pn10hr7wq"]
 
 [ext_resource type="Script" path="res://src/Scripts/Items/swordWeapon.gd" id="1_xolha"]
 [ext_resource type="Texture2D" uid="uid://cufefhadmo48a" path="res://Assets/Sprites/sword_silver.png" id="2_ij5sc"]
 [ext_resource type="Shader" path="res://src/shaders/sword_weapon_attack.gdshader" id="2_w2lpg"]
+[ext_resource type="AudioStream" uid="uid://d2v204q6sdw70" path="res://Assets/Sound/swordMetal3.ogg" id="4_rygak"]
+[ext_resource type="AudioStream" uid="uid://e4t13yxhhwaq" path="res://Assets/Sound/swordSlide3.ogg" id="5_s4tyo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2apmy"]
 shader = ExtResource("2_w2lpg")
@@ -123,6 +125,12 @@ disabled = true
 libraries = {
 "": SubResource("AnimationLibrary_enqn5")
 }
+
+[node name="SwordHitAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_rygak")
+
+[node name="GetSwordAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_s4tyo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -49,7 +49,9 @@ func _on_sword_body_entered(body):
 	var weapon = sword_weapon.instantiate()
 	get_node("Hand").add_child(weapon)
 	weapon_on_hand = weapon
+	weapon.play_get_sword_sound()
 	player_action_state_machine.current_state.animation_player = weapon
+	player_action_state_machine.transition_to("playeractionstateidle")
 	
 func _on_hand_child_entered_tree(node):
 	Log.call("soy gordito y bonachon.soy gordot")

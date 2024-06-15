@@ -2,7 +2,9 @@ class_name SwordWeapon extends Area2D
 
 @onready var collision :CollisionPolygon2D = $CollisionPolygon2D
 @onready var animation :AnimationPlayer = $AnimationPlaye
-@onready var damage = 50
+@onready var damage = 100
+@onready var sound_hit :AudioStreamPlayer2D = $SwordHitAudioStreamPlayer2D
+@onready var get_sword_sound :AudioStreamPlayer2D = $GetSwordAudioStreamPlayer2D
 
 func _process(delta):
 	global_position = get_parent().global_position
@@ -13,7 +15,11 @@ func _on_body_entered(body):
 
 func activate():
 	collision.disabled = false
-
+	sound_hit.play()
+	
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":		
 		collision.disabled = true
+
+func play_get_sword_sound():
+	get_sword_sound.play()
