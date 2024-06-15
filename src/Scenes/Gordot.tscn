@@ -439,47 +439,47 @@ script = ExtResource("15_t23uc")
 position = Vector2(4, 8)
 scale = Vector2(100, 100)
 
-[node name="GamerStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_djxpv")]
+[node name="PlayerMovementStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_djxpv")]
 script = ExtResource("11_2kcs4")
 initial_state = NodePath("PlayerIdle")
 DEBUG = true
 ACTIVATE_HISTORY = true
 PRINT_HISTORY = true
 
-[node name="PlayerJump" type="Node" parent="GamerStateMachine"]
+[node name="PlayerJump" type="Node" parent="PlayerMovementStateMachine"]
 script = ExtResource("11_8466l")
 
-[node name="PlayerDeath" type="Node" parent="GamerStateMachine"]
+[node name="PlayerDeath" type="Node" parent="PlayerMovementStateMachine"]
 script = ExtResource("12_41dqr")
 
-[node name="PlayerHit" type="Node" parent="GamerStateMachine"]
+[node name="PlayerHit" type="Node" parent="PlayerMovementStateMachine"]
 script = ExtResource("13_hgusp")
 
-[node name="PlayerIdle" type="Node" parent="GamerStateMachine"]
+[node name="PlayerIdle" type="Node" parent="PlayerMovementStateMachine"]
 script = ExtResource("14_jsxrp")
 
-[node name="PlayerMove" type="Node" parent="GamerStateMachine"]
+[node name="PlayerMove" type="Node" parent="PlayerMovementStateMachine"]
 script = ExtResource("15_dvys1")
 
-[node name="PlayerRoll" type="Node" parent="GamerStateMachine"]
+[node name="PlayerRoll" type="Node" parent="PlayerMovementStateMachine"]
 script = ExtResource("16_2d0fs")
 
-[node name="GameMovementStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_djxpv")]
+[node name="PlayerActionStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_djxpv")]
 script = ExtResource("18_xruy7")
 initial_state = NodePath("PlayerActionStateIdle")
 DEBUG = true
 ACTIVATE_HISTORY = false
 PRINT_HISTORY = false
 
-[node name="PlayerActionStateIdle" type="Node" parent="GameMovementStateMachine"]
+[node name="PlayerActionStateIdle" type="Node" parent="PlayerActionStateMachine"]
 script = ExtResource("18_y38lq")
 
-[node name="PlayerActionStateAttack" type="Node" parent="GameMovementStateMachine"]
+[node name="PlayerActionStateAttack" type="Node" parent="PlayerActionStateMachine"]
 script = ExtResource("19_4ykgk")
 
 [connection signal="coin_collected" from="." to="UI" method="_on_character_coin_collected"]
 [connection signal="health_changed" from="." to="UI" method="_on_character_health_changed"]
-[connection signal="im_death" from="." to="GamerStateMachine" method="_on_character_im_death"]
+[connection signal="im_death" from="." to="PlayerMovementStateMachine" method="_on_character_im_death"]
 [connection signal="start" from="." to="IntroMusic" method="_on_player_start"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

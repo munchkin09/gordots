@@ -4,7 +4,6 @@ class_name CharacterActionStateMachine extends Node
 var history: Array[String] = []
 var states: Dictionary = {}
 var current_state: PlayerActionState
-
 @export var DEBUG: bool = true
 @export var ACTIVATE_HISTORY: bool = false
 @export var PRINT_HISTORY: bool = false
@@ -24,10 +23,12 @@ func _ready():
 		current_state = initial_state
 
 func _process(delta):
-	current_state.process(delta)
+	if current_state.item_on_hand:	
+		current_state.process(delta)
 
 func _physics_process(delta):
-	current_state.physics_process(delta)
+	if current_state.item_on_hand:
+		current_state.physics_process(delta)
 
 func on_child_transition(state: PlayerActionState, newState: String):
 	if state.name == newState:

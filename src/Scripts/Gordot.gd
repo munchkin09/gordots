@@ -3,9 +3,10 @@ class_name Gordot extends Character
 var faceLeft = true
 var coins_collected = 0
 var sword_weapon = preload("res://src/Scenes/Objects/sword_weapon.tscn")
+var weapon_on_hand : SwordWeapon
 
-@onready var player_movement_state_machine = $GamerStateMachine
-@onready var player_action_state_machine = $GameMovementStateMachine
+@onready var player_movement_state_machine = $PlayerMovementStateMachine
+@onready var player_action_state_machine = $PlayerActionStateMachine
 @export var health_controller: PackedScene
 @onready var coin_collected_sound = $CoinCollected
 @onready var animated_sprite = $AnimatedSprite2D
@@ -44,11 +45,12 @@ func _on_coin_coin_collected():
 	coin_collected.emit(coins_collected)
 
 func _on_sword_body_entered(body):
+	LogDuck.w(body)
 	var weapon = sword_weapon.instantiate()
 	get_node("Hand").add_child(weapon)
+	weapon_on_hand = weapon
+	player_action_state_machine.current_state.animation_player = weapon
 	
 
-
 func _on_hand_child_entered_tree(node):
-	LogDuck.w(node)
 	Log.call("soy gordito y bonachon.soy gordot")

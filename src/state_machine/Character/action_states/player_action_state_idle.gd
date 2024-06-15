@@ -3,7 +3,8 @@ class_name PlayerActionStateIdle extends PlayerActionState
 func enter():
 	LogDuck.w(" action idle")
 	super()
-	_play('idle')
+	if player_node.weapon_on_hand:
+		_play('idle')
 
 func exit():
 	pass
