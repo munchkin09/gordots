@@ -4,6 +4,8 @@ var faceLeft = true
 var coins_collected = 0
 var sword_weapon = preload("res://src/Scenes/Objects/sword_weapon.tscn")
 
+@onready var player_movement_state_machine = $GamerStateMachine
+@onready var player_action_state_machine = $GameMovementStateMachine
 @export var health_controller: PackedScene
 @onready var coin_collected_sound = $CoinCollected
 @onready var animated_sprite = $AnimatedSprite2D
@@ -18,7 +20,11 @@ func _ready():
 	hc = health_controller.instantiate()
 	health_changed.emit(hc.get_actual_health())
 	start.emit()
-	
+
+func _unhandled_input(event: InputEvent) -> void:
+	player_movement_state_machine.process_input(event)
+	player_action_state_machine.process_input(event)
+		
 func _on_area_2d_body_entered(body):
 	if body is Bullet:
 		hc._on_player_hit(10)

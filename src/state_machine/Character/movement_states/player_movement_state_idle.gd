@@ -1,4 +1,4 @@
-class_name CharacterStateIdle extends PlayerState
+class_name CharacterStateIdle extends PlayerMovementState
 
 func enter():
 	LogDuck.w("idle")
@@ -14,11 +14,13 @@ func process(_delta):
 
 func physics_process(_delta):
 	super(_delta)
+	player_node.move_and_slide()
 
+func process_input(event: InputEvent):
 	if Input.is_action_just_pressed("ui_up"):
 		self.Transitioned.emit(self, 'playerjump')
 		return
 	if (Input.is_anything_pressed()):
 		self.Transitioned.emit(self,'playermove')
 		return
-	player_node.move_and_slide()
+	return null

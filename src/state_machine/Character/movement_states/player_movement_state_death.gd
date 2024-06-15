@@ -1,4 +1,4 @@
-class_name CharacterStateDeath extends PlayerState
+class_name CharacterStateDeath extends PlayerMovementState
 
 @onready var death_duration : Timer = $Timer
 

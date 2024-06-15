@@ -1,11 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://7t1pn10hr7wq"]
+[gd_scene load_steps=5 format=3 uid="uid://7t1pn10hr7wq"]
 
 [ext_resource type="Script" path="res://src/Scripts/Items/swordWeapon.gd" id="1_xolha"]
 [ext_resource type="Texture2D" uid="uid://cufefhadmo48a" path="res://Assets/Sprites/sword_silver.png" id="2_ij5sc"]
-[ext_resource type="PackedScene" uid="uid://deyubj3jv20da" path="res://src/state_machine/player_movement_state_machine.tscn" id="3_18ti7"]
-[ext_resource type="Script" path="res://src/state_machine/Character/CharacterMovementStateMachine.gd" id="4_m2ghf"]
-[ext_resource type="Script" path="res://src/state_machine/Character/action_states/player_action_state_idle.gd" id="5_ex68g"]
-[ext_resource type="Script" path="res://src/state_machine/Character/action_states/player_action_state_attack.gd" id="6_fdhta"]
 
 [sub_resource type="Animation" id="Animation_4iaop"]
 resource_name = "idle"
@@ -47,18 +43,5 @@ libraries = {
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-35, 41)
 polygon = PackedVector2Array(34, -38, 41, -44, 42, -49, 36, -47, 31, -39)
-
-[node name="GameMovementStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_18ti7")]
-script = ExtResource("4_m2ghf")
-initial_state = NodePath("PlayerActionStateIdle")
-DEBUG = true
-ACTIVATE_HISTORY = false
-PRINT_HISTORY = false
-
-[node name="PlayerActionStateIdle" type="Node" parent="GameMovementStateMachine"]
-script = ExtResource("5_ex68g")
-
-[node name="PlayerActionStateAttack" type="Node" parent="GameMovementStateMachine"]
-script = ExtResource("6_fdhta")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

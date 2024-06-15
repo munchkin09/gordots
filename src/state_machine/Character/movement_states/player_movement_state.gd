@@ -1,4 +1,4 @@
-class_name PlayerState extends Node
+class_name PlayerMovementState extends Node
 
 signal Transitioned
 @onready var player_node = self.owner as Character

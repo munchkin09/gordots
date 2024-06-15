@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=66 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Gordot.gd" id="1_3tkld"]
 [ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bdifq76rbv2it" path="res://Assets/Sound/hit4.ogg" id="6_w3y13"]
 [ext_resource type="AudioStream" uid="uid://crpx7u20xd7aj" path="res://Assets/Sound/game_over.ogg" id="7_vkg2i"]
 [ext_resource type="PackedScene" uid="uid://deyubj3jv20da" path="res://src/state_machine/player_movement_state_machine.tscn" id="10_djxpv"]
-[ext_resource type="Script" path="res://src/state_machine/Character/CharacterStateMachine.gd" id="11_2kcs4"]
+[ext_resource type="Script" path="res://src/state_machine/Character/CharacterMovementStateMachine.gd" id="11_2kcs4"]
 [ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_ jump.gd" id="11_8466l"]
 [ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_death.gd" id="12_41dqr"]
 [ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_hit.gd" id="13_hgusp"]
@@ -17,6 +17,9 @@
 [ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_move.gd" id="15_dvys1"]
 [ext_resource type="Script" path="res://src/Scenes/Menus/ui.gd" id="15_t23uc"]
 [ext_resource type="Script" path="res://src/state_machine/Character/movement_states/player_movement_state_roll.gd" id="16_2d0fs"]
+[ext_resource type="Script" path="res://src/state_machine/Character/CharacterActiontStateMachine.gd" id="18_xruy7"]
+[ext_resource type="Script" path="res://src/state_machine/Character/action_states/player_action_state_idle.gd" id="18_y38lq"]
+[ext_resource type="Script" path="res://src/state_machine/Character/action_states/player_action_state_attack.gd" id="19_4ykgk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dihdx"]
 atlas = ExtResource("1_giw3n")
@@ -440,8 +443,8 @@ scale = Vector2(100, 100)
 script = ExtResource("11_2kcs4")
 initial_state = NodePath("PlayerIdle")
 DEBUG = true
-ACTIVATE_HISTORY = false
-PRINT_HISTORY = false
+ACTIVATE_HISTORY = true
+PRINT_HISTORY = true
 
 [node name="PlayerJump" type="Node" parent="GamerStateMachine"]
 script = ExtResource("11_8466l")
@@ -460,6 +463,19 @@ script = ExtResource("15_dvys1")
 
 [node name="PlayerRoll" type="Node" parent="GamerStateMachine"]
 script = ExtResource("16_2d0fs")
+
+[node name="GameMovementStateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_djxpv")]
+script = ExtResource("18_xruy7")
+initial_state = NodePath("PlayerActionStateIdle")
+DEBUG = true
+ACTIVATE_HISTORY = false
+PRINT_HISTORY = false
+
+[node name="PlayerActionStateIdle" type="Node" parent="GameMovementStateMachine"]
+script = ExtResource("18_y38lq")
+
+[node name="PlayerActionStateAttack" type="Node" parent="GameMovementStateMachine"]
+script = ExtResource("19_4ykgk")
 
 [connection signal="coin_collected" from="." to="UI" method="_on_character_coin_collected"]
 [connection signal="health_changed" from="." to="UI" method="_on_character_health_changed"]

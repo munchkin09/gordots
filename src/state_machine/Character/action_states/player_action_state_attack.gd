@@ -15,6 +15,8 @@ func process(_delta):
 func physics_process(_delta):
 	super(_delta)
 
+func process_input(event: InputEvent):
 	if Input.is_action_just_pressed("ui_attack"):
-		self.Transitioned.emit(self, 'playeractionstateidle')
+		self.ActionTransitioned.emit(self, 'playeractionstateidle')
 		return
+	return null

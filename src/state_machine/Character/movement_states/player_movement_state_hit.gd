@@ -1,4 +1,4 @@
-class_name CharacterStateHit extends PlayerState
+class_name CharacterStateHit extends PlayerMovementState
 
 func enter():
 	Log.call('Greetings from hit!')

@@ -1,9 +1,9 @@
 class_name CharacterMovementStateMachine extends Node
 
-@export var initial_state: PlayerActionState
+@export var initial_state: PlayerMovementState
 var history: Array[String] = []
 var states: Dictionary = {}
-var current_state: PlayerActionState
+var current_state: PlayerMovementState
 
 @export var DEBUG: bool = true
 @export var ACTIVATE_HISTORY: bool = false
@@ -15,9 +15,9 @@ var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = n
 
 func _ready():
 	for child in get_children():
-		if child is PlayerActionState:
+		if child is PlayerMovementState:
 			states[child.name.to_lower()] = child
-			child.ActionTransitioned.connect(on_child_transition)
+			child.Transitioned.connect(on_child_transition)
 				
 	if initial_state:
 		initial_state.enter()
@@ -29,7 +29,7 @@ func _process(delta):
 func _physics_process(delta):
 	current_state.physics_process(delta)
 
-func on_child_transition(state: PlayerState, newState: String):
+func on_child_transition(state: PlayerMovementState, newState: String):
 	if state.name == newState:
 		return
 
@@ -53,7 +53,13 @@ func states_history():
 		Log.call('The state history so far: \n', history)
 
 func transition_to(target_state_name: String) :
-	current_state.playeractionstateattack.emit(current_state,target_state_name)
+	current_state.Transitioned.emit(current_state,target_state_name)
 	
+func _on_character_im_death():
+	transition_to("playerDeath")
 
-	
+func process_input(event: InputEvent) -> void:
+	if current_state.has_method("process_input"):
+		var new_state = current_state.process_input(event)
+		if new_state:
+			transition_to(new_state)

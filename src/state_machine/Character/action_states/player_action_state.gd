@@ -17,8 +17,8 @@ var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = n
 
 func enter():
 	pass
-	if not animation:
-		animation = sword_node.get_node('AnimationPlayer') as AnimationPlayer
+	#if not animation:
+	#	animation = sword_node.get_node('AnimationPlayer') as AnimationPlayer
 
 func exit():
 	pass
@@ -31,10 +31,13 @@ func physics_process(delta):
 
 
 func _direction(delta):
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		animation.flip_h = false if (direction == 1) else true
+	pass
+	#var direction = Input.get_axis("ui_left", "ui_right")
+	#if direction:
+	#	animation.flip_h = false if (direction == 1) else true
 		
 
 func _play(anim):
-	animation.play(anim)
+	pass
+	
+	#animation.play(anim)
