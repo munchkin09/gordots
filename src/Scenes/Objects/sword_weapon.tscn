@@ -1,7 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://7t1pn10hr7wq"]
+[gd_scene load_steps=9 format=3 uid="uid://7t1pn10hr7wq"]
 
 [ext_resource type="Script" path="res://src/Scripts/Items/swordWeapon.gd" id="1_xolha"]
 [ext_resource type="Texture2D" uid="uid://cufefhadmo48a" path="res://Assets/Sprites/sword_silver.png" id="2_ij5sc"]
+[ext_resource type="Shader" path="res://src/shaders/sword_weapon_attack.gdshader" id="2_w2lpg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2apmy"]
+shader = ExtResource("2_w2lpg")
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 100
+shader_parameter/mix_ratio = 2.0
 
 [sub_resource type="Animation" id="Animation_4iaop"]
 resource_name = "idle"
@@ -19,10 +26,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 0.261799, 0.523598, -0.261799]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_2apmy"), SubResource("ShaderMaterial_2apmy")]
+}
 
 [sub_resource type="Animation" id="Animation_esqrr"]
 resource_name = "attack"
-length = 2.0
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -30,30 +49,72 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.1, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.261799, 0.523598, -0.261799]
+"values": [0.0, 0.785397]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [SubResource("ShaderMaterial_2apmy"), SubResource("ShaderMaterial_2apmy")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:material:shader_parameter/current_frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 100]
+}
+
+[sub_resource type="Animation" id="Animation_t0hkk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/current_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [100]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_enqn5"]
 _data = {
+"RESET": SubResource("Animation_t0hkk"),
 "attack": SubResource("Animation_esqrr"),
 "idle": SubResource("Animation_4iaop")
 }
 
 [node name="SwordWeapon" type="Area2D"]
-rotation = -0.261799
+rotation = 0.785397
 scale = Vector2(0.001, 0.001)
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_xolha")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2apmy")
 position = Vector2(18, -18)
 texture = ExtResource("2_ij5sc")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 scale = Vector2(1, 1)
 polygon = PackedVector2Array(-5, -7, 29, -58, 67, -72, 60, -38, 7, 2)
 disabled = true
