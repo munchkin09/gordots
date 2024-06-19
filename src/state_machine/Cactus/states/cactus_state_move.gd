@@ -27,5 +27,8 @@ func process(_delta):
 	if distance_to_player > -95:
 		changeStateTo('cactusstateattack')
 
-func physics_process(_delta):
+func physics_process(delta):
+	super(delta)
 	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
+	
+

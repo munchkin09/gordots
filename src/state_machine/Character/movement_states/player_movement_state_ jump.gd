@@ -14,9 +14,9 @@ func process(_delta):
 	pass
 
 func physics_process(delta):
-	super(delta)	
+	super(delta)
 	if player_node.is_on_floor():
-		self.Transitioned.emit(self, 'playeridle')
+		self.Transitioned.emit(self, 'playermove') 
 		return
 	self._direction(delta)
 	player_node.move_and_slide()

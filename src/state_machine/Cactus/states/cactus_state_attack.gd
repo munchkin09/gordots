@@ -27,7 +27,8 @@ func _process(_delta):
 		return
 	flip_monito()
 
-func physics_process(_delta):
+func physics_process(delta):
+	super(delta)
 	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
 
 func _on_timer_timeout():

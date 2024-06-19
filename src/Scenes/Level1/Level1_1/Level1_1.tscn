@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/Scripts/World.gd" id="1_k8enr"]
 [ext_resource type="Script" path="res://src/Scripts/Items/Bottle.gd" id="2_exe4a"]
-[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Sprites/world_tileset.png" id="2_x6146"]
+[ext_resource type="Texture2D" uid="uid://wawcpa3p01b4" path="res://Assets/Sprites/world_tileset.png" id="2_x6146"]
 [ext_resource type="PackedScene" uid="uid://daubysgl6wmqr" path="res://src/Scenes/Level1/Level1_1/CoinLayout.tscn" id="3_6nqke"]
 [ext_resource type="Texture2D" uid="uid://hl0kei6xmdma" path="res://src/Scenes/world_tileset.png" id="3_x2l4e"]
 [ext_resource type="Script" path="res://src/Scenes/Level1/Level1_1/CoinLayout.gd" id="4_0ux07"]
