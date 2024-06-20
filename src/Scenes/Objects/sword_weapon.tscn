@@ -12,33 +12,19 @@ shader_parameter/start_frame = 0
 shader_parameter/current_frame = 100
 shader_parameter/mix_ratio = 2.0
 
-[sub_resource type="Animation" id="Animation_4iaop"]
-resource_name = "idle"
-length = 2.0
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_t0hkk"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/current_frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.1, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.261799, 0.523598, -0.261799]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:material")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [SubResource("ShaderMaterial_2apmy"), SubResource("ShaderMaterial_2apmy")]
+"values": [100]
 }
 
 [sub_resource type="Animation" id="Animation_esqrr"]
@@ -81,19 +67,33 @@ tracks/2/keys = {
 "values": [0, 100]
 }
 
-[sub_resource type="Animation" id="Animation_t0hkk"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_4iaop"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/current_frame")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.261799, 0.523598, -0.261799]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [100]
+"values": [SubResource("ShaderMaterial_2apmy"), SubResource("ShaderMaterial_2apmy")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_enqn5"]
@@ -117,7 +117,6 @@ texture = ExtResource("2_ij5sc")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
-scale = Vector2(1, 1)
 polygon = PackedVector2Array(-5, -7, 29, -58, 67, -72, 60, -38, 7, 2)
 disabled = true
 

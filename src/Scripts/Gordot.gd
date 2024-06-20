@@ -17,6 +17,7 @@ var hc: HealthController
 signal health_changed(actual_health)
 signal im_death
 
+
 func _ready():
 	hc = health_controller.instantiate()
 	health_changed.emit(hc.get_actual_health())
@@ -46,8 +47,8 @@ func _on_coin_coin_collected():
 
 func _on_sword_body_entered(body):
 	LogDuck.w(body)
-	var weapon = sword_weapon.instantiate()
-	get_node("Hand").add_child(weapon)
+	var weapon = sword_weapon.instantiate().pass_owner(body)
+	animated_sprite.get_node("Hand").add_child(weapon)
 	weapon_on_hand = weapon
 	weapon.play_get_sword_sound()
 	player_action_state_machine.current_state.animation_player = weapon
@@ -55,3 +56,4 @@ func _on_sword_body_entered(body):
 	
 func _on_hand_child_entered_tree(node):
 	Log.call("soy gordito y bonachon.soy gordot")
+

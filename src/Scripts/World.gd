@@ -30,8 +30,6 @@ func _on_bottle_body_entered(body):
 	if body is Gordot:
 		finishing_level = true 
 		
-
-
 func _on_death_zone_character_on_death_zone():
 	LogDuck.d("YOU DIE 💀💀💀")
 

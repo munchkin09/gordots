@@ -21,7 +21,6 @@ func enter():
 	if player_node.weapon_on_hand :
 		animation_player = player_node.weapon_on_hand.get_node('AnimationPlayer') as AnimationPlayer
 
-	
 func exit():
 	pass
 
@@ -31,13 +30,11 @@ func process(_delta):
 func physics_process(delta):
 	pass
 
-
 func _direction(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		player_node.weapon_on_hand.get_node('Sprite2D').flip_h = false if (direction == 1) else true
 		
-
 func _play(animation,connect_to = null):
 	animation_player.play(animation)
 	if connect_to:
