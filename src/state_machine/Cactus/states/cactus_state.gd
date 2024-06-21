@@ -22,9 +22,6 @@ func process(_delta):
 	pass
 
 func physics_process(delta):
-	process_gravity(delta)
-
-func process_gravity(delta):
 	cactus_node.velocity.y += gravity * delta
 
 func _set(property, value):

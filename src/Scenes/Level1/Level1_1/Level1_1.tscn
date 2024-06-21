@@ -492,7 +492,7 @@ character = NodePath("../Gordot")
 debug_lines = false
 
 [node name="Cactus2" parent="." node_paths=PackedStringArray("character") groups=["Enemies"] instance=ExtResource("5_12r6g")]
-position = Vector2(-92, -95)
+position = Vector2(-93, -95)
 character = NodePath("../Gordot")
 
 [node name="Gordot" parent="." instance=ExtResource("6_vrrg2")]

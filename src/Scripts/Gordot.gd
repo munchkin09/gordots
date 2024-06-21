@@ -46,7 +46,6 @@ func _on_coin_coin_collected():
 	coin_collected.emit(coins_collected)
 
 func _on_sword_body_entered(body):
-	LogDuck.w(body)
 	var weapon = sword_weapon.instantiate().pass_owner(body)
 	animated_sprite.get_node("Hand").add_child(weapon)
 	weapon_on_hand = weapon

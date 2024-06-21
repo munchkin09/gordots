@@ -5,8 +5,7 @@ class_name CactusStateAttack extends CactusState
 var distance_to_player: float
 
 func enter():
-	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
-	cactus_node.velocity = Vector2(0.0, 0.0)
+	LogDuck.w("cactus entra en move")
 	cactus_node.animation.play('shoot')
 	timer.start()
 
@@ -14,22 +13,15 @@ func exit():
 	cactus_node.animation.stop()
 	timer.stop()
 
-var oneSec = 0.0
-
-func _process(_delta):
-
-	if distance_to_player >= 100:
-		changeStateTo('cactusstatemove')
-		return
-
-	if distance_to_player <= -100:
+func process(delta):
+	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
+	if distance_to_player in range(-75,75): 
 		changeStateTo('cactusstatemove')
 		return
 	flip_monito()
 
 func physics_process(delta):
 	super(delta)
-	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
 
 func _on_timer_timeout():
 	shoot_new_bullet()

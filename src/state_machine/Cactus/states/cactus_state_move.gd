@@ -2,37 +2,34 @@ class_name CactusStateMove extends CactusState
 
 var move_direction : Vector2
 var wander_time :float
-var speed :int = 100
-var speedNegative :int = -100
+var speed :int = 50
 var distance_to_player = 0.0
 
 func enter():
-	calculate_direction()
+	LogDuck.w("cactus entra en move")
+	calculate_direction(1)
+	cactus_node.move_and_slide()
 
 func exit():
 	cactus_node.animation.stop()
 
 func process(_delta):
-	flip_monito()
-	cactus_node.move_and_slide()
-	if distance_to_player < 75:
-		changeStateTo('cactusstateattack')
-
-	if distance_to_player > -75:
+	if cactus_node.is_on_floor():
+		flip_monito()
+	if distance_to_player in range(-75,75):
 		changeStateTo('cactusstateattack')
 
 func physics_process(delta):
+	flip_monito()
 	super(delta)
-	distance_to_player = cactus_node.global_position.distance_to(player_node.global_position)
-	var direction = cactus_node.global_position.direction_to(player_node.global_position).x
-
-	cactus_node.velocity = Vector2(speed if (direction > 0) else speedNegative,0.0)
-	cactus_node.animation.play("move")
+	calculate_direction(delta)
+	if  flipped:
+		cactus_node.velocity.x = cactus_node.velocity.x * -1
+	cactus_node.move_and_slide()
 	
-func calculate_direction():
+func calculate_direction(delta):
 	distance_to_player = player_node.global_position.x - cactus_node.global_position.x
-	var direction = cactus_node.global_position.direction_to(player_node.global_position).x
-
-	cactus_node.velocity = Vector2(speed if (direction > 0) else speedNegative,0.0)
+	var direction = cactus_node.global_position.direction_to(player_node.global_position)
+	cactus_node.velocity.x += direction.x * speed * delta
 	cactus_node.animation.play("move")
 

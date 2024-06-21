@@ -6,6 +6,8 @@ class_name Cactus extends Enemy
 @onready var enemy_death_explosion :CPUParticles2D = $DeathCPUParticles2D
 @onready var impact_sound :AudioStreamPlayer2D = $ImpactAudioStreamPlayer2D
 @onready var death_sound :AudioStreamPlayer2D = $DeathAudioStreamPlayer2D
+@onready var label = $Label
+@onready var state_machine = $CactusStateMachine
 
 func _ready():
 	for child in get_children(true):
@@ -15,7 +17,7 @@ func _ready():
 			child._set('cactus_node', self)
 
 func _process(_delta):
-	pass
+	label.text = str(self.velocity) + "\n" + str(self.state_machine.current_state.name)
 
 func receive_hit(damage):
 	life -= damage

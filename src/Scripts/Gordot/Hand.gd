@@ -19,7 +19,6 @@ func _process(delta):
 		turn_left()
 	else:
 		turn_rigth()
-	LogDuck.w(self.owner)
 
 	self.position = last_direction
 	
