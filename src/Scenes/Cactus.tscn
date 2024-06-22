@@ -132,7 +132,7 @@ shape = SubResource("RectangleShape2D_vq6iv")
 position = Vector2(-1, 0)
 scale = Vector2(1, 0.833333)
 sprite_frames = SubResource("SpriteFrames_h1j6d")
-animation = &"shoot"
+animation = &"idle"
 
 [node name="CactusStateMachine" parent="." instance=ExtResource("4_otx17")]
 
@@ -165,5 +165,9 @@ offset_left = -15.0
 offset_top = -27.0
 offset_right = 18.0
 offset_bottom = -4.0
+
+[node name="LeftRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(8, 7)
+scale = Vector2(0.048, 0.2)
 
 [connection signal="finished" from="DeathCPUParticles2D" to="." method="_on_death_cpu_particles_2d_finished"]

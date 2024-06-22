@@ -24,6 +24,7 @@ GameStateMachine="*res://src/state_machine/GameStateMachine/GameState.gd"
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+window/size/always_on_top=true
 
 [editor_plugins]
 

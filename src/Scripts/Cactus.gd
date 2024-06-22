@@ -8,7 +8,9 @@ class_name Cactus extends Enemy
 @onready var death_sound :AudioStreamPlayer2D = $DeathAudioStreamPlayer2D
 @onready var label = $Label
 @onready var state_machine = $CactusStateMachine
+@onready var  raycast: RayCast2D = $LeftRayCast2D
 
+var im_colliding : bool
 func _ready():
 	for child in get_children(true):
 		if child.name == 'CactusStateMachine':
@@ -17,8 +19,9 @@ func _ready():
 			child._set('cactus_node', self)
 
 func _process(_delta):
-	label.text = str(self.velocity) + "\n" + str(self.state_machine.current_state.name)
-
+	label.text = str(self.velocity) 
+	im_colliding = raycast.is_colliding()
+	
 func receive_hit(damage):
 	life -= damage
 	LogDuck.w(life)
