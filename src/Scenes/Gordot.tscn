@@ -377,15 +377,14 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_3tkld")
 
+[node name="Hand" type="Node2D" parent="." groups=["Gordot"]]
+position = Vector2(2, 8)
+script = ExtResource("4_4irqc")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_vulta")
 animation = &"hit"
-
-[node name="Hand" type="Node2D" parent="AnimatedSprite2D" groups=["Gordot"]]
-position = Vector2(2, 8)
-scale = Vector2(100, 100)
-script = ExtResource("4_4irqc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -478,6 +477,6 @@ script = ExtResource("19_4ykgk")
 [connection signal="health_changed" from="." to="UI" method="_on_character_health_changed"]
 [connection signal="im_death" from="." to="PlayerMovementStateMachine" method="_on_character_im_death"]
 [connection signal="start" from="." to="IntroMusic" method="_on_player_start"]
-[connection signal="child_entered_tree" from="AnimatedSprite2D/Hand" to="." method="_on_hand_child_entered_tree"]
+[connection signal="child_entered_tree" from="Hand" to="." method="_on_hand_child_entered_tree"]
 [connection signal="timeout" from="Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

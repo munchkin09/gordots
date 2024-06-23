@@ -2,7 +2,6 @@ class_name Gordot extends Character
 
 var faceLeft = true
 var coins_collected = 0
-var sword_weapon = preload("res://src/Scenes/Objects/sword_weapon.tscn")
 var weapon_on_hand : SwordWeapon
 
 @onready var player_movement_state_machine = $PlayerMovementStateMachine
@@ -15,7 +14,6 @@ var weapon_on_hand : SwordWeapon
 
 signal health_changed(actual_health)
 signal im_death
-
 
 func _ready():
 	health_changed.emit(health_controller.get_actual_health())
@@ -43,14 +41,12 @@ func _on_coin_coin_collected():
 	coins_collected+=1
 	coin_collected.emit(coins_collected)
 
-func _on_sword_body_entered(body):
-	var weapon = sword_weapon.instantiate().pass_owner(body)
-	animated_sprite.get_node("Hand").add_child(weapon)
-	weapon_on_hand = weapon
-	weapon.play_get_sword_sound()
-	player_action_state_machine.current_state.animation_player = weapon
-	player_action_state_machine.transition_to("playeractionstateidle")
-	
 func _on_hand_child_entered_tree(node):
 	Log.call("soy gordito y bonachon.soy gordot")
-
+	
+func set_active_item(item: Item):
+	get_node("Hand").add_child(item)
+	weapon_on_hand = item
+	print(player_action_state_machine.current_state)
+	player_action_state_machine.current_state.animation_player = item
+	player_action_state_machine.transition_to("playeractionstateidle")
