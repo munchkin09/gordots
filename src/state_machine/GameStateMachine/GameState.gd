@@ -14,13 +14,14 @@ var initial_menu = 'res://src/Scenes/Menus/Initial.tscn'
 var DEBUG: bool = false
 var ACTIVATE_HISTORY: bool = false
 var PRINT_HISTORY: bool = false
+var health_controller: HealthController
 const logDuckHeader = '🖥️🤖'
 
 var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null):
 	LogDuck.d(logDuckHeader + msg, arg1, arg2, arg3, arg4, arg5, arg6)
 
 func _ready():
-	
+	health_controller = HealthController.new()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(delta):

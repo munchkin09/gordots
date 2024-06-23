@@ -7,20 +7,18 @@ var weapon_on_hand : SwordWeapon
 
 @onready var player_movement_state_machine = $PlayerMovementStateMachine
 @onready var player_action_state_machine = $PlayerActionStateMachine
-@export var health_controller: PackedScene
 @onready var coin_collected_sound = $CoinCollected
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hit_sound = $HitSound
 @onready var death_sound = $GameOverSounds
+@onready var health_controller = GameStateMachine.health_controller
 
-var hc: HealthController
 signal health_changed(actual_health)
 signal im_death
 
 
 func _ready():
-	hc = health_controller.instantiate()
-	health_changed.emit(hc.get_actual_health())
+	health_changed.emit(health_controller.get_actual_health())
 	start.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -29,11 +27,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func _on_area_2d_body_entered(body):
 	if body is Bullet:
-		hc._on_player_hit(10)
+		health_controller._on_player_hit(10)
 		body.destroy()
 		animated_sprite.play("hit")
 		hit_sound.play()
-		var actual_health = hc.get_actual_health()
+		var actual_health = health_controller.get_actual_health()
 		health_changed.emit(actual_health)
 		if actual_health <= 0:
 			im_death.emit()

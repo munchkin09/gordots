@@ -1,9 +1,8 @@
-[gd_scene load_steps=67 format=3 uid="uid://bimqvxarfp4xy"]
+[gd_scene load_steps=66 format=3 uid="uid://bimqvxarfp4xy"]
 
 [ext_resource type="Script" path="res://src/Scripts/Gordot.gd" id="1_3tkld"]
-[ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Sprites/knight.png" id="1_giw3n"]
+[ext_resource type="Texture2D" uid="uid://kysvg1i2dav" path="res://Assets/Sprites/knight.png" id="1_giw3n"]
 [ext_resource type="AudioStream" uid="uid://ceml0dwvoiw5l" path="res://Assets/Sound/time_for_adventure.mp3" id="2_shjv8"]
-[ext_resource type="PackedScene" uid="uid://cuqpfgivymptq" path="res://src/Scenes/HealthController.tscn" id="3_4p4dx"]
 [ext_resource type="Script" path="res://src/Scripts/Gordot/Hand.gd" id="4_4irqc"]
 [ext_resource type="AudioStream" uid="uid://blarvx4pcodc8" path="res://Assets/Sound/coin_collected.mp3" id="4_cd4f6"]
 [ext_resource type="AudioStream" uid="uid://bdifq76rbv2it" path="res://Assets/Sound/hit4.ogg" id="6_w3y13"]
@@ -377,7 +376,6 @@ z_index = 1
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_3tkld")
-health_controller = ExtResource("3_4p4dx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 4.76837e-07)
@@ -434,9 +432,6 @@ panning_strength = 1.61
 [node name="GameOverSounds" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_vkg2i")
 volume_db = -34.354
-
-[node name="HealthController" parent="." instance=ExtResource("3_4p4dx")]
-unique_name_in_owner = true
 
 [node name="UI" parent="." instance=ExtResource("14_xt140")]
 script = ExtResource("15_t23uc")
