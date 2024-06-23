@@ -9,6 +9,7 @@ class_name Cactus extends Enemy
 @onready var label = $Label
 @onready var state_machine = $CactusStateMachine
 @onready var  raycast: RayCast2D = $LeftRayCast2D
+@export var DEBUG = false
 
 var im_colliding : bool
 func _ready():
@@ -19,7 +20,8 @@ func _ready():
 			child._set('cactus_node', self)
 
 func _process(_delta):
-	label.text = str(self.velocity) 
+	if DEBUG:
+		label.text = str(self.velocity) 
 	im_colliding = raycast.is_colliding()
 	
 func receive_hit(damage):
