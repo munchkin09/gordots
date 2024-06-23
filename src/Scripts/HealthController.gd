@@ -1,7 +1,8 @@
 class_name HealthController extends Node
 
+const INITIAL_HEALTH = 20
 var max_health = 100
-var actual_health = 20
+var actual_health = INITIAL_HEALTH
 var health_remove_factor = 1
 @onready var player_node = self.get_parent() as Character
 
@@ -23,3 +24,6 @@ func _on_player_hit(dmg):
 
 func get_actual_health():
 	return actual_health
+
+func reset():
+	actual_health = INITIAL_HEALTH
