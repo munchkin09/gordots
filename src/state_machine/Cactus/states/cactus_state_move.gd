@@ -14,7 +14,6 @@ func exit():
 
 func process(_delta):
 	distance_to_player = player_node.global_position.x - cactus_node.global_position.x
-	Log.call(str(distance_to_player))
 	if int(distance_to_player) in range(-75,75):
 		changeStateTo('cactusstateattack')
 

@@ -28,7 +28,7 @@ func _on_body_entered(body):
 		body.set_active_item(self)
 		play_get_sword_sound()
 		equipped = true
-		GameStateMachine.items_controller.add_item_to_inventory(self)
+		GameStateMachine.items_controller.add_item_to_inventory(duplicate())
 		for rect in pepe:
 			if rect.texture == null:
 				rect.texture = sprite.texture

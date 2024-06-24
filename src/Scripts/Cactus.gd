@@ -26,7 +26,6 @@ func _process(_delta):
 	
 func receive_hit(damage):
 	life -= damage
-	LogDuck.w(life)
 	if life <= 0:
 		death_sound.play()
 		enemy_death_explosion.restart()

@@ -12,13 +12,14 @@ var weapon_on_hand : SwordWeapon
 @onready var death_sound = $GameOverSounds
 @onready var health_controller = GameStateMachine.health_controller
 @onready var item_controller = GameStateMachine.items_controller
-@onready var inventory :Array[Item]
+@onready var inventory :Node
 signal health_changed(actual_health)
 signal im_death
 
 func _ready():
 	health_changed.emit(health_controller.get_actual_health())
 	inventory = item_controller.get_inventory()
+	LogDuck.w(inventory.get_tree_string_pretty())
 	start.emit()
 
 func _unhandled_input(event: InputEvent) -> void:

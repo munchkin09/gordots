@@ -45,7 +45,6 @@ func on_child_transition(state: CactusState, newState: String):
 	if current_state:
 		current_state.exit()
 		history.append(current_state.to_string())
-	LogDuck.w(new_state)
 	new_state.enter()
 	current_state = new_state
 
