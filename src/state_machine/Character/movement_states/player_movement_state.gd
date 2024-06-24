@@ -25,6 +25,7 @@ func process(_delta):
 	pass
 
 func physics_process(delta):
+	player_node.get_node("debug").text = str(GameStateMachine.items_controller.get_inventory())
 	player_node.velocity.y += gravity * delta
 
 func _direction(delta):

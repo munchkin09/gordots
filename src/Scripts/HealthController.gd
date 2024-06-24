@@ -1,6 +1,6 @@
 class_name HealthController extends Node
 
-const INITIAL_HEALTH = 20
+const INITIAL_HEALTH = 200
 var max_health = 100
 var actual_health = INITIAL_HEALTH
 var health_remove_factor = 1

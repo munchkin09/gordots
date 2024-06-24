@@ -473,6 +473,10 @@ script = ExtResource("18_y38lq")
 [node name="PlayerActionStateAttack" type="Node" parent="PlayerActionStateMachine"]
 script = ExtResource("19_4ykgk")
 
+[node name="debug" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="coin_collected" from="." to="UI" method="_on_character_coin_collected"]
 [connection signal="health_changed" from="." to="UI" method="_on_character_health_changed"]
 [connection signal="im_death" from="." to="PlayerMovementStateMachine" method="_on_character_im_death"]

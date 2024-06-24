@@ -15,6 +15,7 @@ var DEBUG: bool = false
 var ACTIVATE_HISTORY: bool = false
 var PRINT_HISTORY: bool = false
 var health_controller: HealthController
+var items_controller :ItemsController
 const logDuckHeader = '🖥️🤖'
 
 var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null):
@@ -22,7 +23,7 @@ var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = n
 
 func _ready():
 	health_controller = HealthController.new()
-	
+	items_controller = ItemsController.new()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(delta):

@@ -11,12 +11,14 @@ var weapon_on_hand : SwordWeapon
 @onready var hit_sound = $HitSound
 @onready var death_sound = $GameOverSounds
 @onready var health_controller = GameStateMachine.health_controller
-
+@onready var item_controller = GameStateMachine.items_controller
+@onready var inventory :Array[Item]
 signal health_changed(actual_health)
 signal im_death
 
 func _ready():
 	health_changed.emit(health_controller.get_actual_health())
+	inventory = item_controller.get_inventory()
 	start.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -40,13 +42,9 @@ func _on_coin_coin_collected():
 	coin_collected_sound.play()
 	coins_collected+=1
 	coin_collected.emit(coins_collected)
-
-func _on_hand_child_entered_tree(node):
-	Log.call("soy gordito y bonachon.soy gordot")
 	
 func set_active_item(item: Item):
 	get_node("Hand").add_child(item)
 	weapon_on_hand = item
-	print(player_action_state_machine.current_state)
 	player_action_state_machine.current_state.animation_player = item
 	player_action_state_machine.transition_to("playeractionstateidle")
