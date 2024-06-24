@@ -19,6 +19,7 @@ signal im_death
 func _ready():
 	health_changed.emit(health_controller.get_actual_health())
 	inventory = item_controller.get_inventory()
+	set_active_item(item_controller.get_active_item())
 	LogDuck.w(inventory.get_tree_string_pretty())
 	start.emit()
 
