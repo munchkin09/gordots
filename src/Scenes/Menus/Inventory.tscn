@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://4co4w25u05c"]
+
+[ext_resource type="PackedScene" uid="uid://jwyk5tokrfi7" path="res://src/Scenes/Menus/Slot.tscn" id="1_d5gqj"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jo31s"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 88.0
+offset_right = 40.0
+offset_bottom = 88.0
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 4
+
+[node name="Slot" parent="Control/GridContainer" instance=ExtResource("1_d5gqj")]
+layout_mode = 2
+
+[node name="TextureRect" parent="Control/GridContainer/Slot" index="0"]
+texture = SubResource("PlaceholderTexture2D_jo31s")
+
+[node name="Slot2" parent="Control/GridContainer" instance=ExtResource("1_d5gqj")]
+layout_mode = 2
+
+[node name="Slot3" parent="Control/GridContainer" instance=ExtResource("1_d5gqj")]
+layout_mode = 2
+
+[node name="Slot4" parent="Control/GridContainer" instance=ExtResource("1_d5gqj")]
+layout_mode = 2
+
+[node name="Slot5" parent="Control/GridContainer" instance=ExtResource("1_d5gqj")]
+layout_mode = 2
+
+[node name="Slot6" parent="Control/GridContainer" instance=ExtResource("1_d5gqj")]
+layout_mode = 2
+
+[node name="Slot7" parent="Control/GridContainer" instance=ExtResource("1_d5gqj")]
+layout_mode = 2
+
+[node name="Slot8" parent="Control/GridContainer" instance=ExtResource("1_d5gqj")]
+layout_mode = 2
+
+[editable path="Control/GridContainer/Slot"]

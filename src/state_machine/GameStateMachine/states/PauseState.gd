@@ -25,7 +25,6 @@ func exit():
 	root_node.get_tree().get_first_node_in_group('current_scene').get_tree().paused = paused
 
 func process(_delta):
-	
 	if Input.is_action_just_pressed('ui_menu'):
 		Transitioned.emit(self, 'startlevelstate')
 

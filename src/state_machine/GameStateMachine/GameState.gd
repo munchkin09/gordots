@@ -22,6 +22,7 @@ var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = n
 
 func _ready():
 	health_controller = HealthController.new()
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(delta):
