@@ -12,15 +12,19 @@ var weapon_on_hand : SwordWeapon
 @onready var death_sound = $GameOverSounds
 @onready var health_controller = GameStateMachine.health_controller
 @onready var item_controller = GameStateMachine.items_controller
-@onready var inventory :Node
+@onready var inventory :Dictionary = {}
+var equipped_weapon 
 signal health_changed(actual_health)
 signal im_death
 
 func _ready():
 	health_changed.emit(health_controller.get_actual_health())
 	inventory = item_controller.get_inventory()
-	set_active_item(item_controller.get_active_item())
-	LogDuck.w(inventory.get_tree_string_pretty())
+	if inventory:
+		equipped_weapon = item_controller.get_equipped_item(inventory)
+	if equipped_weapon:
+		equipped_weapon = load(equipped_weapon)
+		set_active_item(equipped_weapon.instantiate())
 	start.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -46,7 +50,9 @@ func _on_coin_coin_collected():
 	coin_collected.emit(coins_collected)
 	
 func set_active_item(item: Item):
-	get_node("Hand").add_child(item)
-	weapon_on_hand = item
-	player_action_state_machine.current_state.animation_player = item
-	player_action_state_machine.transition_to("playeractionstateidle")
+	if item:
+		item.item_data.equipped = true
+		get_node("Hand").add_child(item)
+		weapon_on_hand = item
+		player_action_state_machine.current_state.animation_player = item
+		player_action_state_machine.transition_to("playeractionstateidle")

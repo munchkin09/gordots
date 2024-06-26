@@ -2,7 +2,12 @@ class_name ItemsController extends Node
 
 const INITIAL_COINS = 0
 var actual_coins = INITIAL_COINS
-var inventory :Node = Node.new()
+
+var inventory  := {
+	"weapons" : {},
+	"coins"	  : 0
+}
+
 var active_item: Item
 const logDuckHeader = '😷 '
 
@@ -11,10 +16,13 @@ var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = n
 
 func _ready():
 	Log.call('Initiated')
-
-func add_item_to_inventory(item: Item): 
-	inventory.add_child(item)
-		
+	
+func process(delta):
+	LogDuck.w(inventory)
+	
+func add_item_to_inventory(item_type: String , item: Dictionary): 
+	inventory[item_type][item.name] = item
+			
 func get_inventory():
 	return inventory 
 
@@ -24,3 +32,10 @@ func set_active_item(item: Item):
 func get_active_item():
 	if active_item:
 		return active_item
+
+func get_equipped_item(inventory: Dictionary):
+	LogDuck.w(inventory)
+	for weapon in inventory.weapons:
+		if inventory.weapons[weapon]["equipped"] == true:
+			return inventory.weapons[weapon].scene_path
+	return {}
