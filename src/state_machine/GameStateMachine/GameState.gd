@@ -8,6 +8,7 @@ var startlevelstate = StartLevelState.new()
 var playinglevelstate = PlayingLevelState.new()
 var gameoverstate  = GameOverState.new()
 var pausestate = PauseState.new()
+var inventorystate = InventoryState.new()
 var initial_state = BaseStateClass.new()
 var initial_menu = 'res://src/Scenes/Menus/Initial.tscn'
 
@@ -67,11 +68,14 @@ func startStateMachine(node: Node2D):
 	states['playinglevelstate'] = playinglevelstate
 	states['gameoverstate'] = gameoverstate
 	states['pausestate'] = pausestate
+	states['inventorystate'] = inventorystate
 	selectlevelstate.Transitioned.connect(on_child_transition)
 	startlevelstate.Transitioned.connect(on_child_transition)
 	playinglevelstate.Transitioned.connect(on_child_transition)
 	pausestate.Transitioned.connect(on_child_transition)
 	pausestate.configure(node)
+	inventorystate.Transitioned.connect(on_child_transition)
+	inventorystate.configure(node)
 	selectlevelstate.configure(node)
 	gameoverstate.configure(node)
 	self.changeSceneTo(initial_menu)

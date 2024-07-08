@@ -6,7 +6,8 @@ class_name SwordWeapon extends Item
 @onready var item_data : Dictionary = {
 	"equipped" = false,
 	"name"     = "sword",
-	"scene_path" = $".".scene_file_path
+	"scene_path" = $".".scene_file_path,
+	"equipped_texture" = %Sprite2D.texture
 }
 
 #this is one of the posible shortcuts to have a class constructor
@@ -23,20 +24,19 @@ func _on_body_entered(body):
 		body.receive_hit(damage)
 
 	if item_data.equipped == false and body is Gordot:
-		var pepe = get_tree().get_nodes_in_group('inventory')
+		#var pepe = get_tree().get_nodes_in_group('inventory')
 		collision.disabled = false
-		#item_collision.disabled = true
+		GameStateMachine.items_controller.add_item_to_inventory('weapons',item_data)
 		remove_child(item_collision)
 		get_parent().remove_child(self)
 		pass_owner(body)
 		body.set_active_item(self)
 		play_get_sword_sound()
 		item_data.equipped = true
-		GameStateMachine.items_controller.add_item_to_inventory('weapons',item_data)
-		for rect in pepe:
-			if rect.texture == null:
-				rect.texture = sprite.texture
-				break
+		#for rect in pepe:
+		#	if rect.texture == null:
+		#		rect.texture = sprite.texture
+		#		break
 
 func activate():
 	collision.disabled = false

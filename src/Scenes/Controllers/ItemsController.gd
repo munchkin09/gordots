@@ -18,7 +18,7 @@ func _ready():
 	Log.call('Initiated')
 	
 func process(delta):
-	LogDuck.w(inventory)
+	pass
 	
 func add_item_to_inventory(item_type: String , item: Dictionary): 
 	inventory[item_type][item.name] = item
@@ -33,9 +33,15 @@ func get_active_item():
 	if active_item:
 		return active_item
 
-func get_equipped_item(inventory: Dictionary):
-	LogDuck.w(inventory)
+func get_equipped_item():
 	for weapon in inventory.weapons:
 		if inventory.weapons[weapon]["equipped"] == true:
 			return inventory.weapons[weapon].scene_path
 	return {}
+
+func get_equipped_item_texture():
+	for weapon in inventory.weapons:
+		if inventory.weapons[weapon]["equipped"] == true:
+			return inventory.weapons[weapon].equipped_texture.load_path
+	return {}
+

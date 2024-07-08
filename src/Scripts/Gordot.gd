@@ -19,9 +19,7 @@ signal im_death
 
 func _ready():
 	health_changed.emit(health_controller.get_actual_health())
-	inventory = item_controller.get_inventory()
-	if inventory:
-		equipped_weapon = item_controller.get_equipped_item(inventory)
+	equipped_weapon = item_controller.get_equipped_item()
 	if equipped_weapon:
 		equipped_weapon = load(equipped_weapon)
 		set_active_item(equipped_weapon.instantiate())
@@ -56,3 +54,6 @@ func set_active_item(item: Item):
 		weapon_on_hand = item
 		player_action_state_machine.current_state.animation_player = item
 		player_action_state_machine.transition_to("playeractionstateidle")
+
+func _process(delta):
+	pass

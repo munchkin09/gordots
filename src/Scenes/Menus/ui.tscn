@@ -8,69 +8,71 @@
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_right = 148.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 192.0
 offset_bottom = 124.0
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 theme = ExtResource("1_gk6hx")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/HBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="HudCoins" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="HudCoins" type="TextureRect" parent="CanvasLayer/HBoxContainer/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("2_5wnjd")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="CoinsLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="CoinsLabel" type="Label" parent="CanvasLayer/HBoxContainer/PanelContainer/MarginContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
 
-[node name="HudLife" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="HudLife" type="TextureRect" parent="CanvasLayer/HBoxContainer/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("3_s7ssc")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="LifeLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="LifeLabel" type="Label" parent="CanvasLayer/HBoxContainer/PanelContainer/MarginContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "10"
 
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
-offset_left = 245.0
-offset_top = 3.0
-offset_right = 677.0
-offset_bottom = 171.0
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 4)
+layout_mode = 2
 theme = ExtResource("1_gk6hx")
 
-[node name="CharacterObjects" type="MarginContainer" parent="CanvasLayer/PanelContainer2"]
+[node name="CharacterObjects" type="MarginContainer" parent="CanvasLayer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer2/CharacterObjects"]
-layout_mode = 2
-columns = 3
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer2/CharacterObjects/GridContainer" groups=["inventory"]]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/HBoxContainer/PanelContainer2/CharacterObjects"]
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/PanelContainer2/CharacterObjects/GridContainer" groups=["inventory"]]
+[node name="WeaponTextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer/PanelContainer2/CharacterObjects/GridContainer" groups=["inventory"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/PanelContainer2/CharacterObjects/GridContainer" groups=["inventory"]]
-layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+expand_mode = 2
+stretch_mode = 5

@@ -12,7 +12,7 @@ resource_name = "Phaser"
 resource_name = "Delay"
 
 [resource]
-bus/0/volume_db = -0.130497
+bus/0/volume_db = -10.0741
 bus/0/effect/0/effect = SubResource("AudioEffectDistortion_78thb")
 bus/0/effect/0/enabled = true
 bus/0/effect/1/effect = SubResource("AudioEffectPhaser_o5cow")
