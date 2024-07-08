@@ -70,9 +70,9 @@ layout_mode = 2
 
 [node name="WeaponTextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer/PanelContainer2/CharacterObjects/GridContainer" groups=["inventory"]]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 6
-expand_mode = 2
+expand_mode = 1
 stretch_mode = 5

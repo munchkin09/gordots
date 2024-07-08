@@ -11,16 +11,17 @@ var pausestate = PauseState.new()
 var inventorystate = InventoryState.new()
 var initial_state = BaseStateClass.new()
 var initial_menu = 'res://src/Scenes/Menus/Initial.tscn'
-
+var current_tilemap_bounds : Array[Vector2]
 var DEBUG: bool = false
 var ACTIVATE_HISTORY: bool = false
 var PRINT_HISTORY: bool = false
 var health_controller: HealthController
 var items_controller :ItemsController
 const logDuckHeader = '🖥️🤖'
-
 var Log = func(msg, arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null):
 	LogDuck.d(logDuckHeader + msg, arg1, arg2, arg3, arg4, arg5, arg6)
+
+signal TileMapBoundsChanged(bounds : Array[Vector2])
 
 func _ready():
 	health_controller = HealthController.new()
@@ -88,3 +89,7 @@ func restart_scene():
 	health_controller.reset()
 	var scene_path = get_tree().current_scene.scene_file_path
 	changeSceneTo(scene_path)
+
+func changeTileMapBounds(bounds : Array[Vector2]) ->void:
+	current_tilemap_bounds = bounds
+	TileMapBoundsChanged.emit(bounds)

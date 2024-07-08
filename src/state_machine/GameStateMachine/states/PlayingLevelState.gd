@@ -7,7 +7,6 @@ func exit():
 	pass
 
 func process(_delta):
-	LogDuck.w("desdecaaca")
 	if Input.is_action_pressed('ui_menu'):
 		Transitioned.emit(self, 'pausestate')
 	if Input.is_action_pressed('ui_inventory'):

@@ -331,11 +331,16 @@ animations = [{
 
 [sub_resource type="GDScript" id="GDScript_lmkjx"]
 resource_name = "CameraEvents"
-script/source = "extends Camera2D
+script/source = "class_name PlayerCamera extends Camera2D
 
 var startZooming = false
+var misterious_offset = 64
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready():
+	GameStateMachine.TileMapBoundsChanged.connect(UpdateLimits)
+	UpdateLimits(GameStateMachine.current_tilemap_bounds)	
+	
+	
 func _process(_delta):
 	if(startZooming && self.zoom <= Vector2(3,3)):
 		var actualZoom = self.zoom
@@ -355,6 +360,12 @@ func _shake(strength):
 		tween_camera_shake.tween_property(self,\"offset\",Vector2(randomx,randomy),0.01)
 		await tween_camera_shake.finished
 	offset = Vector2.ZERO
+
+func UpdateLimits(bounds:Array[Vector2]) -> void:
+	limit_left = int(bounds[0].x) 
+	limit_top = int(bounds[0].y)
+	limit_right = int(bounds[1].x)  
+	limit_bottom = int(bounds[1].y) 
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mewk"]
@@ -388,9 +399,6 @@ animation = &"hit"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
-limit_left = -590
-limit_top = -330
-limit_bottom = 40
 position_smoothing_enabled = true
 script = SubResource("GDScript_lmkjx")
 
