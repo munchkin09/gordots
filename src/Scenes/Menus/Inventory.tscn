@@ -1,23 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://4co4w25u05c"]
+[gd_scene load_steps=4 format=3 uid="uid://4co4w25u05c"]
 
 [ext_resource type="PackedScene" uid="uid://jwyk5tokrfi7" path="res://src/Scenes/Menus/Slot.tscn" id="1_d5gqj"]
+[ext_resource type="Script" path="res://src/Scripts/Menus/InventoryGridContainer.gd" id="1_wowk7"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jo31s"]
 
-[node name="Node2D" type="Node2D"]
+[node name="CanvasLayer" type="CanvasLayer"]
+follow_viewport_scale = 393.509
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_top = 88.0
-offset_right = 40.0
-offset_bottom = 88.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 
 [node name="InventoryGridContainer" type="GridContainer" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.65
+anchor_right = 2.65
+offset_top = -42.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
 columns = 4
+script = ExtResource("1_wowk7")
+metadata/_edit_use_anchors_ = true
 
 [node name="Slot" parent="Control/InventoryGridContainer" instance=ExtResource("1_d5gqj")]
 layout_mode = 2
@@ -45,5 +58,8 @@ layout_mode = 2
 
 [node name="Slot8" parent="Control/InventoryGridContainer" instance=ExtResource("1_d5gqj")]
 layout_mode = 2
+
+[connection signal="visibility_changed" from="." to="Control/InventoryGridContainer" method="_on_canvas_layer_visibility_changed"]
+[connection signal="focus_entered" from="Control/InventoryGridContainer" to="Control/InventoryGridContainer" method="_on_focus_entered"]
 
 [editable path="Control/InventoryGridContainer/Slot"]

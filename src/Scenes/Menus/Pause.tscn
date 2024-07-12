@@ -3,7 +3,9 @@
 [ext_resource type="Script" path="res://src/Scripts/PauseMenu.gd" id="1_v72mw"]
 [ext_resource type="PackedScene" uid="uid://cvdkquhr0v87a" path="res://src/Scenes/Menus/settings.tscn" id="2_k01hr"]
 
-[node name="PauseMenu" type="Control"]
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="PauseMenu" type="Control" parent="."]
 z_index = 1
 layout_mode = 3
 anchors_preset = 15
@@ -13,16 +15,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v72mw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.554109, 0.223338, 0.457535, 1)
+color = Color(0.306793, 0.399961, 0.239501, 0.196078)
 
-[node name="PauseGridContainer" type="GridContainer" parent="."]
+[node name="PauseGridContainer" type="GridContainer" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,25 +38,25 @@ offset_bottom = 23.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="PauseGridContainer"]
+[node name="Label" type="Label" parent="PauseMenu/PauseGridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="PauseGridContainer"]
+[node name="ResumeButton" type="Button" parent="PauseMenu/PauseGridContainer"]
 layout_mode = 2
 text = "Resume"
 
-[node name="SettingsButton" type="Button" parent="PauseGridContainer"]
+[node name="SettingsButton" type="Button" parent="PauseMenu/PauseGridContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="QuitButton" type="Button" parent="PauseGridContainer"]
+[node name="QuitButton" type="Button" parent="PauseMenu/PauseGridContainer"]
 layout_mode = 2
 text = "Quit game"
 
-[node name="SettingsGridContainer" type="GridContainer" parent="."]
+[node name="SettingsGridContainer" type="GridContainer" parent="PauseMenu"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -69,11 +71,11 @@ offset_bottom = 88.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SettingsPanelContainer" parent="SettingsGridContainer" instance=ExtResource("2_k01hr")]
+[node name="SettingsPanelContainer" parent="PauseMenu/SettingsGridContainer" instance=ExtResource("2_k01hr")]
 visible = true
 layout_mode = 2
 
-[connection signal="pressed" from="PauseGridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="PauseGridContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="PauseGridContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="return_from_menu" from="SettingsGridContainer/SettingsPanelContainer" to="." method="_on_settings_panel_container_return_from_menu"]
+[connection signal="pressed" from="PauseMenu/PauseGridContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PauseGridContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PauseGridContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="return_from_menu" from="PauseMenu/SettingsGridContainer/SettingsPanelContainer" to="PauseMenu" method="_on_settings_panel_container_return_from_menu"]

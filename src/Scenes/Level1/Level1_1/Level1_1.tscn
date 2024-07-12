@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bu7wb1exa7x20"]
+[gd_scene load_steps=22 format=3 uid="uid://bu7wb1exa7x20"]
 
 [ext_resource type="Script" path="res://src/Scripts/World.gd" id="1_k8enr"]
 [ext_resource type="Script" path="res://src/Scripts/Items/Bottle.gd" id="2_exe4a"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dpway13lpk3mc" path="res://src/Scenes/death_zone.tscn" id="9_wekop"]
 [ext_resource type="PackedScene" uid="uid://7t1pn10hr7wq" path="res://src/Scenes/Objects/sword_weapon.tscn" id="12_8euxu"]
 [ext_resource type="PackedScene" uid="uid://4co4w25u05c" path="res://src/Scenes/Menus/Inventory.tscn" id="13_mtrsy"]
+[ext_resource type="PackedScene" uid="uid://bp0tqqkoa3mxf" path="res://src/Scenes/Objects/bomb.tscn" id="15_w2uty"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2d1bf"]
 radius = 17.61
@@ -539,6 +540,9 @@ visible = false
 
 [node name="InventoryMenu" parent="." instance=ExtResource("13_mtrsy")]
 visible = false
+
+[node name="Bomb" parent="." instance=ExtResource("15_w2uty")]
+position = Vector2(-66, 3)
 
 [connection signal="body_entered" from="Bottle" to="." method="_on_bottle_body_entered"]
 [connection signal="character_on_death_zone" from="DeathZone" to="." method="_on_death_zone_character_on_death_zone"]

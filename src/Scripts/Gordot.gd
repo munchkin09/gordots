@@ -2,7 +2,7 @@ class_name Gordot extends Character
 
 var faceLeft = true
 var coins_collected = 0
-var weapon_on_hand : SwordWeapon
+var weapon_on_hand : Item
 
 @onready var player_movement_state_machine = $PlayerMovementStateMachine
 @onready var player_action_state_machine = $PlayerActionStateMachine

@@ -15,17 +15,17 @@ func enter():
 	InventoryMenu = root_node.get_tree().get_first_node_in_group('current_scene').get_node("InventoryMenu")
 	paused = true
 	InventoryMenu.show()
-	InventoryMenu.get_node("InventoryGridContainer").show()
+	InventoryMenu.get_node("Control").get_node("InventoryGridContainer").show()
 	root_node.get_tree().get_first_node_in_group('current_scene').get_tree().paused = paused
 
 func exit():
 	paused = false
-	InventoryMenu.get_node("InventoryGridContainer").hide()
+	InventoryMenu.get_node("Control").get_node("InventoryGridContainer").hide()
 	InventoryMenu.hide()
 	root_node.get_tree().get_first_node_in_group('current_scene').get_tree().paused = paused
 
-func process(_delta):
-	if Input.is_action_just_pressed('ui_inventory'):
+func process(delta):
+	if Input.is_action_pressed('ui_inventory'):
 		Transitioned.emit(self, 'startlevelstate')
 
 func physics_process(_delta):
